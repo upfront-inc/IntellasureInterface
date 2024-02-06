@@ -6,12 +6,27 @@
 
 .dark {
   background-color: #353935;
+  color: 'white';
 }
 
 .light {
   background-color: white;
+  color: #353935;
+}
+
+.open {
+  margin-left: 200px;
+}
+
+.closed {
+  margin-left: 70px;
 }
 
 .toggle-button {
-  
+  padding: 10px;
+  background-color: grey;
+  border-color: lightgrey;
+  border-width: 2px;
+  border-radius: 8px;
+  color: white;
 }

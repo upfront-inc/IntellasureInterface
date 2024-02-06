@@ -1,0 +1,17 @@
+.sidebar-open {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: azure;
+}
+
+.sidebar-closed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70px;
+  height: 100vh;
+  background-color: azure;
+}
