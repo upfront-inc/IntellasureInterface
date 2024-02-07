@@ -139,6 +139,14 @@
   margin-right: 8px;
 }
 
+.menu-bar-item-selected-dark {
+  background-color: #303030;
+}
+
+.menu-bar-item-selected-light {
+  background-color: #e5e5e5; 
+}
+
 .icon-menu {
   color: #009ea1;
   font-size: 22px;

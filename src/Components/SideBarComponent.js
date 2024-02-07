@@ -2,13 +2,17 @@ import React from 'react'
 import '../Css/sidebar.css'
 import { useSidebar } from '../Contexts/SidebarContext';
 import { useTheme } from '../Contexts/ThemeContext';
+import { useApp } from '../Contexts/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowAltCircleRight, faCode, faFlag, faInbox, faInfoCircle, faList, faMoneyBill, faQuestion, faRightFromBracket, faSheetPlastic, faShield, faShieldAlt, faTicket, faUser, faUsers, faX } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleRight, faCode, faFlag, faGear, faInbox, faInfoCircle, faList, faMoneyBill, faQuestion, faRightFromBracket, faSheetPlastic, faShield, faShieldAlt, faTicket, faUser, faUsers, faX } from '@fortawesome/free-solid-svg-icons';
 
 const SideBarComponent = () => {
 
   const { sidebarPosition } = useSidebar();
   const { theme } = useTheme();
+  const { selectedTab, toggleSelectedTab } = useApp();
+
+  const isSelected = (tabName) => selectedTab === tabName;
 
   return (
     <div className={`sidebar-${sidebarPosition} sidebar-${theme}`}>
@@ -26,7 +30,7 @@ const SideBarComponent = () => {
       </div>
       <div className='menu-bar'>
         <div>
-          <div className={`menu-bar-item-${sidebarPosition}-${theme}`}>
+          <div onClick={() => {toggleSelectedTab('billingDetails')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('billingDetails') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faShieldAlt} className="icon-menu"/>
             </div>
@@ -38,7 +42,7 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
-          <div className={`menu-bar-item-${sidebarPosition}-${theme}`}>
+          <div onClick={() => {toggleSelectedTab('dailyRates')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('dailyRates') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faMoneyBill} className="icon-menu"/>
             </div>
@@ -50,7 +54,7 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
-          <div className={`menu-bar-item-${sidebarPosition}-${theme}`}>
+          <div onClick={() => {toggleSelectedTab('flagged')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('flagged') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faFlag} className="icon-menu"/>
             </div>
@@ -62,7 +66,7 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
-          <div className={`menu-bar-item-${sidebarPosition}-${theme}`}>
+          <div onClick={() => {toggleSelectedTab('missing')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('missing') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faX} className="icon-menu"/>
             </div>
@@ -74,7 +78,7 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
-          <div className={`menu-bar-item-${sidebarPosition}-${theme}`}>
+          <div onClick={() => {toggleSelectedTab('intake')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('intake') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faArrowAltCircleRight} className="icon-menu"/>
             </div>
@@ -88,7 +92,7 @@ const SideBarComponent = () => {
           </div>
         </div>
         <div>
-          <div className={`menu-bar-item-${sidebarPosition}-${theme}`}>
+          <div onClick={() => {toggleSelectedTab('accounts')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('accounts') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faUsers} className="icon-menu"/>
             </div>
@@ -100,7 +104,7 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
-          <div className={`menu-bar-item-${sidebarPosition}-${theme}`}>
+          <div onClick={() => {toggleSelectedTab('backend')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('backend') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faCode} className="icon-menu"/>
             </div>
@@ -112,7 +116,7 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
-          <div className={`menu-bar-item-${sidebarPosition}-${theme}`}>
+          <div onClick={() => {toggleSelectedTab('helpTickets')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('helpTickets') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faTicket} className="icon-menu"/>
             </div>
@@ -124,7 +128,7 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
-          <div className={`menu-bar-item-${sidebarPosition}-${theme}`}>
+          <div onClick={() => {toggleSelectedTab('help')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('help') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faQuestion} className="icon-menu"/>
             </div>
@@ -136,26 +140,14 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
-          <div className={`menu-bar-item-${sidebarPosition}-${theme}`}>
+          <div onClick={() => {toggleSelectedTab('settings')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('settings') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
-              <FontAwesomeIcon icon={faUser} className="icon-menu"/>
+              <FontAwesomeIcon icon={faGear} className="icon-menu"/>
             </div>
             <div>
               {
                 sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>Profile</p>
-                  : null
-              }
-            </div>
-          </div>
-          <div className={`menu-bar-item-${sidebarPosition}-${theme}`}>
-            <div className='icon-container'>
-              <FontAwesomeIcon icon={faInfoCircle} className="icon-menu"/>
-            </div>
-            <div>
-              {
-                sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>About</p>
+                  ? <p className={`label-${theme}`}>Settings</p>
                   : null
               }
             </div>
