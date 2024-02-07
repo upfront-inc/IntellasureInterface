@@ -9,7 +9,7 @@ function App() {
   const { sidebarPosition, toggleSidebar } = useSidebar();
 
   return (
-    <div className={`App ${theme} ${sidebarPosition}`}>
+    <div className={`App-${sidebarPosition} ${theme}`}>
       <SideBarComponent />
       <div>
         <p className='toggle-button ' onClick={toggleTheme}>Toggle Theme</p>

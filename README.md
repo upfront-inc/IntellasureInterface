@@ -1,3 +1,7 @@
+# IntellasureInterface
+Intellasure is is web based application that gives medical facility intake teams the ability to get a general idea of  whether an insurance policy is a good or back vob. It also gives details about patient history with terms of records and financials.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

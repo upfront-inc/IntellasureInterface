@@ -4,7 +4,8 @@
   left: 0;
   width: 200px;
   height: 100vh;
-  background-color: azure;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar-closed {
@@ -13,5 +14,118 @@
   left: 0;
   width: 70px;
   height: 100vh;
-  background-color: azure;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-dark {
+  background-color: #202020;
+}
+
+.sidebar-light {
+  background-color: #f8f8f8;
+}
+
+.image-container-closed {
+  height: 70px;
+  width: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.image-container-open {
+  height: 70px;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sidebar-logo {
+  height: 40px;
+  width: 40px;
+  margin-left: 15px;
+}
+
+.sidebar-logo-full {
+  height: 40px;
+  width: 172px;
+  margin-left: 18px;
+}
+
+.section-dark {
+  border-bottom: 2px solid rgb(51, 51, 51);
+}
+
+.section-light {
+  border-bottom: 2px solid rgb(228, 228, 228);
+}
+
+.menu-bar {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-bar-item-open-dark {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-bottom: 2px solid rgb(51, 51, 51);
+}
+
+.menu-bar-item-closed-dark {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-bottom: 2px solid rgb(51, 51, 51);
+}
+
+.menu-bar-item-open-light {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-bottom: 2px solid rgb(228, 228, 228);
+}
+
+.menu-bar-item-closed-light {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-bottom: 2px solid rgb(228, 228, 228);
+}
+
+.icon-container {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 12px;
+  margin-right: 8px;
+}
+
+.icon-menu {
+  color: #009ea1;
+  font-size: 22px;
+}
+
+.label-dark {
+  color: white;
+  font-weight: '700';
+  font-size: 16px;
+}
+
+.label-light {
+  color: black;
+  font-weight: '700';
+  font-size: 16px;
 }
