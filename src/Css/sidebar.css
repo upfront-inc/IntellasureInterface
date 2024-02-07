@@ -23,7 +23,7 @@
 }
 
 .sidebar-light {
-  background-color: #f8f8f8;
+  background-color: #f5f5f5;
 }
 
 .image-container-closed {
@@ -43,9 +43,8 @@
 }
 
 .sidebar-logo {
-  height: 40px;
-  width: 40px;
-  margin-left: 15px;
+  height: 50px;
+  width: 50px;
 }
 
 .sidebar-logo-full {
@@ -62,6 +61,29 @@
   border-bottom: 2px solid rgb(228, 228, 228);
 }
 
+.logo-container {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 12px;
+  margin-right: 8px;
+}
+
+.logo-label-dark {
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.logo-label-light {
+  color: black;
+  font-weight: bold;
+  font-size: 22px;
+}
+
 .menu-bar {
   height: 100%;
   width: 100%;
@@ -75,6 +97,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   border-bottom: 2px solid rgb(51, 51, 51);
 }
 
@@ -83,6 +106,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   border-bottom: 2px solid rgb(51, 51, 51);
 }
 
@@ -91,6 +115,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   border-bottom: 2px solid rgb(228, 228, 228);
 }
 
@@ -99,6 +124,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   border-bottom: 2px solid rgb(228, 228, 228);
 }
 
@@ -121,11 +147,11 @@
 .label-dark {
   color: white;
   font-weight: '700';
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .label-light {
   color: black;
   font-weight: '700';
-  font-size: 16px;
+  font-size: 15px;
 }

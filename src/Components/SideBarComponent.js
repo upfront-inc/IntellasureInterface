@@ -13,13 +13,16 @@ const SideBarComponent = () => {
   return (
     <div className={`sidebar-${sidebarPosition} sidebar-${theme}`}>
       <div className={`image-container-${sidebarPosition} section-${theme}`}>
-        {
-          sidebarPosition === 'closed'
-            ? <img className='sidebar-logo' src={require('../Assets/IntellasuranceLogo.png')}/>
-            : theme === 'dark'
-                ? <img className='sidebar-logo-full' src={require('../Assets/IntellasuranceLogoWhite.png')}/>
-                : <img className='sidebar-logo-full' src={require('../Assets/IntellasuranceLogoBlack.png')}/>
-        }
+        <div className='logo-container'>
+          <img className='sidebar-logo' src={require('../Assets/IntellasuranceLogo.png')}/>
+        </div>
+        <div>
+          {
+            sidebarPosition === 'open'
+              ? <p className={`logo-label-${theme}`}>Intellasure</p>
+              : null
+          }
+        </div>
       </div>
       <div className='menu-bar'>
         <div>
@@ -164,7 +167,7 @@ const SideBarComponent = () => {
             <div>
               {
                 sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>Logout</p>
+                  ? <p style={{color: 'red'}} className={`label-${theme}`}>Logout</p>
                   : null
               }
             </div>
