@@ -1,0 +1,25 @@
+.filter-container-dark, .filter-container-light {
+  line-height: 0;
+  font-size: 14px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 16px;
+  border-radius: 8px;
+}
+
+.filter-container-dark {
+  background-color: rgb(69, 69, 69);
+}
+
+.filter-container-light {
+  background-color: lightgrey;
+}
+
+.filter-icon {
+  margin-left: 8px;
+}
