@@ -17,9 +17,27 @@
 }
 
 .filter-container-light {
-  background-color: lightgrey;
+  background-color: #ededed;
 }
 
 .filter-icon {
   margin-left: 8px;
+}
+
+.facilities-filter-container-open {
+  position: absolute;
+  left: 300px;
+  top: 136px;
+  padding: 8px 16px 8px 16px;
+  background-color: #ededed;
+  border-radius: 5px;
+}
+
+.facilities-filter-container-closed {
+  position: absolute;
+  left: 170px;
+  top: 136px;
+  padding: 8px 16px 8px 16px;
+  background-color: #ededed;
+  border-radius: 5px;
 }
