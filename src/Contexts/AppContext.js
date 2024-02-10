@@ -10,6 +10,9 @@ export const AppProvider = ({ children }) => {
   const [selectedTab, setSelectedTab] = useState('billingDetails'); 
   const [tableFilter, setTableFilter] = useState(false)
 
+  const [filterFacility, setFilterFacility] = useState(false)
+  const [filterColumns, setFilterColumns] = useState(false)
+
   const toggleSelectedTab = (tab) => {
     setSelectedTab(tab);
   };
@@ -18,9 +21,19 @@ export const AppProvider = ({ children }) => {
     setTableFilter(!tableFilter);
   };
 
+  const toggleFilterFacility = () => {
+    setFilterFacility(!filterFacility);
+  };
+
+  const toggleFilterColumns = () => {
+    setFilterColumns(!filterColumns);
+  };
+
   return (
     <AppContext.Provider value={{ selectedTab, toggleSelectedTab,
-                                  tableFilter,toggleTableFilter }}> {/* Corrected this line */}
+                                  tableFilter,toggleTableFilter,
+                                  filterFacility, toggleFilterFacility,
+                                  filterColumns, toggleFilterColumns }}> {/* Corrected this line */}
       {children}
     </AppContext.Provider>
   );
