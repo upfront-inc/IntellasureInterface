@@ -1,0 +1,13 @@
+.support-panel {
+  flex: 1;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-panel {
+  width: 50%;
+  text-align: center;
+}
