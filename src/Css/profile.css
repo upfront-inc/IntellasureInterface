@@ -1,0 +1,108 @@
+.container-light {
+  min-width: 400px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.container-dark {
+  height: 50%;
+  min-width: 400px;
+  background-color: rgb(43, 43, 43);
+  border-radius: 12px;
+  padding: 16px;
+  color: white;
+}
+
+.userName {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.userInfo {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.headerTop {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.headerRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+}
+
+.subContent {
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid lightgrey;
+  margin-top: 24px;
+}
+
+.view-mode {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.resetContainer {
+  width: 100%;
+  border-bottom: 2px solid lightgrey;
+}
+
+.reset-text {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text {
+  padding: 8px
+}
+
+.sub-text {
+  margin: 16px;
+}
+
+.view-toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: lightgrey;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+/* .toggle-button, .toggle-button-selected {
+  background-color: azure;
+  padding: 8px,
+} */
+
+.toggle-button {
+  background-color: grey;
+}
+
+.toggle-button-selected {
+  background-color: lightgrey;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.view-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

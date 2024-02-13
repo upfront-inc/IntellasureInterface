@@ -8,13 +8,20 @@ export function useSidebar() {
 
 export const SidebarProvider = ({ children }) => {
   const [sidebarPosition, setSidebarPosition] = useState('open'); 
+  const [showProfile, setShowProfile] = useState(false)
 
   const toggleSidebar = () => {
     setSidebarPosition((prevPosition) => (prevPosition === 'open' ? 'closed' : 'open'));
   };
 
+  const toggleProfile = () => {
+    console.log(showProfile)
+    setShowProfile(!showProfile);
+  };
+
   return (
-    <SidebarContext.Provider value={{ sidebarPosition, toggleSidebar }}> {/* Corrected this line */}
+    <SidebarContext.Provider value={{ sidebarPosition, toggleSidebar,
+                                      showProfile, toggleProfile}}>
       {children}
     </SidebarContext.Provider>
   );

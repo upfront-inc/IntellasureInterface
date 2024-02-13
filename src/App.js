@@ -15,10 +15,11 @@ import AccountsScreen from './Screens/AccountsScreen';
 import BackendScreen from './Screens/BackendScreen';
 import TicketsScreen from './Screens/TicketsScreen';
 import HelpScreen from './Screens/HelpScreen';
+import ProfileComponent from './Components/ProfileComponent';
 
 function App() {
   const { theme } = useTheme(); 
-  const { sidebarPosition } = useSidebar();
+  const { sidebarPosition, showProfile } = useSidebar();
   const { selectedTab } = useApp();
 
   return (
@@ -43,9 +44,12 @@ function App() {
                                       ? <TicketsScreen/>
                                       : selectedTab === 'help'
                                           ? <HelpScreen/>
-                                          : selectedTab === 'settings'
-                                              ? <SettingsScreen/>
-                                              : null
+                                          : null
+      }
+      {
+        showProfile
+          ? <div className="popup"><ProfileComponent/></div>
+          : null
       }
     </div>
   );

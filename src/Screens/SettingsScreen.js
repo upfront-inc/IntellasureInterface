@@ -12,9 +12,6 @@ const SettingsScreen = () => {
       <div>
         <p className='toggle-button ' onClick={toggleTheme}>Toggle Theme</p>
       </div>
-      <div>
-        <p className='toggle-button ' onClick={toggleSidebar}>Toggle Sidebar</p>
-      </div>
     </div>
   )
 }

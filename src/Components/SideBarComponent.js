@@ -4,13 +4,14 @@ import { useSidebar } from '../Contexts/SidebarContext';
 import { useTheme } from '../Contexts/ThemeContext';
 import { useApp } from '../Contexts/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowAltCircleRight, faCode, faFlag, faGear, faInbox, faInfoCircle, faList, faMoneyBill, faQuestion, faRightFromBracket, faSheetPlastic, faShield, faShieldAlt, faTicket, faUser, faUsers, faX } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleLeft, faAngleDoubleRight, faArrowAltCircleRight, faCode, faFlag, faGear, faInbox, faInfoCircle, faList, faMoneyBill, faQuestion, faRightFromBracket, faSheetPlastic, faShield, faShieldAlt, faTicket, faUser, faUsers, faX } from '@fortawesome/free-solid-svg-icons';
 
 const SideBarComponent = () => {
 
   const { sidebarPosition } = useSidebar();
   const { theme } = useTheme();
   const { selectedTab, toggleSelectedTab } = useApp();
+  const { toggleSidebar, showProfile, toggleProfile } = useSidebar();
 
   const isSelected = (tabName) => selectedTab === tabName;
 
@@ -140,7 +141,7 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
-          <div onClick={() => {toggleSelectedTab('settings')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('settings') ? `menu-bar-item-selected-${theme}` : ''}`}>
+          <div onClick={toggleProfile} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('settings') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faGear} className="icon-menu"/>
             </div>
@@ -148,6 +149,22 @@ const SideBarComponent = () => {
               {
                 sidebarPosition === 'open'
                   ? <p className={`label-${theme}`}>Settings</p>
+                  : null
+              }
+            </div>
+          </div>
+          <div  onClick={toggleSidebar} className={`hover-text menu-bar-item-${sidebarPosition}-${theme}`}>
+            <div className='icon-container'>
+              {
+                sidebarPosition === 'open'
+                  ? <FontAwesomeIcon icon={faAngleDoubleLeft} className="icon-menu"/>
+                  : <FontAwesomeIcon icon={faAngleDoubleRight} className="icon-menu"/>
+              }
+            </div>
+            <div>
+              {
+                sidebarPosition === 'open'
+                  ? <p className={`label-${theme}`}>Hide Sidebar</p>
                   : null
               }
             </div>
