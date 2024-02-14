@@ -16,11 +16,12 @@ import BackendScreen from './Screens/BackendScreen';
 import TicketsScreen from './Screens/TicketsScreen';
 import HelpScreen from './Screens/HelpScreen';
 import ProfileComponent from './Components/ProfileComponent';
+import AddIntakeRecord from './Components/AddIntakeRecord';
 
 function App() {
   const { theme } = useTheme(); 
   const { sidebarPosition, showProfile } = useSidebar();
-  const { selectedTab } = useApp();
+  const { selectedTab, showAddIntakeRecord } = useApp();
 
   return (
     <div className={`App-${sidebarPosition} ${theme}`}>
@@ -48,7 +49,12 @@ function App() {
       }
       {
         showProfile
-          ? <div className="popup"><ProfileComponent/></div>
+          ? <div className={`popup-${sidebarPosition}`}><ProfileComponent/></div>
+          : null
+      }
+      {
+        showAddIntakeRecord
+          ? <div className={`popup-${sidebarPosition}`}><AddIntakeRecord/></div>
           : null
       }
     </div>

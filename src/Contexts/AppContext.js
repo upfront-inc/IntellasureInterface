@@ -13,6 +13,12 @@ export const AppProvider = ({ children }) => {
   const [filterFacility, setFilterFacility] = useState(false)
   const [filterColumns, setFilterColumns] = useState(false)
 
+  const [showAddIntakeRecord, setShowAddIntakeRecord] = useState(false)
+
+  const toggleShowAddIntakeRecord = () => {
+    setShowAddIntakeRecord(!showAddIntakeRecord)
+  }
+
   const toggleSelectedTab = (tab) => {
     setSelectedTab(tab);
   };
@@ -33,7 +39,8 @@ export const AppProvider = ({ children }) => {
     <AppContext.Provider value={{ selectedTab, toggleSelectedTab,
                                   tableFilter,toggleTableFilter,
                                   filterFacility, toggleFilterFacility,
-                                  filterColumns, toggleFilterColumns }}> {/* Corrected this line */}
+                                  filterColumns, toggleFilterColumns,
+                                  showAddIntakeRecord, toggleShowAddIntakeRecord }}> {/* Corrected this line */}
       {children}
     </AppContext.Provider>
   );
