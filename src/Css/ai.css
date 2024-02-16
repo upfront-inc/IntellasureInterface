@@ -1,0 +1,205 @@
+.chat-header {
+  display: flex;
+  justify-content: center; 
+  padding: 20px;
+  background-color: #f0f0f0; 
+}
+
+.header-image {
+  width: 100px; 
+  height: auto;
+}
+
+.text-input-field {
+  flex: 1;
+  flex-grow: 1;
+  padding: 12px 20px; /* Add more padding for a larger feel */
+  margin: 8px 0; /* Add margin for spacing around the input field */
+  display: inline-block; /* Ensures the input field does not break to a new line */
+  border: 1px solid #707070; /* Light gray border */
+  border-radius: 4px; /* Rounded corners */
+  background-color: #282c34;
+  box-sizing: border-box; /* Box-sizing property */
+  font-size: 16px; /* Larger font size for better readability */
+  background-color: grey;
+  margin: 18px;
+}
+
+
+
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0; /* Reset any default margins */
+  padding: 0; /* Reset any default paddings */
+  margin: 18px;
+}
+
+
+.chat-messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  max-width: 60%; /* Smaller max-width for messages */
+  min-width: 4%;
+  margin-bottom: 4px;
+  padding: 8px; /* Smaller padding for a tighter look */
+  border-radius: 12px; /* Adjusted border-radius for smaller elements */
+  align-self: flex-start;
+  background-color: #f0f0f0;
+  font-size: 14px; /* Smaller font-size for text */
+  word-wrap: break-word; /* Ensure long words do not overflow */
+}
+
+.message.user {
+  background-color: #6200EE;
+  color: white;
+  min-width: 4%;
+  align-self: flex-end;
+}
+
+.message.ai {
+  background-color: #c0c0c0;
+}
+
+
+.message-tag {
+  font-size: 12px;
+  color: #ffffff;
+  background-color: #666666;
+  border-radius: 4px;
+  padding: 2px 5px;
+  width: fit-content;
+  margin-bottom: 5px; /* Creates a small gap between the tag and the message */
+}
+
+.message.user .message-tag {
+  background-color: #007bff; /* Adjust the color for user tags */
+}
+
+.message.ai .message-tag {
+  background-color: #6200EE; /* Adjust the color for AI tags */
+}
+.message.ai p {
+  line-height: 1.5; /* Adjust this value as needed */
+}
+@keyframes dotFlashing {
+  0% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
+}
+
+.loading-dots {
+  margin-top: 10px; /* Adjust the space as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-dots .dot {
+  background-color: #000; /* Adjust color to fit your design */
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin: 0 5px;
+  animation: dotFlashing 1s infinite linear alternate;
+  animation-delay: 0s;
+}
+
+.loading-dots .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+
+
+
+
+
+
+
+.input-area {
+  display: flex;
+  padding: 10px;
+}
+
+.text-input {
+  flex-grow: 1;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.send-button {
+  background-color: #6200EE;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.send-button:hover {
+  background-color: #5c00e6;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.control-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 0.3%;
+  border-radius: 20px; /* Optional: Adds rounded corners */
+  background: linear-gradient(45deg, #6200EE, #007bff, #6200EE);
+  background-size: 200% 200%; /* Larger background size for the gradient shift */
+  animation: gradientShift 10s ease infinite;
+}
+
+.control-btn {
+  background-color: #ffffff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+.control-btn:not(:last-child) {
+  margin-right: 10px;
+}
+
+.control-btn.listening {
+  background-color: #FF4081;
+}
+
+.control-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

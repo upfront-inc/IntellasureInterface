@@ -17,6 +17,7 @@ import TicketsScreen from './Screens/TicketsScreen';
 import HelpScreen from './Screens/HelpScreen';
 import ProfileComponent from './Components/ProfileComponent';
 import AddIntakeRecord from './Components/AddIntakeRecord';
+import ChatWithAIComponent from './Components/ChatWithAIComponent';
 
 function App() {
   const { theme } = useTheme(); 
@@ -45,7 +46,9 @@ function App() {
                                       ? <TicketsScreen/>
                                       : selectedTab === 'help'
                                           ? <HelpScreen/>
-                                          : null
+                                          : selectedTab === 'AI'
+                                            ? <ChatWithAIComponent/>
+                                            : null
       }
       {
         showProfile

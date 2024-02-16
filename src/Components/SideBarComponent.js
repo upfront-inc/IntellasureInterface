@@ -4,7 +4,7 @@ import { useSidebar } from '../Contexts/SidebarContext';
 import { useTheme } from '../Contexts/ThemeContext';
 import { useApp } from '../Contexts/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDoubleLeft, faAngleDoubleRight, faArrowAltCircleRight, faCode, faFlag, faGear, faInbox, faInfoCircle, faList, faMoneyBill, faQuestion, faRightFromBracket, faSheetPlastic, faShield, faShieldAlt, faTicket, faUser, faUsers, faX } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleLeft, faAngleDoubleRight, faArrowAltCircleRight, faCode, faFlag, faGear, faInbox, faInfoCircle, faList, faMoneyBill, faQuestion, faRightFromBracket, faSheetPlastic, faShield, faShieldAlt, faTicket, faUser, faUsers, faWandSparkles, faX } from '@fortawesome/free-solid-svg-icons';
 
 const SideBarComponent = () => {
 
@@ -31,6 +31,18 @@ const SideBarComponent = () => {
       </div>
       <div className='menu-bar'>
         <div>
+        <div onClick={() => {toggleSelectedTab('AI')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('AI') ? `menu-bar-item-selected-${theme}` : ''}`}>
+            <div className='icon-container'>
+              <FontAwesomeIcon icon={faWandSparkles} className="icon-menu"/>
+            </div>
+            <div>
+              {
+                sidebarPosition === 'open'
+                  ? <p className={`label-${theme}`}>IntellaChat AI✨</p>
+                  : null
+              }
+            </div>
+          </div>
           <div onClick={() => {toggleSelectedTab('billingDetails')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('billingDetails') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faShieldAlt} className="icon-menu"/>
