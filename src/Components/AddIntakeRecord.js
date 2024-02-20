@@ -45,65 +45,74 @@ const AddIntakeRecord = () => {
   const handleDateChnage = (e) => {
     setDate(e.target.value)
   }
+
+  // add the theme to all of the different styles ot make the text white
   
   return (
     <div className={`intake-container-${theme}`}>
       <div className='header'>
-        <span className='page-title'>Add New Intake Record</span>
+        <p className={`page-title text-${theme}`}>Add New Intake Record</p>
         <FontAwesomeIcon onClick={() => {toggleShowAddIntakeRecord()}} icon={faX} height={24} width={24} color='#e94f4e' />
       </div>
       <div>
-        <div>
-          <span>Client</span>
+        <div className='row'>
+          <p className={`text-${theme}`}>Client</p>
           <input 
+            className={`input-${theme}`}
             placeholder='client name...'
             value={client}
             onChange={(text) => {handleClientNammeChnage(text)}}
           />
         </div>
-        <div>
-          <span>Insurance</span>
+        <div className='row'>
+          <p className={`text-${theme}`}>Insurance</p>
           <input 
+            className={`input-${theme}`}
             placeholder='insurance name...'
             value={insurance}
             onChange={(text) => {handleInsuranceChnage(text)}}
           />
         </div>
-        <div>
-          <span>Source</span>
+        <div className='row'>
+          <p className={`text-${theme}`}>Source</p>
           <input 
+            className={`input-${theme}`}
             placeholder='source...'
             value={source}
             onChange={(text) => {handleSourceChnage(text)}}
           />
         </div>
-        <div>
-          <span>Coordinator</span>
+        <div className='row'>
+          <p className={`text-${theme}`}>Coordinator</p>
           <input 
+            className={`input-${theme}`}
             placeholder='coordinator name...'
             value={coordinator}
             onChange={(text) => {handleCoordinatorChnage(text)}}
           />
         </div>
-        <div>
-          <span>Summary In</span>
+        <div className='row'>
+          <p className={`text-${theme}`}>Summary In</p>
           <input 
+            className={`input-${theme}`}
             placeholder='summary in...'
             value={summaryIn}
             onChange={(text) => {handleSummaryInChnage(text)}}
           />
         </div>
-        <div>
-          <span>Summary Out</span>
+        <div className='row'>
+          <p className={`text-${theme}`}>Summary Out</p>
           <input 
+            className={`input-${theme}`}
             placeholder='summary out...'
             value={summaryOut}
             onChange={(text) => {handleSummaryOutChnage(text)}}
           />
         </div>
-        <div>
-          <span>Date</span>
-          <input 
+        <div className='row'>
+          <p className={`text-${theme}`}>Date</p>
+          <input
+            className={`input-${theme}`} 
             placeholder='date...'
             value={date}
             onChange={(text) => {handleDateChnage(text)}}

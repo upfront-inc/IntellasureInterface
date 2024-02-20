@@ -5,6 +5,9 @@ import SupportInputComponent from './SupportInputComponent'
 // import HelpInputFieldComponent from './HelpInputFieldComponent'
 
 const SupportComponent = () => {
+
+  const { theme } = useTheme()
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
@@ -29,7 +32,7 @@ const SupportComponent = () => {
   }
 
   return (
-    <div className='support-panel'>
+    <div className={`support-panel-${theme}`}>
       <div className='content-panel'>
         <div>
           <h3>Encountered an Issue? Let Us Know!</h3>

@@ -5,6 +5,12 @@
   z-index: 4;
   padding: 16px;
   border-radius: 12px;
+  line-height: 0
+}
+
+.intake-container-dark {
+  background-color: #202020;
+  color: 'white';
 }
 
 .header {
@@ -12,6 +18,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
 .page-title {
@@ -28,10 +36,47 @@
 
 .submit-button {
   width: 50%;
-  padding: 8px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   background-color: #009ea1;
   border-radius: 8px;
   text-align: center;
   color: white;
   font-weight: bold;
+}
+
+.row {
+  width: 100%;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.text-dark {
+  color: white;
+  margin-right: 8px;
+}
+
+.text-light {
+  color: black;
+  margin-right: 8px;
+}
+
+.input-dark, .input-light {
+  flex: 1;
+}
+
+.input-dark {
+  background-color: #202020;
+  border: none;
+  border-bottom: 2px solid grey;
+  font-size: 16px;
+  color: white
+}
+
+.input-light {
+  border: none;
+  border-bottom: 2px solid lightgrey;
+  font-size: 16px;
 }
