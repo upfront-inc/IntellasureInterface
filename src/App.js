@@ -57,6 +57,11 @@ function App() {
           ? <div className={`popup-${sidebarPosition}`}><AddIntakeRecord/></div>
           : null
       }
+      {/* {
+        showAddIntakeRecord
+          ? <div className={`popup-${sidebarPosition}`}><AddIntakeRecord/></div>
+          : null
+      } */}
     </div>
   );
 }

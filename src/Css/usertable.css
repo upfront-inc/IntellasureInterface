@@ -1,0 +1,103 @@
+.user-parent {
+  flex: 1;
+  background-color: white;
+  line-height: 0;
+  padding: 16px;
+}
+
+.user-name {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.user-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-row-tables {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.user-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user-info-text {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.user-table {
+  flex: 1;
+  background-color: rgb(233, 233, 233);
+  margin-top: 12px;
+  padding: 8px;
+  overflow-x: auto; /* Keeps horizontal scrolling if needed */
+  overflow-y: auto; /* Enables vertical scrolling */
+  max-height: 72vh; /* Example fixed height; adjust as needed */
+  border-radius: 8px;
+}
+
+.margins {
+  margin-right: 32px;
+}
+
+.user-table-parent {
+  flex: 1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.user-section {
+  width: 100%; /* Full width of its parent */
+  min-width: 100%; /* Ensure it's not less than the container width */
+  border-collapse: collapse;
+  border-radius: 8px;
+  max-height: 100%;
+  overflow: scroll
+}
+
+.user-table-header-dark th, .user-table-header-light th {
+  text-align: center;
+  padding: 24px 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.user-table-header-dark th {
+  background-color: #000000;
+  color: white;
+}
+
+.user-table-header-light th {
+  background-color: #f8fefe;
+}
+
+.user-table-body-dark td, .user-table-body-light td{
+  border: none;
+  text-align: center;
+  padding: 24px 8px;
+  font-size: 14px;
+}
+
+.user-table-body-dark td{
+  background-color: #181818;
+  color: white;
+  border-bottom: 2px solid black;
+}
+
+.user-table-body-light td{
+  background-color: white;
+  color: black;
+  border-bottom: 2px solid #f9f9f9;
+}
