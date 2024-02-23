@@ -63,23 +63,17 @@ const BillingDetailsTablesComponent = (props) => {
             }} className='table-header-text'>
               Facility <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'facility' ? faAngleDoubleDown : faAngleDoubleUp} />
             </th>
-            <th onClick={() => {
-              if(sort === 'asc' && sortColumn === 'residential'){
-                updateSortWithColumn('dec', 'residential')
-              } else {
-                updateSortWithColumn('asc', 'residential')
-              }
-            }} className='table-header-text'>
-              Residential <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'residential' ? faAngleDoubleDown : faAngleDoubleUp} />
+            <th className='table-header-text'>
+              Res. Days
             </th>
-            <th onClick={() => {
-              if(sort === 'asc' && sortColumn === 'detox'){
-                updateSortWithColumn('dec', 'detox')
-              } else {
-                updateSortWithColumn('asc', 'detox')
-              }
-            }} className='table-header-text'>
-              Detox <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'detox' ? faAngleDoubleDown : faAngleDoubleUp} />
+            <th className='table-header-text'>
+              Res. Visits
+            </th>
+            <th className='table-header-text'>
+              Detox Days
+            </th>
+            <th className='table-header-text'>
+              Detox Visits
             </th>
             <th onClick={() => {
               if(sort === 'asc' && sortColumn === 'charged'){
@@ -137,8 +131,10 @@ const BillingDetailsTablesComponent = (props) => {
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
@@ -146,231 +142,422 @@ const BillingDetailsTablesComponent = (props) => {
             <td>78%</td>
             <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-          <tr onClick={() => {updateRecord()}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>SVD</td>
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
             <td>Likely</td>
             <td>78%</td>
-            <td>Open/Close</td>
+            <td onClick={() => {}}>Open</td>
           </tr>
-
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>AETNA</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+            <td>Likely</td>
+            <td>78%</td>
+            <td onClick={() => {}}>Open</td>
+          </tr>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>AETNA</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+            <td>Likely</td>
+            <td>78%</td>
+            <td onClick={() => {}}>Open</td>
+          </tr>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>AETNA</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+            <td>Likely</td>
+            <td>78%</td>
+            <td onClick={() => {}}>Open</td>
+          </tr>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>AETNA</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+            <td>Likely</td>
+            <td>78%</td>
+            <td onClick={() => {}}>Open</td>
+          </tr>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>AETNA</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+            <td>Likely</td>
+            <td>78%</td>
+            <td onClick={() => {}}>Open</td>
+          </tr>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>AETNA</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+            <td>Likely</td>
+            <td>78%</td>
+            <td onClick={() => {}}>Open</td>
+          </tr>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>AETNA</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+            <td>Likely</td>
+            <td>78%</td>
+            <td onClick={() => {}}>Open</td>
+          </tr>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>AETNA</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+            <td>Likely</td>
+            <td>78%</td>
+            <td onClick={() => {}}>Open</td>
+          </tr>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>AETNA</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+            <td>Likely</td>
+            <td>78%</td>
+            <td onClick={() => {}}>Open</td>
+          </tr>
+          <tr onClick={() => {updateRecord()}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>AETNA</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+            <td>Likely</td>
+            <td>78%</td>
+            <td onClick={() => {}}>Open</td>
+          </tr>
         </tbody>
       </table>
     </div>

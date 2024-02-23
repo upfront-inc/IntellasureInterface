@@ -67,6 +67,15 @@ const FlaggedTableComponent = (props) => {
               Claim # <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'claimNumber' ? faAngleDoubleDown : faAngleDoubleUp} />
             </th>
             <th onClick={() => {
+                if(sort === 'asc' && sortColumn === 'state'){
+                  updateSortWithColumn('dec', 'state')
+                } else {
+                  updateSortWithColumn('asc', 'state')
+                }
+              }} className='table-header-text'>
+              Claim State <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'state' ? faAngleDoubleDown : faAngleDoubleUp} />
+            </th>
+            <th onClick={() => {
                 if(sort === 'asc' && sortColumn === 'status'){
                   updateSortWithColumn('dec', 'status')
                 } else {
@@ -102,23 +111,17 @@ const FlaggedTableComponent = (props) => {
               }} className='table-header-text'>
               Facility <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'facility' ? faAngleDoubleDown : faAngleDoubleUp} />
             </th>
-            <th onClick={() => {
-                if(sort === 'asc' && sortColumn === 'residential'){
-                  updateSortWithColumn('dec', 'residential')
-                } else {
-                  updateSortWithColumn('asc', 'residential')
-                }
-              }} className='table-header-text'>
-              Residential <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'residential' ? faAngleDoubleDown : faAngleDoubleUp} />
+            <th className='table-header-text'>
+              Res. Days
             </th>
-            <th onClick={() => {
-                if(sort === 'asc' && sortColumn === 'detox'){
-                  updateSortWithColumn('dec', 'detox')
-                } else {
-                  updateSortWithColumn('asc', 'detox')
-                }
-              }} className='table-header-text'>
-              Detox <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'detox' ? faAngleDoubleDown : faAngleDoubleUp} />
+            <th className='table-header-text'>
+              Res. Visits
+            </th>
+            <th className='table-header-text'>
+              Detox Days
+            </th>
+            <th className='table-header-text'>
+              Detox Visits
             </th>
             <th onClick={() => {
                 if(sort === 'asc' && sortColumn === 'charged'){
@@ -165,12 +168,15 @@ const FlaggedTableComponent = (props) => {
             <td>John Doe</td>
             <td>AETNA</td>
             <td>HS10002</td>
+            <td>Open</td>
             <td>Denied</td>
             <td>Medical records required</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$5,000</td>
             <td>$10,2232</td>
@@ -182,12 +188,15 @@ const FlaggedTableComponent = (props) => {
             <td>John Doe</td>
             <td>AETNA</td>
             <td>HS10002</td>
+            <td>Open</td>
             <td>Denied</td>
             <td>Medical records required</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$5,000</td>
             <td>$10,2232</td>
@@ -199,12 +208,15 @@ const FlaggedTableComponent = (props) => {
             <td>John Doe</td>
             <td>AETNA</td>
             <td>HS10002</td>
+            <td>Open</td>
             <td>Denied</td>
             <td>Medical records required</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$5,000</td>
             <td>$10,2232</td>
@@ -216,12 +228,15 @@ const FlaggedTableComponent = (props) => {
             <td>John Doe</td>
             <td>AETNA</td>
             <td>HS10002</td>
+            <td>Open</td>
             <td>Denied</td>
             <td>Medical records required</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$5,000</td>
             <td>$10,2232</td>
@@ -233,12 +248,15 @@ const FlaggedTableComponent = (props) => {
             <td>John Doe</td>
             <td>AETNA</td>
             <td>HS10002</td>
+            <td>Open</td>
             <td>Denied</td>
             <td>Medical records required</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$5,000</td>
             <td>$10,2232</td>
@@ -250,12 +268,15 @@ const FlaggedTableComponent = (props) => {
             <td>John Doe</td>
             <td>AETNA</td>
             <td>HS10002</td>
+            <td>Open</td>
             <td>Denied</td>
             <td>Medical records required</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$5,000</td>
             <td>$10,2232</td>
@@ -267,12 +288,15 @@ const FlaggedTableComponent = (props) => {
             <td>John Doe</td>
             <td>AETNA</td>
             <td>HS10002</td>
+            <td>Open</td>
             <td>Denied</td>
             <td>Medical records required</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$5,000</td>
             <td>$10,2232</td>
@@ -284,12 +308,15 @@ const FlaggedTableComponent = (props) => {
             <td>John Doe</td>
             <td>AETNA</td>
             <td>HS10002</td>
+            <td>Open</td>
             <td>Denied</td>
             <td>Medical records required</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$5,000</td>
             <td>$10,2232</td>
@@ -301,12 +328,15 @@ const FlaggedTableComponent = (props) => {
             <td>John Doe</td>
             <td>AETNA</td>
             <td>HS10002</td>
+            <td>Open</td>
             <td>Denied</td>
             <td>Medical records required</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$5,000</td>
             <td>$10,2232</td>
@@ -318,12 +348,15 @@ const FlaggedTableComponent = (props) => {
             <td>John Doe</td>
             <td>AETNA</td>
             <td>HS10002</td>
+            <td>Open</td>
             <td>Denied</td>
             <td>Medical records required</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$5,000</td>
             <td>$10,2232</td>
@@ -335,12 +368,315 @@ const FlaggedTableComponent = (props) => {
             <td>John Doe</td>
             <td>AETNA</td>
             <td>HS10002</td>
+            <td>Open</td>
             <td>Denied</td>
             <td>Medical records required</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$5,000</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>SVD</td>
+            <td>SVD2134872y743</td>
+            <td>John Doe</td>
+            <td>AETNA</td>
+            <td>HS10002</td>
+            <td>Open</td>
+            <td>Denied</td>
+            <td>Medical records required</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$5,000</td>
             <td>$10,2232</td>

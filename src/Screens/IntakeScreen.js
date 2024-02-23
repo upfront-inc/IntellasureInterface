@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState } from 'react'
 import '../Css/Content.css'
 import '../Css/Table.css'
 import { useTheme } from '../Contexts/ThemeContext'
@@ -23,7 +23,7 @@ const IntakeScreen = () => {
           : null 
       }
       <div className='table-container'>
-        <IntakeTableComponent />
+        <IntakeTableComponent/>
       </div>
     </div>
   )

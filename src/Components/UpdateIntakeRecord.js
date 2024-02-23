@@ -5,20 +5,21 @@ import '../Css/Intake.css'
 import { useTheme } from '../Contexts/ThemeContext'
 import { useApp } from '../Contexts/AppContext'
 
-const AddIntakeRecord = () => {
+const UpdateIntakeRecord = (props) => {
+  const {record} = props
 
   const { theme } = useTheme();
   const { toggleShowAddIntakeRecord } = useApp()
 
-  const [client, setClient] = useState('')
-  const [prefix, setPrefix] = useState('')
-  const [insurance, setInsurance] = useState('')
-  const [source, setSource] = useState('')
-  const [coordinator, setCoordinator] = useState('')
-  const [summaryOut, setSummaryOut] = useState('')
-  const [details, setDetails] = useState('')
-  const [notes, setNotes] = useState('')
-  const [date, setDate] = useState('')
+  const [client, setClient] = useState(record.client)
+  const [prefix, setPrefix] = useState(record.prefix)
+  const [insurance, setInsurance] = useState(record.insurance)
+  const [source, setSource] = useState(record.source)
+  const [coordinator, setCoordinator] = useState(record.coordinator)
+  const [summaryOut, setSummaryOut] = useState(record.summaryOut)
+  const [details, setDetails] = useState(record.details)
+  const [notes, setNotes] = useState(record.notes)
+  const [date, setDate] = useState(record.date)
 
   const handleClientNammeChnage = (e) => {
     setClient(e.target.value)
@@ -66,7 +67,7 @@ const AddIntakeRecord = () => {
       </div>
       <div>
         <div className='row'>
-          <p className={`text-${theme}`} title='figure out how to integrate'>Client</p>
+          <p className={`text-${theme}`}>Client</p>
           <input 
             className={`input-${theme}`}
             placeholder='client name...'
@@ -156,4 +157,4 @@ const AddIntakeRecord = () => {
   )
 }
 
-export default AddIntakeRecord
+export default UpdateIntakeRecord

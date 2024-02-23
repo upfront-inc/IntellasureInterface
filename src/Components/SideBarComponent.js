@@ -38,7 +38,7 @@ const SideBarComponent = () => {
             <div>
               {
                 sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>IntellaChat AI✨</p>
+                  ? <p className={`label-${theme}`}>IntellaChat AI</p>
                   : null
               }
             </div>

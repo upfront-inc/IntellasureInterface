@@ -36,12 +36,12 @@
   background-color: #f8fefe;
 }
 
-.table-body-dark td, .table-body-light td{
+.table-body-dark td, .table-body-light td {
   border: none;
   text-align: center;
   padding: 24px 8px;
   font-size: 14px;
-  min-width: 150px;
+  min-width: 150px; /* Apply min-width to all cells */
 }
 
 .table-body-dark td{

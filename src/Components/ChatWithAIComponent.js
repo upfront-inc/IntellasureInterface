@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/ai.css';
-import axios from 'axios';
+import axios from 'axios'
 
 
 const ChatWithAIComponent = () => {

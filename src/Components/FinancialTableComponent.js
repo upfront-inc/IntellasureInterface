@@ -11,6 +11,10 @@ const FinancialTableComponent = (props) => {
   const [sort, setSort] = useState('asc')
   const [sortColumn, setSortColumn] = useState('prefix')
 
+  const limitStringToLength = () => {
+    
+  }
+
   return (
     <div className='user-table-parent'>
       <table className='user-section'>
@@ -34,6 +38,9 @@ const FinancialTableComponent = (props) => {
             <th className='user-table-header-text'>
               Payout %
             </th>
+            <th className='user-table-header-text'>
+              Date
+            </th>
           </tr>
         </thead>
         <tbody className={`user-table-body-${theme}`}>
@@ -44,6 +51,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
           <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>HS1001</td>
@@ -52,6 +60,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
           <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>HS1001</td>
@@ -60,6 +69,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
           <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>HS1001</td>
@@ -68,6 +78,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
           <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>HS1001</td>
@@ -76,6 +87,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
           <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>HS1001</td>
@@ -84,6 +96,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
           <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>HS1001</td>
@@ -92,6 +105,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
           <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>HS1001</td>
@@ -100,6 +114,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
           <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>HS1001</td>
@@ -108,6 +123,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
           <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>HS1001</td>
@@ -116,6 +132,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
           <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>HS1001</td>
@@ -124,6 +141,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
           <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>HS1001</td>
@@ -132,6 +150,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
           <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>HS1001</td>
@@ -140,6 +159,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
           <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
             <td>HS1001</td>
@@ -148,6 +168,7 @@ const FinancialTableComponent = (props) => {
             <td>$3,850</td>
             <td>$1,100</td>
             <td>32%</td>
+            <td>12/21/2023</td>
           </tr>
         </tbody>
       </table>

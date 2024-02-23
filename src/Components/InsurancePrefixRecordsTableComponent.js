@@ -35,10 +35,16 @@ const InsurancePrefixRecordsTableComponent = (props) => {
               Facility 
             </th>
             <th className='table-header-text'>
-              Residential 
+              Res. Days
             </th>
             <th className='table-header-text'>
-              Detox 
+              Res. Visits
+            </th>
+            <th className='table-header-text'>
+              Detox Days
+            </th>
+            <th className='table-header-text'>
+              Detox Visits
             </th>
             <th className='table-header-text'>
               Total Charges 
@@ -68,8 +74,10 @@ const InsurancePrefixRecordsTableComponent = (props) => {
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
@@ -84,8 +92,10 @@ const InsurancePrefixRecordsTableComponent = (props) => {
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
@@ -100,8 +110,10 @@ const InsurancePrefixRecordsTableComponent = (props) => {
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
@@ -116,8 +128,10 @@ const InsurancePrefixRecordsTableComponent = (props) => {
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
@@ -132,8 +146,10 @@ const InsurancePrefixRecordsTableComponent = (props) => {
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
@@ -148,8 +164,10 @@ const InsurancePrefixRecordsTableComponent = (props) => {
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
@@ -164,8 +182,64 @@ const InsurancePrefixRecordsTableComponent = (props) => {
             <td>AETNA</td>
             <td>In-Network</td>
             <td>AXIS</td>
-            <td>12 Days / 2 Visits</td>
-            <td>18 Days / 1 Visit</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+            <td>Likely</td>
+            <td>78%</td>
+            <td>12/29/2023</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>John DOe</td>
+            <td>SVD</td>
+            <td>SVD238948237</td>
+            <td>AETNA</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+            <td>Likely</td>
+            <td>78%</td>
+            <td>12/29/2023</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>John DOe</td>
+            <td>SVD</td>
+            <td>SVD238948237</td>
+            <td>AETNA</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
+            <td>$18,324</td>
+            <td>$10,2232</td>
+            <td>81%</td>
+            <td>Likely</td>
+            <td>78%</td>
+            <td>12/29/2023</td>
+          </tr>
+          <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>John DOe</td>
+            <td>SVD</td>
+            <td>SVD238948237</td>
+            <td>AETNA</td>
+            <td>In-Network</td>
+            <td>AXIS</td>
+            <td>12 Days</td>
+            <td>2 Visits</td>
+            <td>18 Days</td>
+            <td>2 Visits</td>
             <td>$18,324</td>
             <td>$10,2232</td>
             <td>81%</td>
