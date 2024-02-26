@@ -1,0 +1,37 @@
+.input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 14px;
+  border-radius: 10px;
+  border: 2px solid #009ea1;
+  margin-top: 14px;
+}
+
+.user-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.custom-icon-size {
+  height: 18px;
+  width: 18px;
+  padding-bottom: 2px;
+  color: #009ea1;
+}
+
+.input {
+  margin: 0;
+  width: 242px;
+  border: 0;
+  font-size: 14px;
+  padding-top: 4px;
+  padding-left: 4px;
+  font-size: 16px;
+  border-bottom: 2px solid #009ea1;
+  background-color: rgb(225, 225, 225, .1);
+  margin-left: 8px;
+}

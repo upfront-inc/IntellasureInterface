@@ -12,8 +12,11 @@ export const AppProvider = ({ children }) => {
 
   const [filterFacility, setFilterFacility] = useState(false)
   const [filterColumns, setFilterColumns] = useState(false)
+  const [filterNetwork, setFilterNetwork] = useState(false)
 
   const [showAddIntakeRecord, setShowAddIntakeRecord] = useState(false)
+
+  const [currentUser, setCurrentUser] = useState(true)
 
   const toggleShowAddIntakeRecord = () => {
     setShowAddIntakeRecord(!showAddIntakeRecord)
@@ -29,18 +32,30 @@ export const AppProvider = ({ children }) => {
 
   const toggleFilterFacility = () => {
     setFilterFacility(!filterFacility);
+    setFilterColumns(false);
+    setFilterNetwork(false)
   };
 
   const toggleFilterColumns = () => {
     setFilterColumns(!filterColumns);
+    setFilterFacility(false);
+    setFilterNetwork(false)
   };
 
+  const toggleNetworkColumns = () => {
+    setFilterNetwork(!filterNetwork)
+    setFilterColumns(false);
+    setFilterFacility(false);
+  }
+
   return (
-    <AppContext.Provider value={{ selectedTab, toggleSelectedTab,
+    <AppContext.Provider value={{ currentUser, setCurrentUser,
+                                  selectedTab, toggleSelectedTab,
                                   tableFilter,toggleTableFilter,
                                   filterFacility, toggleFilterFacility,
                                   filterColumns, toggleFilterColumns,
-                                  showAddIntakeRecord, toggleShowAddIntakeRecord }}> {/* Corrected this line */}
+                                  showAddIntakeRecord, toggleShowAddIntakeRecord,
+                                  filterNetwork, toggleNetworkColumns }}> {/* Corrected this line */}
       {children}
     </AppContext.Provider>
   );

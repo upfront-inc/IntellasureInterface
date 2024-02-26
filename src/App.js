@@ -18,54 +18,57 @@ import HelpScreen from './Screens/HelpScreen';
 import ProfileComponent from './Components/ProfileComponent';
 import AddIntakeRecord from './Components/AddIntakeRecord';
 import ChatWithAIComponent from './Components/ChatWithAIComponent';
+import LoginScreen from './Screens/LoginScreen';
+import AuthScreens from './Screens/AuthScreens';
 
 function App() {
   const { theme } = useTheme(); 
   const { sidebarPosition, showProfile } = useSidebar();
-  const { selectedTab, showAddIntakeRecord } = useApp();
+  const { selectedTab, showAddIntakeRecord, currentUser } = useApp();
 
   return (
-    <div className={`App-${sidebarPosition} ${theme}`}>
-      <SideBarComponent />
+    <>
       {
-        selectedTab === 'billingDetails'
-          ? <BillingDetailsScreen/>
-          : selectedTab === 'dailyRates'
-              ? <DailRateScreen/>
-              : selectedTab === 'flagged'
-                  ? <FlaggedScreen/>
-                  : selectedTab === 'missing'
-                      ? <MissingScreen/>
-                      : selectedTab === 'intake'
-                          ? <IntakeScreen/>
-                          : selectedTab === 'accounts'
-                              ? <AccountsScreen/>
-                              : selectedTab === 'backend'
-                                  ? <BackendScreen/>
-                                  : selectedTab === 'helpTickets'
-                                      ? <TicketsScreen/>
-                                      : selectedTab === 'help'
-                                          ? <HelpScreen/>
-                                          : selectedTab === 'AI'
-                                            ? <ChatWithAIComponent/>
-                                            : null
+        !currentUser
+          ? <AuthScreens />
+          : <div className={`App-${sidebarPosition} ${theme}`}>
+              <SideBarComponent />
+              {
+                selectedTab === 'billingDetails'
+                  ? <BillingDetailsScreen/>
+                  : selectedTab === 'dailyRates'
+                      ? <DailRateScreen/>
+                      : selectedTab === 'flagged'
+                          ? <FlaggedScreen/>
+                          : selectedTab === 'missing'
+                              ? <MissingScreen/>
+                              : selectedTab === 'intake'
+                                  ? <IntakeScreen/>
+                                  : selectedTab === 'accounts'
+                                      ? <AccountsScreen/>
+                                      : selectedTab === 'backend'
+                                          ? <BackendScreen/>
+                                          : selectedTab === 'helpTickets'
+                                              ? <TicketsScreen/>
+                                              : selectedTab === 'help'
+                                                  ? <HelpScreen/>
+                                                  : selectedTab === 'AI'
+                                                    ? <ChatWithAIComponent/>
+                                                    : null
+              }
+              {
+                showProfile
+                  ? <div className={`popup-${sidebarPosition}`}><ProfileComponent/></div>
+                  : null
+              }
+              {
+                showAddIntakeRecord
+                  ? <div className={`popup-${sidebarPosition}`}><AddIntakeRecord/></div>
+                  : null
+              }
+            </div>
       }
-      {
-        showProfile
-          ? <div className={`popup-${sidebarPosition}`}><ProfileComponent/></div>
-          : null
-      }
-      {
-        showAddIntakeRecord
-          ? <div className={`popup-${sidebarPosition}`}><AddIntakeRecord/></div>
-          : null
-      }
-      {/* {
-        showAddIntakeRecord
-          ? <div className={`popup-${sidebarPosition}`}><AddIntakeRecord/></div>
-          : null
-      } */}
-    </div>
+    </>
   );
 }
 

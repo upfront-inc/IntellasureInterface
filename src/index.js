@@ -5,15 +5,18 @@ import App from './App';
 import { ThemeProvider } from './Contexts/ThemeContext';
 import { SidebarProvider } from './Contexts/SidebarContext';
 import { AppProvider } from './Contexts/AppContext';
+import { FilterProvider } from './Contexts/FilterContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider>
-      <ThemeProvider> 
-        <SidebarProvider>
-          <App />
-        </SidebarProvider>
-      </ThemeProvider>
+      <FilterProvider>
+        <ThemeProvider> 
+          <SidebarProvider>
+            <App />
+          </SidebarProvider>
+        </ThemeProvider>
+      </FilterProvider>
     </AppProvider>
   </React.StrictMode>,
   document.getElementById('root')

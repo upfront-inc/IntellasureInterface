@@ -31,134 +31,16 @@ const DailyRatesTableComponent = () => {
           </tr>
         </thead>
         <tbody className={`table-body-${theme}`}>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>SVD</td>
-            <td>AETNA</td>
-            <td>CD RTC</td>
-            <td>$1,2232</td>
-            <td>UNKNOWN</td>
-            <td>12/13/2023</td>
-          </tr>
+          {Array.from({ length: 19 }).map((_, index) => (
+            <tr className={`table-content-row-${theme}`} key={index} style={{textAlign: 'center'}}>
+              <td>SVD</td>
+              <td>AETNA</td>
+              <td>CD RTC</td>
+              <td>$1,2232</td>
+              <td>UNKNOWN</td>
+              <td>12/13/2023</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

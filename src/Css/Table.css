@@ -36,6 +36,14 @@
   background-color: #f8fefe;
 }
 
+.table-body-dark tr {
+  background-color: #171717;
+}
+
+.table-body-light tr {
+  background-color: white;
+}
+
 .table-body-dark td, .table-body-light td {
   border: none;
   text-align: center;
@@ -44,14 +52,22 @@
   min-width: 150px; /* Apply min-width to all cells */
 }
 
-.table-body-dark td{
-  background-color: #181818;
+.table-body-dark td {
   color: white;
   border-bottom: 2px solid black;
 }
 
-.table-body-light td{
-  background-color: white;
+.table-body-light td {
   color: black;
-  border-bottom: 2px solid #f9f9f9;
+  border-bottom: 2px solid rgb(247, 247, 247);
+}
+
+.table-content-row-light:hover {
+  background-color: rgb(232, 255, 232); 
+  font-weight: 'bold';
+}
+
+.table-content-row-dark:hover {
+  background-color: rgb(24, 39, 24); 
+  font-weight: 'bold';
 }
