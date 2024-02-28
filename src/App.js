@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import amplifyconfig from './amplifyconfiguration.json';
 
 import { useApp } from './Contexts/AppContext';
 import { useTheme } from './Contexts/ThemeContext';
 import { useSidebar } from './Contexts/SidebarContext';
+import { useUser } from './Contexts/UserContext';
 import SideBarComponent from './Components/SideBarComponent';
 import SettingsScreen from './Screens/SettingsScreen';
 import BillingDetailsScreen from './Screens/BillingDetailsScreen';
@@ -20,11 +22,21 @@ import AddIntakeRecord from './Components/AddIntakeRecord';
 import ChatWithAIComponent from './Components/ChatWithAIComponent';
 import LoginScreen from './Screens/LoginScreen';
 import AuthScreens from './Screens/AuthScreens';
+import { Amplify } from 'aws-amplify';
+
+Amplify.configure(amplifyconfig)
 
 function App() {
   const { theme } = useTheme(); 
   const { sidebarPosition, showProfile } = useSidebar();
-  const { selectedTab, showAddIntakeRecord, currentUser } = useApp();
+  const { selectedTab, showAddIntakeRecord } = useApp();
+  const { grabCurrentUser, currentUser } = useUser()
+
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    grabCurrentUser()
+  }, [])
 
   return (
     <>

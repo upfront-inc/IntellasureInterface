@@ -1,0 +1,56 @@
+{
+  "version": "1",
+  "cognitoConfig": {
+    "identityPoolName": "testAuthIdentityPool",
+    "allowUnauthenticatedIdentities": false,
+    "resourceNameTruncated": "intell34c5baf2",
+    "userPoolName": "Intellasure",
+    "autoVerifiedAttributes": [
+      "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+      "SMS Text Message"
+    ],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Confirm Your Intellasure Account Registration",
+    "emailVerificationMessage": "Welcome to Intellasure, and thank you for taking the first step towards streamlining your mental health and addiction facility's operations with us. We're excited to have you on board and look forward to supporting you in managing and analyzing your facility's data more efficiently.\n\nTo complete your registration and activate your account, please enter the verification code below in the specified field on our website:\n\nVerification Code: {####}\n\nThis code is valid for 24 hours. If you did not initiate this request, please ignore this email or contact us immediately at support@intellasure.com for assistance.\n\nOnce verified, you'll gain full access to Intellasure's features, including data consolidation, analytics, and insurance policy evaluation tools designed to make your intake process as smooth as possible.\n\nShould you have any questions or require further assistance, our support team is here to help.\n\nThank you for choosing Intellasure. We're thrilled to be a part of your journey towards better data management and operational efficiency.\n\nBest Regards,\n\nThe Intellasure Team",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [
+      "Requires Lowercase",
+      "Requires Numbers",
+      "Requires Symbols",
+      "Requires Uppercase"
+    ],
+    "requiredAttributes": [
+      "email",
+      "given_name",
+      "family_name",
+      "name"
+    ],
+    "aliasAttributes": [],
+    "userpoolClientGenerateSecret": false,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [],
+    "userpoolClientReadAttributes": [],
+    "userpoolClientLambdaRole": "Intell34c5baf2_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": false,
+    "sharedId": "34c5baf2",
+    "resourceName": "Intellasure",
+    "authSelections": "identityPoolAndUserPool",
+    "serviceName": "Cognito",
+    "usernameAttributes": [
+      "email"
+    ],
+    "useDefault": "manual",
+    "userPoolGroups": false,
+    "userPoolGroupList": [],
+    "adminQueries": false,
+    "thirdPartyAuth": false,
+    "authProviders": [],
+    "usernameCaseSensitive": false,
+    "useEnabledMfas": true
+  }
+}

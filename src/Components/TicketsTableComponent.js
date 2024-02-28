@@ -31,94 +31,17 @@ const TicketsTableComponent = () => {
           </tr>
         </thead>
         <tbody className={`table-body-${theme}`}>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>15235123</td>
-            <td>Issue Searching for number prefix</td>
-            <td>closed</td>
-            <td>Open</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>15235123</td>
-            <td>Issue Searching for number prefix</td>
-            <td>closed</td>
-            <td>Open</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>15235123</td>
-            <td>Issue Searching for number prefix</td>
-            <td>closed</td>
-            <td>Open</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>15235123</td>
-            <td>Issue Searching for number prefix</td>
-            <td>closed</td>
-            <td>Open</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>15235123</td>
-            <td>Issue Searching for number prefix</td>
-            <td>closed</td>
-            <td>Open</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>15235123</td>
-            <td>Issue Searching for number prefix</td>
-            <td>closed</td>
-            <td>Open</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>15235123</td>
-            <td>Issue Searching for number prefix</td>
-            <td>closed</td>
-            <td>Open</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>15235123</td>
-            <td>Issue Searching for number prefix</td>
-            <td>closed</td>
-            <td>Open</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>15235123</td>
-            <td>Issue Searching for number prefix</td>
-            <td>closed</td>
-            <td>Open</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>15235123</td>
-            <td>Issue Searching for number prefix</td>
-            <td>closed</td>
-            <td>Open</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>15235123</td>
-            <td>Issue Searching for number prefix</td>
-            <td>closed</td>
-            <td>Open</td>
-          </tr>
+        {Array.from({ length: 19 }).map((_, index) => (
+            <tr className={`table-content-row-${theme}`} key={index} style={{textAlign: 'center'}}>
+              <td>John Doe</td>
+              <td>john@doe.com</td>
+              <td>15235123</td>
+              <td>Issue Searching for number prefix</td>
+              <td>closed</td>
+              <td>Open</td>
+            </tr>
+          ))}
+          
         </tbody>
       </table>
     </div>

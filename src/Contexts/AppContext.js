@@ -20,7 +20,7 @@ export const AppProvider = ({ children }) => {
 
   const toggleShowAddIntakeRecord = () => {
     setShowAddIntakeRecord(!showAddIntakeRecord)
-  }
+  };
 
   const toggleSelectedTab = (tab) => {
     setSelectedTab(tab);
@@ -46,7 +46,7 @@ export const AppProvider = ({ children }) => {
     setFilterNetwork(!filterNetwork)
     setFilterColumns(false);
     setFilterFacility(false);
-  }
+  };
 
   return (
     <AppContext.Provider value={{ currentUser, setCurrentUser,

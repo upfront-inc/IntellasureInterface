@@ -31,126 +31,16 @@ const AccountsTableComponent = () => {
           </tr>
         </thead>
         <tbody className={`table-body-${theme}`}>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
-          <tr className='table-content-row' style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John Doe</td>
-            <td>john@doe.com</td>
-            <td>active</td>
-            <td>staff</td>
-            <td>Make Admin</td>
-            <td>Remove</td>
-          </tr>
+          {Array.from({ length: 19 }).map((_, index) => (
+            <tr className={`table-content-row-${theme}`} key={index} style={{textAlign: 'center'}}>
+              <td>John Doe</td>
+              <td>john@doe.com</td>
+              <td>active</td>
+              <td>staff</td>
+              <td>Make Admin</td>
+              <td>Remove</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
