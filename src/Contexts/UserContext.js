@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getCurrentUser, signIn, signOut, signUp } from 'aws-amplify/auth';
 
 const UserContext = createContext();
@@ -13,16 +13,25 @@ export const UserProvider = ({ children }) => {
   const grabCurrentUser = () => {
     getCurrentUser()
       .then(response => {
-        console.log(`Logged in user: ${JSON.stringify(response.data)}`)
-        setCurrentUser(response.data)
+        setCurrentUser(response)
       })
       .catch(error => {
         console.log(`Error getting user: ${JSON.stringify(error)}`)
       })
   }
 
+  const signOutUser = () => {
+    signOut()
+      .then((response) => {
+        setCurrentUser(null)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
   return (
-    <UserContext.Provider value={{ currentUser, grabCurrentUser }}>
+    <UserContext.Provider value={{ currentUser, grabCurrentUser, signOutUser }}>
       {children}
     </UserContext.Provider>
   );

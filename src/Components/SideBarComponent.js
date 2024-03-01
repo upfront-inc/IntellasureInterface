@@ -5,6 +5,7 @@ import { useTheme } from '../Contexts/ThemeContext';
 import { useApp } from '../Contexts/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleLeft, faAngleDoubleRight, faArrowAltCircleRight, faCode, faFlag, faGear, faInbox, faInfoCircle, faList, faMoneyBill, faQuestion, faRightFromBracket, faSheetPlastic, faShield, faShieldAlt, faTicket, faUser, faUsers, faWandSparkles, faX } from '@fortawesome/free-solid-svg-icons';
+import { useUser } from '../Contexts/UserContext';
 
 const SideBarComponent = () => {
 
@@ -12,6 +13,7 @@ const SideBarComponent = () => {
   const { theme } = useTheme();
   const { selectedTab, toggleSelectedTab } = useApp();
   const { toggleSidebar, showProfile, toggleProfile } = useSidebar();
+  const { signOutUser } = useUser()
 
   const isSelected = (tabName) => selectedTab === tabName;
 
@@ -55,7 +57,7 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
-          <div onClick={() => {toggleSelectedTab('dailyRates')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('dailyRates') ? `menu-bar-item-selected-${theme}` : ''}`}>
+          {/* <div onClick={() => {toggleSelectedTab('dailyRates')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('dailyRates') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faMoneyBill} className="icon-menu"/>
             </div>
@@ -102,10 +104,10 @@ const SideBarComponent = () => {
                   : null
               }
             </div>
-          </div>
+          </div> */}
         </div>
         <div>
-          <div onClick={() => {toggleSelectedTab('accounts')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('accounts') ? `menu-bar-item-selected-${theme}` : ''}`}>
+          {/* <div onClick={() => {toggleSelectedTab('accounts')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('accounts') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faUsers} className="icon-menu"/>
             </div>
@@ -152,7 +154,7 @@ const SideBarComponent = () => {
                   : null
               }
             </div>
-          </div>
+          </div> */}
           <div onClick={toggleProfile} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('settings') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faGear} className="icon-menu"/>
@@ -181,7 +183,7 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
-          <div className={`menu-bar-item-${sidebarPosition}-${theme}`}>
+          <div onClick={() => {signOutUser()}} className={`menu-bar-item-${sidebarPosition}-${theme}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faRightFromBracket} className="icon-menu"/>
             </div>

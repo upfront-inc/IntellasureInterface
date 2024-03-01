@@ -20,9 +20,10 @@ import HelpScreen from './Screens/HelpScreen';
 import ProfileComponent from './Components/ProfileComponent';
 import AddIntakeRecord from './Components/AddIntakeRecord';
 import ChatWithAIComponent from './Components/ChatWithAIComponent';
-import LoginScreen from './Screens/LoginScreen';
-import AuthScreens from './Screens/AuthScreens';
 import { Amplify } from 'aws-amplify';
+import LoadingComponent from './Screens/LoadingScreen';
+import LoginScreen from './Screens/Authentication/LoginScreen';
+import AuthenticationScreen from './Screens/Authentication/AuthenticationScreen';
 
 Amplify.configure(amplifyconfig)
 
@@ -32,56 +33,78 @@ function App() {
   const { selectedTab, showAddIntakeRecord } = useApp();
   const { grabCurrentUser, currentUser } = useUser()
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    grabCurrentUser()
+    // grabCurrentUser()
   }, [])
+
+  const displayLoading = () => {
+    return(
+      <div style={styles.loadingContainer}>
+        <LoadingComponent />
+      </div>
+    )
+  }
 
   return (
     <>
       {
-        !currentUser
-          ? <AuthScreens />
-          : <div className={`App-${sidebarPosition} ${theme}`}>
-              <SideBarComponent />
-              {
-                selectedTab === 'billingDetails'
-                  ? <BillingDetailsScreen/>
-                  : selectedTab === 'dailyRates'
-                      ? <DailRateScreen/>
-                      : selectedTab === 'flagged'
-                          ? <FlaggedScreen/>
-                          : selectedTab === 'missing'
-                              ? <MissingScreen/>
-                              : selectedTab === 'intake'
-                                  ? <IntakeScreen/>
-                                  : selectedTab === 'accounts'
-                                      ? <AccountsScreen/>
-                                      : selectedTab === 'backend'
-                                          ? <BackendScreen/>
-                                          : selectedTab === 'helpTickets'
-                                              ? <TicketsScreen/>
-                                              : selectedTab === 'help'
-                                                  ? <HelpScreen/>
-                                                  : selectedTab === 'AI'
-                                                    ? <ChatWithAIComponent/>
-                                                    : null
-              }
-              {
-                showProfile
-                  ? <div className={`popup-${sidebarPosition}`}><ProfileComponent/></div>
-                  : null
-              }
-              {
-                showAddIntakeRecord
-                  ? <div className={`popup-${sidebarPosition}`}><AddIntakeRecord/></div>
-                  : null
-              }
-            </div>
+        loading
+          ? displayLoading()
+          : !currentUser
+              ? <AuthenticationScreen />
+              : <div className={`App-${sidebarPosition} ${theme}`}>
+                  <SideBarComponent />
+                  {
+                    selectedTab === 'billingDetails'
+                      ? <BillingDetailsScreen/>
+                      : selectedTab === 'dailyRates'
+                          ? <DailRateScreen/>
+                          : selectedTab === 'flagged'
+                              ? <FlaggedScreen/>
+                              : selectedTab === 'missing'
+                                  ? <MissingScreen/>
+                                  : selectedTab === 'intake'
+                                      ? <IntakeScreen/>
+                                      : selectedTab === 'accounts'
+                                          ? <AccountsScreen/>
+                                          : selectedTab === 'backend'
+                                              ? <BackendScreen/>
+                                              : selectedTab === 'helpTickets'
+                                                  ? <TicketsScreen/>
+                                                  : selectedTab === 'help'
+                                                      ? <HelpScreen/>
+                                                      : selectedTab === 'AI'
+                                                        ? <ChatWithAIComponent/>
+                                                        : null
+                  }
+                  {
+                    showProfile
+                      ? <div className={`popup-${sidebarPosition}`}><ProfileComponent/></div>
+                      : null
+                  }
+                  {
+                    showAddIntakeRecord
+                      ? <div className={`popup-${sidebarPosition}`}><AddIntakeRecord/></div>
+                      : null
+                  }
+                </div>
       }
     </>
   );
+}
+
+const styles = {
+  loadingContainer: {
+    height: '100vh',
+    width: '100vw',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'lightgrey'
+  }
 }
 
 export default App;

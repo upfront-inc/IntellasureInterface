@@ -170,6 +170,132 @@ const FinancialTableComponent = (props) => {
             <td>32%</td>
             <td>12/21/2023</td>
           </tr>
+          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
+          <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
+          <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
+          <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
+          <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
+          <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
+          <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
+          <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
+          <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
+          <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
+          <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
+          <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
+          <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
+          <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+            <td>HS1001</td>
+            <td>Closed</td>
+            <td>Paid</td>
+            <td>$3,850</td>
+            <td>$1,100</td>
+            <td>32%</td>
+            <td>12/21/2023</td>
+          </tr>
         </tbody>
       </table>
     </div>
