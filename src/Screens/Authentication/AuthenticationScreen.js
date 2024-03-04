@@ -6,6 +6,7 @@ import ConfirmEmailScreen from './ConfirmEmailScreen'
 import ForgotPasswordScreen from './ForgotPasswordScreen'
 import Background from '../../Assets/mountain.jpg'
 import Lake from '../../Assets/lake.jpg'
+import BackgroundImage from '../../Assets/background.png'
 
 const AuthenticationScreen = () => {
 
@@ -22,7 +23,7 @@ const AuthenticationScreen = () => {
   return (
     <div>
       <div style={styles.backgroundContainer}>
-        <img style={styles.background} src={Background} alt="Background Image" />
+        <img style={styles.background} src={BackgroundImage} alt="Background Image" />
       </div>
       <div style={styles.overlay}></div>
       <div style={styles.content}>

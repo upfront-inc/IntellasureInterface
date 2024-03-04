@@ -65,6 +65,7 @@
 .table-content-row-light:hover {
   background-color: rgb(244, 254, 244); 
   font-weight: 'bold';
+  cursor: pointer;
 }
 
 .table-content-row-dark:hover {

@@ -2,16 +2,19 @@ import React, { useState } from 'react'
 import InputComponent from '../../Components/InputComponent'
 import { signIn, signOut } from 'aws-amplify/auth'
 import { useUser } from '../../Contexts/UserContext'
+import LoadingComponent from '../LoadingScreen'
 
 const LoginScreen = (props) => {
   const {handleAuthView} = props
 
-  const { grabCurrentUser } = useUser()
+  const { grabCurrentUser, setCurrentUser } = useUser()
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   const [validLogin, setValidLogin] = useState(true)
+
+  const [loading, setLoading] = useState(false)
 
 
   const handleUsernameChange = (val) => {
@@ -23,11 +26,29 @@ const LoginScreen = (props) => {
   }
 
   const signInUser = () => {
+    setLoading(true)
     signIn({username, password})
       .then((response) => {
         grabCurrentUser()
+        setLoading(false)
       })
       .catch((error) => {
+        console.log(error)
+        setValidLogin(false)
+      })
+  }
+
+  const signOutUser = () => {
+    setLoading(true)
+    signOut({username, password})
+      .then((response) => {
+        setCurrentUser(null)
+        console.log('logged out')
+        grabCurrentUser()
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.log(error)
         setValidLogin(false)
       })
   }
@@ -36,6 +57,7 @@ const LoginScreen = (props) => {
     <div style={styles.appContainer}>
       <div style={styles.formContainer}>
         <h1>Login</h1>
+        <p onClick={() => {signOutUser()}}>logout</p>
         {
           validLogin
             ? null 
@@ -63,9 +85,15 @@ const LoginScreen = (props) => {
           <p style={styles.forgotLink}>Forgot Password?</p>
         </div>
         <div style={styles.buttonContainer}>
-          <div onClick={() => {signInUser()}} style={styles.buttonContainerSingle}>
-            <p style={styles.buttonLeft}>Login</p>
-          </div>
+          {
+            loading 
+              ? <div style={styles.buttonContainerSingle}>
+                  <p style={styles.buttonLeft}>Login</p>
+                </div>
+              : <div onClick={() => {signInUser()}} style={styles.buttonContainerSingle}>
+                  <p style={styles.buttonLeft}>Login</p>
+                </div>
+          }
           <div onClick={() => {handleAuthView('signup')}} style={styles.buttonContainerSingle}>
             <p style={styles.buttonRight}>Signup</p>
           </div>
@@ -103,7 +131,8 @@ const styles = {
     width: '100%',
     display: 'flex',
     flexDiection: 'row',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    cursor: 'pointer'
   },
   forgotLink: {
     color: 'blue'
@@ -116,24 +145,26 @@ const styles = {
     fontSize: '16px',
     fontWeight: 'bold',
     padding: '18px',
-    backgroundColor: '#009ea1',
+    backgroundColor: '#0b8ec4',
     borderRadius: '10px',
     color: 'white',
     display: 'flex',
     flexDiection: 'row',
     justifyContent: 'center',
+    cursor: 'pointer'
   },
   buttonRight: {
     marginLeft: '4px',
     fontSize: '16px',
     fontWeight: 'bold',
     padding: '18px',
-    backgroundColor: '#009ea1',
+    backgroundColor: '#0b8ec4',
     borderRadius: '10px',
     color: 'white',
     display: 'flex',
     flexDiection: 'row',
     justifyContent: 'center',
+    cursor: 'pointer'
   },
   validationMessage: {
     fontSize: '14px',

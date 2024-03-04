@@ -9,6 +9,7 @@ export function useUser() {
 
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null)
+  const [userProfile, setUserProfile] = useState(null)
 
   const grabCurrentUser = () => {
     getCurrentUser()
@@ -18,6 +19,10 @@ export const UserProvider = ({ children }) => {
       .catch(error => {
         console.log(`Error getting user: ${JSON.stringify(error)}`)
       })
+  }
+
+  const grabCurrentUserProfile = () => {
+    
   }
 
   const signOutUser = () => {
@@ -31,7 +36,7 @@ export const UserProvider = ({ children }) => {
   }
 
   return (
-    <UserContext.Provider value={{ currentUser, grabCurrentUser, signOutUser }}>
+    <UserContext.Provider value={{ currentUser, setCurrentUser, grabCurrentUser, signOutUser, userProfile }}>
       {children}
     </UserContext.Provider>
   );

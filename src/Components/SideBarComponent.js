@@ -107,7 +107,7 @@ const SideBarComponent = () => {
           </div> */}
         </div>
         <div>
-          {/* <div onClick={() => {toggleSelectedTab('accounts')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('accounts') ? `menu-bar-item-selected-${theme}` : ''}`}>
+          <div onClick={() => {toggleSelectedTab('accounts')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('accounts') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faUsers} className="icon-menu"/>
             </div>
@@ -119,7 +119,7 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
-          <div onClick={() => {toggleSelectedTab('backend')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('backend') ? `menu-bar-item-selected-${theme}` : ''}`}>
+          {/* <div onClick={() => {toggleSelectedTab('backend')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('backend') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faCode} className="icon-menu"/>
             </div>

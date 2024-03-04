@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import InputComponent from '../../Components/InputComponent'
 import { signUp } from 'aws-amplify/auth'
+import axios from 'axios'
 
 const SignupScreen = (props) => {
   const {handleAuthView, setUsername} = props
@@ -94,11 +95,38 @@ const SignupScreen = (props) => {
     signUp(signupData)
       .then((currentUser) => {
         console.log(`current user: ${currentUser.data}`)
-        handleAuthView('confirm')
+        createProfile(currentUser.userId)
       })
       .catch((err) => {
         console.log('User is not logged in:', err);
       });
+  }
+
+  const createProfile = (userId) => {
+    const baseUrl = `https://intellasurebackend.onrender.com/api/users/${userId}`
+    const userInfo = {
+      "status": "success",
+      "method": "PUT",
+      "data":
+        {
+          "first_name": firstName,
+          "last_name": lastName,
+          "name": `${firstName} ${lastName}`,
+          "email": email,
+          "status": "active",
+          "priviledges": "member",
+          "company": "phg",
+          "user_id": userId
+        }
+    }
+    axios.request(baseUrl, userInfo)
+      .then((response) => {
+        console.log('new user created with id: ', userId)
+        handleAuthView('confirm')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   return (
@@ -226,24 +254,26 @@ const styles = {
     fontSize: '16px',
     fontWeight: 'bold',
     padding: '18px',
-    backgroundColor: '#009ea1',
+    backgroundColor: '#0b8ec4',
     borderRadius: '10px',
     color: 'white',
     display: 'flex',
     flexDiection: 'row',
     justifyContent: 'center',
+    cursor: 'pointer'
   },
   buttonRight: {
     marginLeft: '4px',
     fontSize: '16px',
     fontWeight: 'bold',
     padding: '18px',
-    backgroundColor: '#009ea1',
+    backgroundColor: '#0b8ec4',
     borderRadius: '10px',
     color: 'white',
     display: 'flex',
     flexDiection: 'row',
     justifyContent: 'center',
+    cursor: 'pointer'
   },
   splitInputcontainer: {
     width: '100%',

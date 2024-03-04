@@ -53,7 +53,7 @@ const styles = {
     alignItems: 'center',
     padding: '14px',
     borderRadius: '10px',
-    border: '2px solid #009ea1',
+    border: '2px solid #0b8ec4',
     marginTop: '14px'
   },
   userInputContainer: {
@@ -66,7 +66,7 @@ const styles = {
     height: '18px',
     width: '18px',
     paddingBottom: '2px',
-    color: '#009ea1'
+    color: '#0b8ec4'
   },
   input: {
     margin: '0px',
@@ -74,7 +74,7 @@ const styles = {
     border: 0, 
     fontSize: '18px',
     paddingTop: '4px',
-    borderBottom: '2px solid #009ea1',
+    borderBottom: '2px solid #0b8ec4',
     backgroundColor: 'rgb(225, 225, 225, .1)',
     marginLeft: '8px'
   },
@@ -84,7 +84,7 @@ const styles = {
     border: 0, 
     fontSize: '18px',
     paddingTop: '4px',
-    borderBottom: '2px solid #009ea1',
+    borderBottom: '2px solid #0b8ec4',
     backgroundColor: 'rgb(225, 225, 225, .1)',
     marginLeft: '8px'
   }

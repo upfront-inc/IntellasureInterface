@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
 
 const AccountsTableComponent = () => {
 
   const { theme } = useTheme()
+
+  const [profiles, setProfiles] = useState([])
+
+  const grabAllProfiles = () => {
+    
+  }
 
   return (
     <div className='table-parent'>

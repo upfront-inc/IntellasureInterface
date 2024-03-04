@@ -5,7 +5,7 @@
   align-items: flex-end;
   padding: 14px;
   border-radius: 10px;
-  border: 2px solid #009ea1;
+  border: 2px solid #0b8ec4;
   margin-top: 14px;
 }
 
@@ -20,7 +20,7 @@
   height: 18px;
   width: 18px;
   padding-bottom: 2px;
-  color: #009ea1;
+  color: #0b8ec4;
 }
 
 .input {
@@ -31,7 +31,7 @@
   padding-top: 4px;
   padding-left: 4px;
   font-size: 16px;
-  border-bottom: 2px solid #009ea1;
+  border-bottom: 2px solid #0b8ec4;
   background-color: rgb(225, 225, 225, .1);
   margin-left: 8px;
 }
