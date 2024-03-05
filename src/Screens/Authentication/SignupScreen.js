@@ -107,6 +107,9 @@ const SignupScreen = (props) => {
     const userInfo = {
       "status": "success",
       "method": "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+      },
       "data":
         {
           "first_name": firstName,
