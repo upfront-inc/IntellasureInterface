@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import '../Css/Intake.css'
 import { useTheme } from '../Contexts/ThemeContext'
 import { useApp } from '../Contexts/AppContext'
+import axios from 'axios'
 
 const AddIntakeRecord = () => {
 
@@ -56,7 +57,45 @@ const AddIntakeRecord = () => {
     setDate(e.target.value)
   }
 
-  // add the theme to all of the different styles ot make the text white
+  const generateTenDigitNumber = () => {
+    const min = 1000000000;
+    const max = 9999999999;
+    const number = Math.floor(Math.random() * (max - min + 1)) + min;
+    console.log(number)
+    return number.toString()
+  }
+
+  const addIntakeRecord = () => {
+    let data = {
+        "Intake_ID": generateTenDigitNumber(),
+        "Name": "ClientNameHere",
+        "Prefix": "PrefixHere",
+        "Insurance": "InsuranceHere",
+        "Source": "SourceHere",
+        "Coordinator": "CoordinatorHere",
+        "Summary_Out": "SummaryOutHere",
+        "Details": "DetailsHere",
+        "Notes": "NotesHere",
+        "Date": "03/05/2024"
+    }
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'https://intellasurebackend-docker.onrender.com/update_intake_table',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data : data
+    }; 
+    axios.request(config)
+      .then((response) => {
+        console.log("successful request: ", JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log("failed request: ", JSON.stringify(error))
+        console.log(error);
+      });
+  }
   
   return (
     <div className={`intake-container-${theme}`}>
@@ -147,7 +186,7 @@ const AddIntakeRecord = () => {
           />
         </div>
       </div>
-      <div className='button-container'>
+      <div onClick={() => {addIntakeRecord()}} className='button-container'>
         <p className='submit-button'>
           Submit Record
         </p>

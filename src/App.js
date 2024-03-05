@@ -31,12 +31,10 @@ function App() {
   const { theme } = useTheme(); 
   const { sidebarPosition, showProfile } = useSidebar();
   const { selectedTab, showAddIntakeRecord } = useApp();
-  const { grabCurrentUser, currentUser } = useUser()
-
-  const [loading, setLoading] = useState(false)
+  const { grabCurrentUser, currentUser, loading } = useUser()
 
   useEffect(() => {
-    // grabCurrentUser()
+    grabCurrentUser()
   }, [])
 
   const displayLoading = () => {

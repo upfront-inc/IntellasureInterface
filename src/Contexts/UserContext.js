@@ -10,11 +10,14 @@ export function useUser() {
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null)
   const [userProfile, setUserProfile] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const grabCurrentUser = () => {
+    setLoading(true)
     getCurrentUser()
       .then(response => {
         setCurrentUser(response)
+        setLoading(false)
       })
       .catch(error => {
         console.log(`Error getting user: ${JSON.stringify(error)}`)
@@ -36,7 +39,7 @@ export const UserProvider = ({ children }) => {
   }
 
   return (
-    <UserContext.Provider value={{ currentUser, setCurrentUser, grabCurrentUser, signOutUser, userProfile }}>
+    <UserContext.Provider value={{ currentUser, setCurrentUser, grabCurrentUser, signOutUser, userProfile, loading }}>
       {children}
     </UserContext.Provider>
   );

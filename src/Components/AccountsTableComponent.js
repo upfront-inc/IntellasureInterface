@@ -17,7 +17,9 @@ const AccountsTableComponent = () => {
       method: 'get',
       maxBodyLength: Infinity,
       url: 'https://intellasurebackend-docker.onrender.com/api/users/all',
-      headers: { }
+      headers: {
+        'Content-Type': 'application/json'
+      },
     };
     
     axios.request(config)
