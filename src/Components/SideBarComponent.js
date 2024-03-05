@@ -57,19 +57,19 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
-          {/* <div onClick={() => {toggleSelectedTab('dailyRates')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('dailyRates') ? `menu-bar-item-selected-${theme}` : ''}`}>
+          <div onClick={() => {toggleSelectedTab('dailyRates')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('dailyRates') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faMoneyBill} className="icon-menu"/>
             </div>
             <div>
               {
                 sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>Daily Rates</p>
+                  ? <p className={`label-${theme}`}>Zoho External</p>
                   : null
               }
             </div>
           </div>
-          <div onClick={() => {toggleSelectedTab('flagged')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('flagged') ? `menu-bar-item-selected-${theme}` : ''}`}>
+          {/* <div onClick={() => {toggleSelectedTab('flagged')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('flagged') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faFlag} className="icon-menu"/>
             </div>
@@ -92,7 +92,7 @@ const SideBarComponent = () => {
                   : null
               }
             </div>
-          </div>
+          </div> */}
           <div onClick={() => {toggleSelectedTab('intake')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('intake') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faArrowAltCircleRight} className="icon-menu"/>
@@ -104,7 +104,7 @@ const SideBarComponent = () => {
                   : null
               }
             </div>
-          </div> */}
+          </div>
         </div>
         <div>
           <div onClick={() => {toggleSelectedTab('accounts')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('accounts') ? `menu-bar-item-selected-${theme}` : ''}`}>

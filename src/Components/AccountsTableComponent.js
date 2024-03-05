@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
+import axios from 'axios'
 
 const AccountsTableComponent = () => {
 
@@ -7,8 +8,26 @@ const AccountsTableComponent = () => {
 
   const [profiles, setProfiles] = useState([])
 
+  useEffect(() => {
+    grabAllProfiles()
+  }, [])
+
   const grabAllProfiles = () => {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'https://intellasurebackend-docker.onrender.com/api/users/all',
+      headers: { }
+    };
     
+    axios.request(config)
+      .then((response) => {
+        console.log('return data: ', response.data.data);
+        setProfiles(response.data.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
@@ -23,30 +42,41 @@ const AccountsTableComponent = () => {
               Email
             </th>
             <th className='table-header-text'>
-              Status
-            </th>
-            <th className='table-header-text'>
               Priviledges
             </th>
             <th className='table-header-text'>
-              Action
+              Comapny
             </th>
             <th className='table-header-text'>
               Account
             </th>
+            <th className='table-header-text'>
+              Remove
+            </th>
           </tr>
         </thead>
         <tbody className={`table-body-${theme}`}>
-          {Array.from({ length: 19 }).map((_, index) => (
-            <tr className={`table-content-row-${theme}`} key={index} style={{textAlign: 'center'}}>
-              <td>John Doe</td>
-              <td>john@doe.com</td>
-              <td>active</td>
-              <td>staff</td>
-              <td>Make Admin</td>
-              <td>Remove</td>
-            </tr>
-          ))}
+          {
+            profiles.length > 0
+              ? profiles.map(profile => {
+                  return(
+                    <tr className={`table-content-row-${theme}`} key={profile.user_id} style={{textAlign: 'center'}}>
+                      <td>{profile.name}</td>
+                      <td>{profile.email}</td>
+                      {/* <td>{profile.status}</td> */}
+                      <td>{profile.privileges}</td>
+                      <td>{(profile.company).toUpperCase()}</td>
+                      {
+                        profile.priviledges === 'admin'
+                          ? <td>Remove Admin</td>
+                          : <td>Make Admin</td>
+                      }
+                      <td>X</td>
+                    </tr>
+                  )
+                })
+              : null
+          }
         </tbody>
       </table>
     </div>

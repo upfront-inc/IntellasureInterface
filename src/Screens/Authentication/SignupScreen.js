@@ -103,33 +103,38 @@ const SignupScreen = (props) => {
   }
 
   const createProfile = (userId) => {
-    const baseUrl = `https://intellasurebackend.onrender.com/api/users/${userId}`
-    const userInfo = {
-      "status": "success",
-      "method": "PUT",
-      headers: {
-        'Content-Type': 'application/json',
+    let data = {
+      "first_name": firstName,
+      "last_name": lastName,
+      "name": `${firstName} ${lastName}`,
+      "email": email,
+      "status": 'active',
+      "priviledges": "member",
+      "company": "phg",
+      "user_id": userId
+    };
+
+    console.log(`user data creation object: ${data}`)
+
+    let config = {
+      method: 'put',
+      maxBodyLength: Infinity,
+      url: `https://intellasurebackend-docker.onrender.com/api/users/${userId}`,
+      headers: { 
+        'Content-Type': 'application/json'
       },
-      "data":
-        {
-          "first_name": firstName,
-          "last_name": lastName,
-          "name": `${firstName} ${lastName}`,
-          "email": email,
-          "status": "active",
-          "priviledges": "member",
-          "company": "phg",
-          "user_id": userId
-        }
-    }
-    axios.request(baseUrl, userInfo)
+      data : data
+    };
+
+    axios.request(config)
       .then((response) => {
-        console.log('new user created with id: ', userId)
+        console.log("successful request: ", JSON.stringify(response.data));
         handleAuthView('confirm')
       })
       .catch((error) => {
-        console.log(error)
-      })
+        console.log("failed request: ", JSON.stringify(error))
+        console.log(error);
+      });
   }
 
   return (
@@ -204,7 +209,7 @@ const SignupScreen = (props) => {
             : <p style={styles.validationMessage}>Verify: Password and Verify don't match</p>
         }
         <div style={styles.buttonContainer}>
-          <div onClick={() => {checkValidations()}} style={styles.buttonContainerSingle}>
+          <div onClick={() => {signUpUser()}} style={styles.buttonContainerSingle}>
             <p style={styles.buttonLeft}>signup</p>
           </div>
           <div onClick={() => {handleAuthView('login')}} style={styles.buttonContainerSingle}>

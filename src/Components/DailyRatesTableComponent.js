@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
+import dataArray from './converted_data'
 
 const DailyRatesTableComponent = () => {
 
@@ -14,13 +15,16 @@ const DailyRatesTableComponent = () => {
               Prefix
             </th>
             <th className='table-header-text'>
-              Insurance
-            </th>
-            <th className='table-header-text'>
               Level Of Care
             </th>
             <th className='table-header-text'>
-              Admitted
+              Total Units
+            </th>
+            <th className='table-header-text'>
+              Allowed %
+            </th>
+            <th className='table-header-text'>
+              Paid %
             </th>
             <th className='table-header-text'>
               Daily Rate
@@ -31,16 +35,21 @@ const DailyRatesTableComponent = () => {
           </tr>
         </thead>
         <tbody className={`table-body-${theme}`}>
-          {Array.from({ length: 19 }).map((_, index) => (
-            <tr className={`table-content-row-${theme}`} key={index} style={{textAlign: 'center'}}>
-              <td>SVD</td>
-              <td>AETNA</td>
-              <td>CD RTC</td>
-              <td>$1,2232</td>
-              <td>UNKNOWN</td>
-              <td>12/13/2023</td>
-            </tr>
-          ))}
+          {
+            dataArray.map((entry, index) => {
+              return(
+                <tr className={`table-content-row-${theme}`} key={index} style={{textAlign: 'center'}}>
+                  <td>{entry['BCBS Prefix']}</td>
+                  <td>{entry['LOC']}</td>
+                  <td>{entry['Total Units']} Units</td>
+                  <td>{entry['Allowed %']}</td>
+                  <td>{entry['Paid %']}</td>
+                  <td>{entry['Avg Daily Rate']}</td>
+                  <td>{entry['Last Paid']}</td>
+                </tr>
+              )
+            })
+          }
         </tbody>
       </table>
     </div>
