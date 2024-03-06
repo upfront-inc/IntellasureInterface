@@ -66,21 +66,23 @@ const AddIntakeRecord = () => {
   }
 
   const sendDataToServer = () => {
-    let data = JSON.stringify({
-      "data": {
-        "Intake_ID": generateTenDigitNumber(),
-        "Name": "ClientNameHere",
-        "Prefix": "PrefiHere",
-        "Insurance": "InsuranceHere",
-        "Source": "SourceHere",
-        "Coordinator": "CoordinatorHere",
-        "Summary_Out": "SummaryOutHere",
-        "Details": "DetailsHere",
-        "Notes": "NotesHere",
-        "Date": "03/05/2024"
-      }
-    });
-    
+    let intakeId = generateTenDigitNumber()
+    console.log(intakeId)
+    let data = {
+      "Intake_ID": intakeId,
+      "Name": client,
+      "Prefix": prefix,
+      "Insurance": insurance,
+      "Source": source,
+      "Coordinator": coordinator,
+      "Summary_Out": summaryOut,
+      "Details": details,
+      "Notes": notes,
+      "Date": date
+    }
+
+    console.log(data)
+
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
