@@ -17,6 +17,8 @@ const SignupScreen = (props) => {
   const [validPassword, setValidPassword] = useState(false)
   const [matchingVerify, setMatchingVerify] = useState(false)
 
+  const [invalidEmail, setInvalidEmail] = useState(false)
+
   const handleEmailChange = (val) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const emailCheck = emailRegex.test(val.target.value);
@@ -98,7 +100,10 @@ const SignupScreen = (props) => {
         createProfile(currentUser.userId)
       })
       .catch((err) => {
-        console.log('User is not logged in:', err);
+        if(err.name === 'UsernameExistsException'){
+          setInvalidEmail(true)
+        }
+        console.log(JSON.stringify(err));
       });
   }
 
@@ -142,6 +147,11 @@ const SignupScreen = (props) => {
       <div style={styles.formContainer}>
         <h1>Signup</h1>
         <p style={styles.company}>(Premier Health Group LLC)</p>
+        {
+          invalidEmail
+            ? <p style={styles.emailError}>* Email is already in use</p>
+            : null
+        }
         <div style={styles.splitInputcontainer}>
           <div style={styles.splitInput}>
             <InputComponent
@@ -300,6 +310,12 @@ const styles = {
   },
   company: {
     lineHeight: 0
+  },
+  emailError: {
+    lineHeight: 0,
+    marginTop: '30px',
+    color: '#e94f4e',
+    fontSize: '14px'
   }
 }
 
