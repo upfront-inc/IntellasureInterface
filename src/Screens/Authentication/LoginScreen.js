@@ -57,7 +57,7 @@ const LoginScreen = (props) => {
     <div style={styles.appContainer}>
       <div style={styles.formContainer}>
         <h1>Login</h1>
-        <p onClick={() => {signOutUser()}}>logout</p>
+        {/* <p onClick={() => {signOutUser()}}>logout</p> */}
         {
           validLogin
             ? null 

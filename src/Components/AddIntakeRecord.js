@@ -92,6 +92,8 @@ const AddIntakeRecord = () => {
       console.log(error);
     });
   };
+
+
   
   return (
     <div className={`intake-container-${theme}`}>
