@@ -70,14 +70,14 @@ const AddIntakeRecord = () => {
     console.log(intakeId)
     let intakeData = { data: {
       "Intake_ID": intakeId,
-      "Name": "ClientNameHere",
-      "Prefix": "PrefixHere",
-      "Insurance": "InsuranceHere",
-      "Source": "SourceHere",
-      "Coordinator": "CoordinatorHere",
-      "Summary_Out": "HELLO WORLD",
-      "Details": "DetailsHere",
-      "Notes": "NotesHere",
+      "Name": client,
+      "Prefix": prefix,
+      "Insurance": insurance,
+      "Source": source,
+      "Coordinator":coordinator,
+      "Summary_Out": summaryOut,
+      "Details": details,
+      "Notes": notes,
       "Date": "03/05/2024"
     }}
 
