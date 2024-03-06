@@ -21,6 +21,7 @@ export const UserProvider = ({ children }) => {
       })
       .catch(error => {
         console.log(`Error getting user: ${JSON.stringify(error)}`)
+        setLoading(false)
       })
   }
 
