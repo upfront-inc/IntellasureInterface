@@ -81,21 +81,12 @@ const AddIntakeRecord = () => {
       "Date": "03/05/2024"
     }
 
-    console.log(data)
-
-    let config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'https://intellasurebackend-docker.onrender.com/update_intake_table/',
-      headers: { 
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
+    const url = 'https://intellasurebackend-docker.onrender.com/update_intake_table/'
     
-    axios.request(config)
+    axios.post(url, data)
     .then((response) => {
       console.log(JSON.stringify(response.data));
+      toggleShowAddIntakeRecord()
     })
     .catch((error) => {
       console.log(error);
