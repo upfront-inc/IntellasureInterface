@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getCurrentUser, signIn, signOut, signUp } from 'aws-amplify/auth';
+import axios from 'axios'
 
 const UserContext = createContext();
 
@@ -18,6 +19,7 @@ export const UserProvider = ({ children }) => {
       .then(response => {
         setCurrentUser(response)
         setLoading(false)
+        grabCurrentUserProfile(response.userId)
       })
       .catch(error => {
         console.log(`Error getting user: ${JSON.stringify(error)}`)
@@ -25,8 +27,21 @@ export const UserProvider = ({ children }) => {
       })
   }
 
-  const grabCurrentUserProfile = () => {
-    
+  const grabCurrentUserProfile = (userId) => {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `https://intellasurebackend-docker.onrender.com/api/users/${userId}`,
+      headers: { }
+    };
+    axios.request(config)
+      .then((response) => {
+        console.log("users profile: ", JSON.stringify(response.data.data));
+        setUserProfile(response.data.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   const signOutUser = () => {

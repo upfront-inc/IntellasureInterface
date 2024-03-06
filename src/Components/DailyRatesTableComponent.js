@@ -3,11 +3,13 @@ import { useTheme } from '../Contexts/ThemeContext'
 import {data} from './converted_data_with_prefix_handling.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesDown, faAnglesUp } from '@fortawesome/free-solid-svg-icons'
+import { useUser } from '../Contexts/UserContext.js'
 
 const DailyRatesTableComponent = (props) => {
   const {searchTerm} = props
 
   const { theme } = useTheme()
+  const {userProfile} = useUser()
   
   const [sort, setSort] = useState('desc')
   const [column, setColumn] = useState('prefix')
@@ -144,7 +146,17 @@ const DailyRatesTableComponent = (props) => {
                   <td>{entry['Total Units']} Units</td>
                   <td>{(entry['Allowed %'] * 100).toFixed(0)}%</td>
                   <td>{(entry['Paid %']* 100).toFixed(0)}%</td>
-                  <td>{formatDollarAmount(entry['Avg Daily Rate'])}</td>
+                  {
+                    userProfile.priviledges === 'admin' || userProfile.priviledges === 'dev' || userProfile.priviledges === 'owner'
+                      ? <td>{formatDollarAmount(entry['Avg Daily Rate'])}</td>
+                      : <td>
+                          {
+                            entry['Avg Daily Rate'] > 900
+                              ? <>GOOD VOB</>
+                              : <>BAD VOB</>
+                          }
+                        </td>
+                  }
                   <td>{entry['Last Paid']}</td>
                 </tr>
               )
