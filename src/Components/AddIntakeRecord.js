@@ -69,16 +69,18 @@ const AddIntakeRecord = () => {
     let intakeId = generateTenDigitNumber()
     console.log(intakeId)
     let data = {
-      "Intake_ID": intakeId,
-      "Name": "ClientNameHere",
-      "Prefix": "PrefixHere",
-      "Insurance": "InsuranceHere",
-      "Source": "SourceHere",
-      "Coordinator": "CoordinatorHere",
-      "Summary_Out": "HELLO WORLD",
-      "Details": "DetailsHere",
-      "Notes": "NotesHere",
-      "Date": "03/05/2024"
+      "data":{
+        "Intake_ID": intakeId,
+        "Name": "ClientNameHere",
+        "Prefix": "PrefixHere",
+        "Insurance": "InsuranceHere",
+        "Source": "SourceHere",
+        "Coordinator": "CoordinatorHere",
+        "Summary_Out": "HELLO WORLD",
+        "Details": "DetailsHere",
+        "Notes": "NotesHere",
+        "Date": "03/05/2024"
+      }
     }
 
     console.log(data)
