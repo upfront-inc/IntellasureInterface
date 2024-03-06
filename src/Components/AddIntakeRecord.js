@@ -86,7 +86,7 @@ const AddIntakeRecord = () => {
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
-      url: 'https://intellasurebackend-docker.onrender.com/update_intake_table',
+      url: 'https://intellasurebackend-docker.onrender.com/update_intake_table/',
       headers: { 
         'Content-Type': 'application/json'
       },
