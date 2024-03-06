@@ -65,11 +65,12 @@ const AddIntakeRecord = () => {
     return number.toString()
   }
 
-  const addIntakeRecord = () => {
-    let data = {
+  const sendDataToServer = () => {
+    let data = JSON.stringify({
+      "data": {
         "Intake_ID": generateTenDigitNumber(),
         "Name": "ClientNameHere",
-        "Prefix": "PrefixHere",
+        "Prefix": "PrefiHere",
         "Insurance": "InsuranceHere",
         "Source": "SourceHere",
         "Coordinator": "CoordinatorHere",
@@ -77,25 +78,27 @@ const AddIntakeRecord = () => {
         "Details": "DetailsHere",
         "Notes": "NotesHere",
         "Date": "03/05/2024"
-    }
+      }
+    });
+    
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
       url: 'https://intellasurebackend-docker.onrender.com/update_intake_table',
-      headers: {
+      headers: { 
         'Content-Type': 'application/json'
       },
       data : data
-    }; 
+    };
+    
     axios.request(config)
-      .then((response) => {
-        console.log("successful request: ", JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log("failed request: ", JSON.stringify(error))
-        console.log(error);
-      });
-  }
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
   
   return (
     <div className={`intake-container-${theme}`}>
@@ -186,7 +189,7 @@ const AddIntakeRecord = () => {
           />
         </div>
       </div>
-      <div onClick={() => {addIntakeRecord()}} className='button-container'>
+      <div onClick={() => {sendDataToServer()}} className='button-container'>
         <p className='submit-button'>
           Submit Record
         </p>
