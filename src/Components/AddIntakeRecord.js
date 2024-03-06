@@ -68,7 +68,7 @@ const AddIntakeRecord = () => {
   const sendDataToServer = () => {
     let intakeId = generateTenDigitNumber()
     console.log(intakeId)
-    let data = {
+    let intakeData = { data: {
       "Intake_ID": intakeId,
       "Name": "ClientNameHere",
       "Prefix": "PrefixHere",
@@ -79,11 +79,11 @@ const AddIntakeRecord = () => {
       "Details": "DetailsHere",
       "Notes": "NotesHere",
       "Date": "03/05/2024"
-    }
+    }}
 
     const url = 'https://intellasurebackend-docker.onrender.com/update_intake_table/'
     
-    axios.post(url, data)
+    axios.post(url, intakeData)
     .then((response) => {
       console.log(JSON.stringify(response.data));
       toggleShowAddIntakeRecord()
