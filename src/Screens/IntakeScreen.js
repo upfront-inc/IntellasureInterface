@@ -9,11 +9,17 @@ import MissingTableComponent from '../Components/MissingTableComponent';
 import IntakeTableComponent from '../Components/IntakeTableComponent';
 import TopBarAddComponent from '../Components/TopBarAddComponent';
 import axios from 'axios';
+import AdduserComponent from '../Components/AdduserComponent';
+import { useUser } from '../Contexts/UserContext';
+import { useSidebar } from '../Contexts/SidebarContext';
+import UpdateIntakeRecord from '../Components/UpdateIntakeRecord';
 
 const IntakeScreen = () => {
+  const { theme } = useTheme(); 
+  const { sidebarPosition, showProfile } = useSidebar();
+  const { selectedTab, showAddIntakeRecord, showAddUserRecord, showUpdateIntakeRecord } = useApp();
+  const { grabCurrentUser, currentUser, loading } = useUser()
 
-  const { theme } = useTheme()
-  const { tableFilter } = useApp()
 
   const [results, setResults] = useState([])
   const [page, setPage] = useState(1)
@@ -31,6 +37,10 @@ const IntakeScreen = () => {
   }
 
   useEffect(() => {
+    getIntakeRecords()
+  }, [])
+
+  const getIntakeRecords = () => {
     let data = JSON.stringify({
       "status": "success",
       "method": "GET"
@@ -52,15 +62,27 @@ const IntakeScreen = () => {
     .catch((error) => {
       console.log(error);
     });
-  }, [])
+  }
 
   return (
-    <div className={`content-container-${theme}`}>
-      <TopBarAddComponent page={page} nextPage={nextPage} previousPage={previousPage}/>
-      <div className='table-container'>
-        <IntakeTableComponent results={results}/>
+    <>
+      {
+        showAddUserRecord
+          ? <div className={`popup-${sidebarPosition}`}><AdduserComponent/></div>
+          : null
+      }
+      {
+        showUpdateIntakeRecord
+          ? <div className={`popup-${sidebarPosition}`}><UpdateIntakeRecord/></div>
+          : null
+      }
+      <div className={`content-container-${theme}`}>
+        <TopBarAddComponent page={page} nextPage={nextPage} previousPage={previousPage}/>
+        <div className='table-container'>
+          <IntakeTableComponent  results={results}/>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

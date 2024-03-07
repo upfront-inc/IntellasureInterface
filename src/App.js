@@ -89,16 +89,16 @@ function App() {
                       ? <div className={`popup-${sidebarPosition}`}><AddIntakeRecord/></div>
                       : null
                   }
-                  {
+                  {/* {
                     showAddUserRecord
                       ? <div className={`popup-${sidebarPosition}`}><AdduserComponent/></div>
                       : null
-                  }
-                  {
+                  } */}
+                  {/* {
                     showUpdateIntakeRecord
                       ? <div className={`popup-${sidebarPosition}`}><UpdateIntakeRecord/></div>
                       : null
-                  }
+                  } */}
                 </div>
       }
     </>

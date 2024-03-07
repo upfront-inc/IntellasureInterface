@@ -11,6 +11,7 @@ const UpdateIntakeRecord = () => {
   const { theme } = useTheme();
   const { toggleUpdateIntakeRecord, updatingRecord } = useApp()
 
+  const [intakeId, setIntakeId] = useState(updatingRecord.intake_id)
   const [client, setClient] = useState(updatingRecord.name)
   const [prefix, setPrefix] = useState(updatingRecord.policy_id)
   const [insurance, setInsurance] = useState(updatingRecord.insurance)
@@ -72,27 +73,9 @@ const UpdateIntakeRecord = () => {
     setCheckedIn(!checkedIn)
   }
 
-  const generateTenDigitNumber = () => {
-    const min = 1000000000;
-    const max = 9999999999;
-    const number = Math.floor(Math.random() * (max - min + 1)) + min;
-    console.log(number)
-    return number.toString()
-  }
-
-  function getCurrentDateFormatted() {
-    const now = new Date();
-    const month = (now.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based in JS, add 1
-    const day = now.getDate().toString().padStart(2, '0');
-    const year = now.getFullYear().toString();
-    return `${month}/${day}/${year}`;
-  }
-
   const sendDataToServer = () => {
-    let intakeId = generateTenDigitNumber()
-    console.log(intakeId)
     let intakeData = { data: {
-      "intake_id": intakeId,
+      "intake_id": updatingRecord.intake_id,
       "name": client,
       "prefix": prefix.slice(0, 3),
       "policy_id": prefix,
@@ -109,9 +92,9 @@ const UpdateIntakeRecord = () => {
       // "date": getCurrentDateFormatted()
     }}
 
-    const url = 'https://intellasurebackend-docker.onrender.com/update_intake_table/'
+    const url = `https://intellasurebackend-docker.onrender.com/update_intake_table/${updatingRecord.intake_id}`
     
-    axios.post(url, intakeData)
+    axios.patch(url, intakeData)
     .then((response) => {
       console.log(JSON.stringify(response.data));
       toggleUpdateIntakeRecord()
@@ -128,73 +111,29 @@ const UpdateIntakeRecord = () => {
         <FontAwesomeIcon onClick={() => {toggleUpdateIntakeRecord()}} icon={faX} height={24} width={24} color='#e94f4e' />
       </div>
       <div>
-        <div className='row'>
+        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}} className='row'>
           <p className={`text-${theme}`} title='figure out how to integrate'>Client</p>
-          <input 
-            className={`input-${theme}`}
-            placeholder='client name...'
-            value={client}
-            onChange={(text) => {handleClientNammeChnage(text)}}
-          />
+          <p>{updatingRecord.name}</p>
         </div>
-        <div className='row'>
+        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}} className='row'>
           <p className={`text-${theme}`}>Policy</p>
-          <input 
-            className={`input-${theme}`}
-            placeholder='policy number...'
-            value={prefix}
-            onChange={(text) => {handlePrefixChange(text)}}
-          />
+          <p>{updatingRecord.policy_id}</p>
         </div>
-        <div className='row'>
+        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}} className='row'>
           <p className={`text-${theme}`}>Insurance</p>
-          <input 
-            className={`input-${theme}`}
-            placeholder='insurance name...'
-            value={insurance}
-            onChange={(text) => {handleInsuranceChnage(text)}}
-          />
+          <p>{updatingRecord.insurance}</p>
         </div>
-        <div className='row'>
+        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}} className='row'>
           <p className={`text-${theme}`}>Active Policy</p>
-          <div>
-            <label>
-              <input 
-                type="radio"
-                name="active"
-                value="yes"
-                checked={acitvePolicy === true}
-                onChange={() => handleActivePolicy()}
-              /> Yes
-            </label>
-            <label>
-              <input 
-                type="radio"
-                name="active"
-                value="no"
-                checked={acitvePolicy === false}
-                onChange={() => handleActivePolicy()}
-              /> No
-            </label>
-          </div>
+          <p>{updatingRecord.active ? 'Yes' : 'No'}</p>
         </div>
-        <div className='row'>
+        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}} className='row'>
           <p className={`text-${theme}`}>Source</p>
-          <input 
-            className={`input-${theme}`}
-            placeholder='source...'
-            value={source}
-            onChange={(text) => {handleSourceChnage(text)}}
-          />
+          <p>{updatingRecord.source}</p>
         </div>
-        <div className='row'>
+        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}} className='row'>
           <p className={`text-${theme}`}>Coordinator</p>
-          <input 
-            className={`input-${theme}`}
-            placeholder='coordinator name...'
-            value={coordinator}
-            onChange={(text) => {handleCoordinatorChnage(text)}}
-          />
+          <p>{updatingRecord.coordinator}</p>
         </div>
         <div className='row'>
           <p className={`text-${theme}`}>Summary Out</p>

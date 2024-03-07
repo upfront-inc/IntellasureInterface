@@ -25,6 +25,14 @@ const IntakeTableComponent = (props) => {
     setUpdatingRecord(record)
   }
 
+  function convertDateToCustomFormat(dateStr) {
+    const date = new Date(dateStr);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // JavaScript months are 0-indexed
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+  }
+
   return (
     <div className='table-parent'>
       <table className='table-section'>
@@ -149,7 +157,7 @@ const IntakeTableComponent = (props) => {
                   <td>{item.in_network_details}</td>
                   <td>{item.out_network_details}</td>
                   <td>{item.notes}</td>
-                  <td>{item.date}</td>
+                  <td>{convertDateToCustomFormat(item.date)}</td>
                   <td onClick={() => {updateRecord(item)}} style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
                 </tr>
               )
