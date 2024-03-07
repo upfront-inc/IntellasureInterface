@@ -65,6 +65,14 @@ const AddIntakeRecord = () => {
     return number.toString()
   }
 
+  function getCurrentDateFormatted() {
+    const now = new Date();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based in JS, add 1
+    const day = now.getDate().toString().padStart(2, '0');
+    const year = now.getFullYear().toString();
+    return `${month}/${day}/${year}`;
+  }
+
   const sendDataToServer = () => {
     let intakeId = generateTenDigitNumber()
     console.log(intakeId)
@@ -78,7 +86,7 @@ const AddIntakeRecord = () => {
       "Summary_Out": summaryOut,
       "Details": details,
       "Notes": notes,
-      "Date": "03/05/2024"
+      "Date": getCurrentDateFormatted()
     }}
 
     const url = 'https://intellasurebackend-docker.onrender.com/update_intake_table/'
@@ -157,7 +165,16 @@ const AddIntakeRecord = () => {
           />
         </div>
         <div className='row'>
-          <p className={`text-${theme}`}>Details</p>
+          <p className={`text-${theme}`}> In-Network Details</p>
+          <input 
+            className={`input-${theme}`}
+            placeholder='details...'
+            value={details}
+            onChange={(text) => {handleDetailsChange(text)}}
+          />
+        </div>
+        <div className='row'>
+          <p className={`text-${theme}`}> Out-Network Details</p>
           <input 
             className={`input-${theme}`}
             placeholder='details...'

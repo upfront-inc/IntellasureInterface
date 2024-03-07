@@ -94,7 +94,7 @@ const LoginScreen = (props) => {
                   <p style={styles.buttonLeft}>Login</p>
                 </div>
           }
-          <div onClick={() => {handleAuthView('signup')}} style={styles.buttonContainerSingle}>
+          <div onClick={() => {handleAuthView('access')}} style={styles.buttonContainerSingle}>
             <p style={styles.buttonRight}>Signup</p>
           </div>
         </div>
@@ -141,7 +141,6 @@ const styles = {
     width: '100%',
   },
   buttonLeft: {
-    marginRight: '4px',
     fontSize: '16px',
     fontWeight: 'bold',
     padding: '18px',

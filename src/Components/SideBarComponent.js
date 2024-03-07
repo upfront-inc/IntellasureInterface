@@ -100,7 +100,7 @@ const SideBarComponent = () => {
             <div>
               {
                 sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>Intake</p>
+                  ? <p className={`label-${theme}`}>VOB</p>
                   : null
               }
             </div>

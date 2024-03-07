@@ -5,7 +5,9 @@ import AddIntakeRecord from './AddIntakeRecord'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons'
 
-const IntakeTableComponent = () => {
+const IntakeTableComponent = (props) => {
+
+  const {results} = props
 
   const { theme } = useTheme()
   const { showAddIntakeRecord } = useApp()
@@ -102,103 +104,24 @@ const IntakeTableComponent = () => {
           </tr>
         </thead>
         <tbody className={`table-body-${theme}`}>
-        <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>BRAVETTE LEMON</td>
-            <td style={{minWidth: '0px'}}>XYZ</td>
-            <td>BCBS</td>
-            <td style={{minWidth: '0px'}}>ACE3</td>
-            <td>Rebekah</td>
-            <td>GOOD VOB</td>
-            <td>2000 DED 5000 OOP 80%</td>
-            <td>(925) 964-6980</td>
-            <td>12/30/0202</td>
-            <td style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>BRAVETTE LEMON</td>
-            <td style={{minWidth: '0px'}}>XYZ</td>
-            <td>BCBS</td>
-            <td style={{minWidth: '0px'}}>ACE3</td>
-            <td>Rebekah</td>
-            <td>GOOD VOB</td>
-            <td>2000 DED 5000 OOP 80%</td>
-            <td>(925) 964-6980</td>
-            <td>12/30/0202</td>
-            <td style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>BRAVETTE LEMON</td>
-            <td style={{minWidth: '0px'}}>XYZ</td>
-            <td>BCBS</td>
-            <td style={{minWidth: '0px'}}>ACE3</td>
-            <td>Rebekah</td>
-            <td>GOOD VOB</td>
-            <td>2000 DED 5000 OOP 80%</td>
-            <td>(925) 964-6980</td>
-            <td>12/30/0202</td>
-            <td style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>BRAVETTE LEMON</td>
-            <td style={{minWidth: '0px'}}>XYZ</td>
-            <td>BCBS</td>
-            <td style={{minWidth: '0px'}}>ACE3</td>
-            <td>Rebekah</td>
-            <td>GOOD VOB</td>
-            <td>2000 DED 5000 OOP 80%</td>
-            <td>(925) 964-6980</td>
-            <td>12/30/0202</td>
-            <td style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>BRAVETTE LEMON</td>
-            <td style={{minWidth: '0px'}}>XYZ</td>
-            <td>BCBS</td>
-            <td style={{minWidth: '0px'}}>ACE3</td>
-            <td>Rebekah</td>
-            <td>GOOD VOB</td>
-            <td>2000 DED 5000 OOP 80%</td>
-            <td>(925) 964-6980</td>
-            <td>12/30/0202</td>
-            <td style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>BRAVETTE LEMON</td>
-            <td style={{minWidth: '0px'}}>XYZ</td>
-            <td>BCBS</td>
-            <td style={{minWidth: '0px'}}>ACE3</td>
-            <td>Rebekah</td>
-            <td>GOOD VOB</td>
-            <td>2000 DED 5000 OOP 80%</td>
-            <td>(925) 964-6980</td>
-            <td>12/30/0202</td>
-            <td style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>BRAVETTE LEMON</td>
-            <td style={{minWidth: '0px'}}>XYZ</td>
-            <td>BCBS</td>
-            <td style={{minWidth: '0px'}}>ACE3</td>
-            <td>Rebekah</td>
-            <td>GOOD VOB</td>
-            <td>2000 DED 5000 OOP 80%</td>
-            <td>(925) 964-6980</td>
-            <td>12/30/0202</td>
-            <td style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
-          </tr>
-          <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>BRAVETTE LEMON</td>
-            <td style={{minWidth: '0px'}}>XYZ</td>
-            <td>BCBS</td>
-            <td style={{minWidth: '0px'}}>ACE3</td>
-            <td>Rebekah</td>
-            <td>GOOD VOB</td>
-            <td>2000 DED 5000 OOP 80%</td>
-            <td>(925) 964-6980</td>
-            <td>12/30/0202</td>
-            <td style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
-          </tr>
-          
+          {
+            results.map((item) => {
+              return(
+                <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+                  <td>{item.name}</td>
+                  <td style={{minWidth: '0px'}}>{item.prefix}</td>
+                  <td>{item.insurance}</td>
+                  <td style={{minWidth: '0px'}}>{item.source}</td>
+                  <td>{item.coordinator}</td>
+                  <td>{item.summary_out}</td>
+                  <td>{item.details}</td>
+                  <td>{item.notes}</td>
+                  <td>{item.date}</td>
+                  <td style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
+                </tr>
+              )
+            })
+          }
         </tbody>
       </table>
     </div>

@@ -7,6 +7,7 @@ import ForgotPasswordScreen from './ForgotPasswordScreen'
 import Background from '../../Assets/mountain.jpg'
 import Lake from '../../Assets/lake.jpg'
 import BackgroundImage from '../../Assets/background.png'
+import AccessCodeScreen from './AccessCodeScreen'
 
 const AuthenticationScreen = () => {
 
@@ -36,7 +37,9 @@ const AuthenticationScreen = () => {
                     ? <ConfirmEmailScreen handleAuthView={handleAuthView} username={username}/>
                     : authView === 'forgot'
                         ? <ForgotPasswordScreen handleAuthView={handleAuthView} />
-                        : null
+                        : authView === 'access'
+                            ? <AccessCodeScreen handleAuthView={handleAuthView}/>
+                            : null
         }
       </div>
     </div>

@@ -15,6 +15,7 @@ export const AppProvider = ({ children }) => {
   const [filterNetwork, setFilterNetwork] = useState(false)
 
   const [showAddIntakeRecord, setShowAddIntakeRecord] = useState(false)
+  const [showAddUserRecord, setShowAddUserRecord] = useState(false)
 
   const [currentUser, setCurrentUser] = useState(true)
 
@@ -48,6 +49,10 @@ export const AppProvider = ({ children }) => {
     setFilterFacility(false);
   };
 
+  const toggleShowUserCreate = () => {
+    setShowAddUserRecord(!showAddUserRecord)
+  };
+
   return (
     <AppContext.Provider value={{ currentUser, setCurrentUser,
                                   selectedTab, toggleSelectedTab,
@@ -55,7 +60,8 @@ export const AppProvider = ({ children }) => {
                                   filterFacility, toggleFilterFacility,
                                   filterColumns, toggleFilterColumns,
                                   showAddIntakeRecord, toggleShowAddIntakeRecord,
-                                  filterNetwork, toggleNetworkColumns }}> {/* Corrected this line */}
+                                  filterNetwork, toggleNetworkColumns,
+                                  showAddUserRecord, toggleShowUserCreate }}> {/* Corrected this line */}
       {children}
     </AppContext.Provider>
   );
