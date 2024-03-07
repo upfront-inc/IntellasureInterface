@@ -16,6 +16,8 @@ export const AppProvider = ({ children }) => {
 
   const [showAddIntakeRecord, setShowAddIntakeRecord] = useState(false)
   const [showAddUserRecord, setShowAddUserRecord] = useState(false)
+  const [showUpdateIntakeRecord, setShowUpdateIntakeRecord] = useState(false)
+  const [updatingRecord, setUpdatingRecord] = useState(null)
 
   const [currentUser, setCurrentUser] = useState(true)
 
@@ -53,6 +55,10 @@ export const AppProvider = ({ children }) => {
     setShowAddUserRecord(!showAddUserRecord)
   };
 
+  const toggleUpdateIntakeRecord = () => {
+    setShowUpdateIntakeRecord(!showUpdateIntakeRecord)
+  };
+
   return (
     <AppContext.Provider value={{ currentUser, setCurrentUser,
                                   selectedTab, toggleSelectedTab,
@@ -61,7 +67,9 @@ export const AppProvider = ({ children }) => {
                                   filterColumns, toggleFilterColumns,
                                   showAddIntakeRecord, toggleShowAddIntakeRecord,
                                   filterNetwork, toggleNetworkColumns,
-                                  showAddUserRecord, toggleShowUserCreate }}> {/* Corrected this line */}
+                                  showAddUserRecord, toggleShowUserCreate,
+                                  showUpdateIntakeRecord, toggleUpdateIntakeRecord,
+                                  updatingRecord, setUpdatingRecord }}> {/* Corrected this line */}
       {children}
     </AppContext.Provider>
   );

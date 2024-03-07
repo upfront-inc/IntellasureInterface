@@ -25,13 +25,14 @@ import LoadingComponent from './Screens/LoadingScreen';
 import LoginScreen from './Screens/Authentication/LoginScreen';
 import AuthenticationScreen from './Screens/Authentication/AuthenticationScreen';
 import AdduserComponent from './Components/AdduserComponent';
+import UpdateIntakeRecord from './Components/UpdateIntakeRecord';
 
 Amplify.configure(amplifyconfig)
 
 function App() {
   const { theme } = useTheme(); 
   const { sidebarPosition, showProfile } = useSidebar();
-  const { selectedTab, showAddIntakeRecord, showAddUserRecord } = useApp();
+  const { selectedTab, showAddIntakeRecord, showAddUserRecord, showUpdateIntakeRecord } = useApp();
   const { grabCurrentUser, currentUser, loading } = useUser()
 
   useEffect(() => {
@@ -91,6 +92,11 @@ function App() {
                   {
                     showAddUserRecord
                       ? <div className={`popup-${sidebarPosition}`}><AdduserComponent/></div>
+                      : null
+                  }
+                  {
+                    showUpdateIntakeRecord
+                      ? <div className={`popup-${sidebarPosition}`}><UpdateIntakeRecord/></div>
                       : null
                   }
                 </div>
