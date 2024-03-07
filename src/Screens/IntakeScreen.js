@@ -16,6 +16,19 @@ const IntakeScreen = () => {
   const { tableFilter } = useApp()
 
   const [results, setResults] = useState([])
+  const [page, setPage] = useState(1)
+
+  const nextPage = () => {
+    if(page >= 1 && page < 20){
+      setPage(page + 1)
+    }
+  }
+
+  const previousPage = () => {
+    if(page > 1 && page < 20){
+      setPage(page - 1)
+    }
+  }
 
   useEffect(() => {
     let data = JSON.stringify({
@@ -43,7 +56,7 @@ const IntakeScreen = () => {
 
   return (
     <div className={`content-container-${theme}`}>
-      <TopBarAddComponent />
+      <TopBarAddComponent page={page} nextPage={nextPage} previousPage={previousPage}/>
       <div className='table-container'>
         <IntakeTableComponent results={results}/>
       </div>

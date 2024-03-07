@@ -18,6 +18,7 @@
   border-collapse: collapse;
   background-color: lightgrey;
   border-radius: 8px;
+  overflow-x: scroll;
 }
 
 .table-header-dark th, .table-header-light th {
@@ -25,6 +26,10 @@
   padding: 24px 8px;
   font-size: 18px;
   font-weight: bold;
+}
+
+.column {
+  min-width: 150px;
 }
 
 .table-header-dark th {
@@ -62,13 +67,28 @@
   border-bottom: 2px solid rgb(247, 247, 247);
 }
 
+.table-content-row-light {
+  background-color: rgb(244, 254, 244); 
+  font-weight: 'bold';
+  cursor: pointer;
+  min-width: '150px';
+}
+
 .table-content-row-light:hover {
   background-color: rgb(244, 254, 244); 
   font-weight: 'bold';
   cursor: pointer;
+  min-width: '150px';
+}
+
+.table-content-row-dark {
+  background-color: rgb(24, 39, 24); 
+  font-weight: 'bold';
+  min-width: '150px';
 }
 
 .table-content-row-dark:hover {
   background-color: rgb(24, 39, 24); 
   font-weight: 'bold';
+  min-width: '150px';
 }

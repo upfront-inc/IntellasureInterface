@@ -16,10 +16,15 @@ const AddIntakeRecord = () => {
   const [insurance, setInsurance] = useState('')
   const [source, setSource] = useState('')
   const [coordinator, setCoordinator] = useState('')
-  const [summaryOut, setSummaryOut] = useState('')
+  const [summaryOut, setSummaryOut] = useState('Good Vob')
   const [details, setDetails] = useState('')
+  const [outNetworkDetails, setOutNetworkDetails] = useState('')
+  const [inNetworkDetails, setInNetworkDetails] = useState('')
   const [notes, setNotes] = useState('')
   const [date, setDate] = useState('')
+  const [acitvePolicy, setActivePolicy] = useState(true)
+  const [booked, setBooked] = useState(false)
+  const [checkedIn, setCheckedIn] = useState(false)
 
   const handleClientNammeChnage = (e) => {
     setClient(e.target.value)
@@ -41,12 +46,16 @@ const AddIntakeRecord = () => {
     setCoordinator(e.target.value)
   }
 
-  const handleSummaryOutChnage = (e) => {
-    setSummaryOut(e.target.value)
+  const handleSummaryOutChnage = (text) => {
+    setSummaryOut(text)
   }
 
-  const handleDetailsChange = (e) => {
-    setDetails(e.target.value)
+  const handleInNetworkDetailsChange = (e) => {
+    setInNetworkDetails(e.target.value)
+  }
+
+  const handleOutNetworkDetailsChange = (e) => {
+    setOutNetworkDetails(e.target.value)
   }
 
   const handleNotesChange = (e) => {
@@ -55,6 +64,18 @@ const AddIntakeRecord = () => {
 
   const handleDateChnage = (e) => {
     setDate(e.target.value)
+  }
+
+  const handleActivePolicy = () => {
+    setActivePolicy(!acitvePolicy)
+  }
+
+  const handleBooked = () => {
+    setBooked(!booked)
+  }
+
+  const handleCheckedIn = () => {
+    setCheckedIn(!checkedIn)
   }
 
   const generateTenDigitNumber = () => {
@@ -77,16 +98,21 @@ const AddIntakeRecord = () => {
     let intakeId = generateTenDigitNumber()
     console.log(intakeId)
     let intakeData = { data: {
-      "Intake_ID": intakeId,
-      "Name": client,
-      "Prefix": prefix,
-      "Insurance": insurance,
-      "Source": source,
-      "Coordinator":coordinator,
-      "Summary_Out": summaryOut,
-      "Details": details,
-      "Notes": notes,
-      "Date": getCurrentDateFormatted()
+      "intake_id": intakeId,
+      "name": client,
+      "prefix": prefix.slice(0, 3),
+      "policy_id": prefix,
+      "insurance": insurance,
+      "active": acitvePolicy,
+      "source": source,
+      "coordinator":coordinator,
+      "summary_out": summaryOut,
+      "booked": booked,
+      "checked_in": checkedIn,
+      "out_network_details": outNetworkDetails,
+      "in_network_details": inNetworkDetails,
+      "notes": notes,
+      "date": getCurrentDateFormatted()
     }}
 
     const url = 'https://intellasurebackend-docker.onrender.com/update_intake_table/'
@@ -120,10 +146,10 @@ const AddIntakeRecord = () => {
           />
         </div>
         <div className='row'>
-          <p className={`text-${theme}`}>Prefix</p>
+          <p className={`text-${theme}`}>Policy</p>
           <input 
             className={`input-${theme}`}
-            placeholder='prefix...'
+            placeholder='policy number...'
             value={prefix}
             onChange={(text) => {handlePrefixChange(text)}}
           />
@@ -136,6 +162,29 @@ const AddIntakeRecord = () => {
             value={insurance}
             onChange={(text) => {handleInsuranceChnage(text)}}
           />
+        </div>
+        <div className='row'>
+          <p className={`text-${theme}`}>Active Policy</p>
+          <div>
+            <label>
+              <input 
+                type="radio"
+                name="active"
+                value="yes"
+                checked={acitvePolicy === true}
+                onChange={() => handleActivePolicy()}
+              /> Yes
+            </label>
+            <label>
+              <input 
+                type="radio"
+                name="active"
+                value="no"
+                checked={acitvePolicy === false}
+                onChange={() => handleActivePolicy()}
+              /> No
+            </label>
+          </div>
         </div>
         <div className='row'>
           <p className={`text-${theme}`}>Source</p>
@@ -157,20 +206,80 @@ const AddIntakeRecord = () => {
         </div>
         <div className='row'>
           <p className={`text-${theme}`}>Summary Out</p>
-          <input 
-            className={`input-${theme}`}
-            placeholder='summary out...'
-            value={summaryOut}
-            onChange={(text) => {handleSummaryOutChnage(text)}}
-          />
+          <div>
+            <label>
+              <input 
+                type="radio"
+                name="summary"
+                value="Good Vob"
+                checked={summaryOut === 'Good Vob'}
+                onChange={() => handleSummaryOutChnage('Good Vob')}
+              /> Good Vob
+            </label>
+            <label>
+              <input 
+                type="radio"
+                name="summary"
+                value="Bad Vob"
+                checked={summaryOut === 'Bad Vob'}
+                onChange={() => handleSummaryOutChnage('Bad Vob')}
+              /> Bad Vob
+            </label>
+          </div>
+        </div>
+        <div className='row'>
+          <p className={`text-${theme}`}>Booked</p>
+          <div>
+            <label>
+              <input 
+                type="radio"
+                name="booked"
+                value="yes"
+                checked={booked === true}
+                onChange={() => handleBooked()}
+              /> Yes
+            </label>
+            <label>
+              <input 
+                type="radio"
+                name="booked"
+                value="no"
+                checked={booked === false}
+                onChange={() => handleBooked()}
+              /> No
+            </label>
+          </div>
+        </div>
+        <div className='row'>
+          <p className={`text-${theme}`}>Checked In</p>
+          <div>
+            <label>
+              <input 
+                type="radio"
+                name="checkedin"
+                value="yes"
+                checked={checkedIn === true}
+                onChange={() => handleCheckedIn()}
+              /> Yes
+            </label>
+            <label>
+              <input 
+                type="radio"
+                name="checkedin"
+                value="no"
+                checked={checkedIn === false}
+                onChange={() => handleCheckedIn()}
+              /> No
+            </label>
+          </div>
         </div>
         <div className='row'>
           <p className={`text-${theme}`}> In-Network Details</p>
           <input 
             className={`input-${theme}`}
             placeholder='details...'
-            value={details}
-            onChange={(text) => {handleDetailsChange(text)}}
+            value={inNetworkDetails}
+            onChange={(text) => {handleInNetworkDetailsChange(text)}}
           />
         </div>
         <div className='row'>
@@ -178,8 +287,8 @@ const AddIntakeRecord = () => {
           <input 
             className={`input-${theme}`}
             placeholder='details...'
-            value={details}
-            onChange={(text) => {handleDetailsChange(text)}}
+            value={outNetworkDetails}
+            onChange={(text) => {handleOutNetworkDetailsChange(text)}}
           />
         </div>
         <div className='row'>
@@ -189,15 +298,6 @@ const AddIntakeRecord = () => {
             placeholder='notes...'
             value={notes}
             onChange={(text) => {handleNotesChange(text)}}
-          />
-        </div>
-        <div className='row'>
-          <p className={`text-${theme}`}>Date</p>
-          <input
-            className={`input-${theme}`} 
-            placeholder='date...'
-            value={date}
-            onChange={(text) => {handleDateChnage(text)}}
           />
         </div>
       </div>
