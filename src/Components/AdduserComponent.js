@@ -6,13 +6,7 @@ import { useTheme } from '../Contexts/ThemeContext'
 import { useApp } from '../Contexts/AppContext'
 import axios from 'axios'
 import { signUp } from 'aws-amplify/auth'
-const AWS = require('aws-sdk');
 
-AWS.config.update({
-  region: 'us-west-1', 
-  accessKeyId: 'AKIAX7WNCHP6BNWPDWOT', 
-  secretAccessKey: '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' 
-});
 
 const AdduserComponent = () => {
   const cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
