@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/ai.css';
 import axios from 'axios'
+import { useUser } from '../Contexts/UserContext.js';
 
 
 const ChatWithAIComponent = () => {
@@ -12,6 +13,7 @@ const ChatWithAIComponent = () => {
     const [isLoading, setIsLoading] = useState(false); // Track if ChatGPT is processing
     const [messages, setMessages] = useState([]); // Array to hold the conversation
     const [chatStarted, setChatStarted] = useState(false);
+    const {userProfile} = useUser()
 
     useEffect(() => {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -48,11 +50,6 @@ const ChatWithAIComponent = () => {
         }
     };
     
-
-    const getUserRole = () => {
-        // This should actually return the role of the current user (e.g., from global state or context)
-        return 'member'; // or 'admin'
-      };
       
       const handleSubmitText = async (text) => {
         if (text.trim() === '') return;
@@ -65,10 +62,10 @@ const ChatWithAIComponent = () => {
       
         // Add user message and loading message
         setMessages(messages => [...messages, newUserMessage, loadingMessage]);
-      
-        const role = getUserRole(); // Get the current user's role
+        const privileges = userProfile.priviledges; // Assuming privileges is an array or similar structure
+
         // Decide the URL based on the user's role
-        const url = (role === 'admin' || role === 'dev') ? 'https://intellachat-kwtb.onrender.com/chat' : 'https://intellachatuser.onrender.com';
+        const url = (privileges === 'admin' || privileges === 'dev') ? 'https://intellachat-kwtb.onrender.com/chat' : 'https://intellachatuser.onrender.com/chat';
       
         const data = JSON.stringify({ query: text });
         const config = {
