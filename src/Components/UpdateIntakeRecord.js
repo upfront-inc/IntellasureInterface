@@ -4,22 +4,25 @@ import React, { useState } from 'react'
 import '../Css/Intake.css'
 import { useTheme } from '../Contexts/ThemeContext'
 import { useApp } from '../Contexts/AppContext'
+import axios from 'axios'
 
-const UpdateIntakeRecord = (props) => {
-  const {record} = props
+const UpdateIntakeRecord = () => {
 
   const { theme } = useTheme();
-  const { toggleShowAddIntakeRecord } = useApp()
+  const { toggleUpdateIntakeRecord, updatingRecord } = useApp()
 
-  const [client, setClient] = useState(record.client)
-  const [prefix, setPrefix] = useState(record.prefix)
-  const [insurance, setInsurance] = useState(record.insurance)
-  const [source, setSource] = useState(record.source)
-  const [coordinator, setCoordinator] = useState(record.coordinator)
-  const [summaryOut, setSummaryOut] = useState(record.summaryOut)
-  const [details, setDetails] = useState(record.details)
-  const [notes, setNotes] = useState(record.notes)
-  const [date, setDate] = useState(record.date)
+  const [client, setClient] = useState(updatingRecord.name)
+  const [prefix, setPrefix] = useState(updatingRecord.policy_id)
+  const [insurance, setInsurance] = useState(updatingRecord.insurance)
+  const [source, setSource] = useState(updatingRecord.source)
+  const [coordinator, setCoordinator] = useState(updatingRecord.coordinator)
+  const [summaryOut, setSummaryOut] = useState(updatingRecord.summary_out)
+  const [outNetworkDetails, setOutNetworkDetails] = useState(updatingRecord.out_network_details)
+  const [inNetworkDetails, setInNetworkDetails] = useState(updatingRecord.in_network_details)
+  const [notes, setNotes] = useState(updatingRecord.notes)
+  const [acitvePolicy, setActivePolicy] = useState(updatingRecord.active)
+  const [booked, setBooked] = useState(updatingRecord.booked)
+  const [checkedIn, setCheckedIn] = useState(updatingRecord.checked_in)
 
   const handleClientNammeChnage = (e) => {
     setClient(e.target.value)
@@ -41,33 +44,92 @@ const UpdateIntakeRecord = (props) => {
     setCoordinator(e.target.value)
   }
 
-  const handleSummaryOutChnage = (e) => {
-    setSummaryOut(e.target.value)
+  const handleSummaryOutChnage = (text) => {
+    setSummaryOut(text)
   }
 
-  const handleDetailsChange = (e) => {
-    setDetails(e.target.value)
+  const handleInNetworkDetailsChange = (e) => {
+    setInNetworkDetails(e.target.value)
+  }
+
+  const handleOutNetworkDetailsChange = (e) => {
+    setOutNetworkDetails(e.target.value)
   }
 
   const handleNotesChange = (e) => {
     setNotes(e.target.value)
   }
 
-  const handleDateChnage = (e) => {
-    setDate(e.target.value)
+  const handleActivePolicy = () => {
+    setActivePolicy(!acitvePolicy)
   }
 
-  // add the theme to all of the different styles ot make the text white
-  
+  const handleBooked = () => {
+    setBooked(!booked)
+  }
+
+  const handleCheckedIn = () => {
+    setCheckedIn(!checkedIn)
+  }
+
+  const generateTenDigitNumber = () => {
+    const min = 1000000000;
+    const max = 9999999999;
+    const number = Math.floor(Math.random() * (max - min + 1)) + min;
+    console.log(number)
+    return number.toString()
+  }
+
+  function getCurrentDateFormatted() {
+    const now = new Date();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based in JS, add 1
+    const day = now.getDate().toString().padStart(2, '0');
+    const year = now.getFullYear().toString();
+    return `${month}/${day}/${year}`;
+  }
+
+  const sendDataToServer = () => {
+    let intakeId = generateTenDigitNumber()
+    console.log(intakeId)
+    let intakeData = { data: {
+      "intake_id": intakeId,
+      "name": client,
+      "prefix": prefix.slice(0, 3),
+      "policy_id": prefix,
+      "insurance": insurance,
+      "active": acitvePolicy,
+      "source": source,
+      "coordinator":coordinator,
+      "summary_out": summaryOut,
+      "booked": booked,
+      "checked_in": checkedIn,
+      "out_network_details": outNetworkDetails,
+      "in_network_details": inNetworkDetails,
+      "notes": notes,
+      // "date": getCurrentDateFormatted()
+    }}
+
+    const url = 'https://intellasurebackend-docker.onrender.com/update_intake_table/'
+    
+    axios.post(url, intakeData)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+      toggleUpdateIntakeRecord()
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+
   return (
     <div className={`intake-container-${theme}`}>
       <div className='header'>
         <p className={`page-title text-${theme}`}>Add New Intake Record</p>
-        <FontAwesomeIcon onClick={() => {toggleShowAddIntakeRecord()}} icon={faX} height={24} width={24} color='#e94f4e' />
+        <FontAwesomeIcon onClick={() => {toggleUpdateIntakeRecord()}} icon={faX} height={24} width={24} color='#e94f4e' />
       </div>
       <div>
         <div className='row'>
-          <p className={`text-${theme}`}>Client</p>
+          <p className={`text-${theme}`} title='figure out how to integrate'>Client</p>
           <input 
             className={`input-${theme}`}
             placeholder='client name...'
@@ -76,10 +138,10 @@ const UpdateIntakeRecord = (props) => {
           />
         </div>
         <div className='row'>
-          <p className={`text-${theme}`}>Prefix</p>
+          <p className={`text-${theme}`}>Policy</p>
           <input 
             className={`input-${theme}`}
-            placeholder='prefix...'
+            placeholder='policy number...'
             value={prefix}
             onChange={(text) => {handlePrefixChange(text)}}
           />
@@ -92,6 +154,29 @@ const UpdateIntakeRecord = (props) => {
             value={insurance}
             onChange={(text) => {handleInsuranceChnage(text)}}
           />
+        </div>
+        <div className='row'>
+          <p className={`text-${theme}`}>Active Policy</p>
+          <div>
+            <label>
+              <input 
+                type="radio"
+                name="active"
+                value="yes"
+                checked={acitvePolicy === true}
+                onChange={() => handleActivePolicy()}
+              /> Yes
+            </label>
+            <label>
+              <input 
+                type="radio"
+                name="active"
+                value="no"
+                checked={acitvePolicy === false}
+                onChange={() => handleActivePolicy()}
+              /> No
+            </label>
+          </div>
         </div>
         <div className='row'>
           <p className={`text-${theme}`}>Source</p>
@@ -113,20 +198,89 @@ const UpdateIntakeRecord = (props) => {
         </div>
         <div className='row'>
           <p className={`text-${theme}`}>Summary Out</p>
-          <input 
-            className={`input-${theme}`}
-            placeholder='summary out...'
-            value={summaryOut}
-            onChange={(text) => {handleSummaryOutChnage(text)}}
-          />
+          <div>
+            <label>
+              <input 
+                type="radio"
+                name="summary"
+                value="Good Vob"
+                checked={summaryOut === 'Good Vob'}
+                onChange={() => handleSummaryOutChnage('Good Vob')}
+              /> Good Vob
+            </label>
+            <label>
+              <input 
+                type="radio"
+                name="summary"
+                value="Bad Vob"
+                checked={summaryOut === 'Bad Vob'}
+                onChange={() => handleSummaryOutChnage('Bad Vob')}
+              /> Bad Vob
+            </label>
+          </div>
         </div>
         <div className='row'>
-          <p className={`text-${theme}`}>Details</p>
+          <p className={`text-${theme}`}>Booked</p>
+          <div>
+            <label>
+              <input 
+                type="radio"
+                name="booked"
+                value="yes"
+                checked={booked === true}
+                onChange={() => handleBooked()}
+              /> Yes
+            </label>
+            <label>
+              <input 
+                type="radio"
+                name="booked"
+                value="no"
+                checked={booked === false}
+                onChange={() => handleBooked()}
+              /> No
+            </label>
+          </div>
+        </div>
+        <div className='row'>
+          <p className={`text-${theme}`}>Checked In</p>
+          <div>
+            <label>
+              <input 
+                type="radio"
+                name="checkedin"
+                value="yes"
+                checked={checkedIn === true}
+                onChange={() => handleCheckedIn()}
+              /> Yes
+            </label>
+            <label>
+              <input 
+                type="radio"
+                name="checkedin"
+                value="no"
+                checked={checkedIn === false}
+                onChange={() => handleCheckedIn()}
+              /> No
+            </label>
+          </div>
+        </div>
+        <div className='row'>
+          <p className={`text-${theme}`}> In-Network Details</p>
           <input 
             className={`input-${theme}`}
             placeholder='details...'
-            value={details}
-            onChange={(text) => {handleDetailsChange(text)}}
+            value={inNetworkDetails}
+            onChange={(text) => {handleInNetworkDetailsChange(text)}}
+          />
+        </div>
+        <div className='row'>
+          <p className={`text-${theme}`}> Out-Network Details</p>
+          <input 
+            className={`input-${theme}`}
+            placeholder='details...'
+            value={outNetworkDetails}
+            onChange={(text) => {handleOutNetworkDetailsChange(text)}}
           />
         </div>
         <div className='row'>
@@ -138,17 +292,8 @@ const UpdateIntakeRecord = (props) => {
             onChange={(text) => {handleNotesChange(text)}}
           />
         </div>
-        <div className='row'>
-          <p className={`text-${theme}`}>Date</p>
-          <input
-            className={`input-${theme}`} 
-            placeholder='date...'
-            value={date}
-            onChange={(text) => {handleDateChnage(text)}}
-          />
-        </div>
       </div>
-      <div className='button-container'>
+      <div onClick={() => {sendDataToServer()}} className='button-container'>
         <p className='submit-button'>
           Submit Record
         </p>

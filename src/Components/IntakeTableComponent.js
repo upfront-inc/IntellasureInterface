@@ -10,7 +10,7 @@ const IntakeTableComponent = (props) => {
   const {results} = props
 
   const { theme } = useTheme()
-  const { showAddIntakeRecord } = useApp()
+  const { toggleUpdateIntakeRecord, setUpdatingRecord } = useApp()
 
   const [sort, setSort] = useState('asc')
   const [sortColumn, setSortColumn] = useState('prefix')
@@ -20,8 +20,9 @@ const IntakeTableComponent = (props) => {
     setSortColumn(column)
   }
 
-  const updateRecord = () => {
-    
+  const updateRecord = (record) => {
+    toggleUpdateIntakeRecord()
+    setUpdatingRecord(record)
   }
 
   return (
@@ -149,7 +150,7 @@ const IntakeTableComponent = (props) => {
                   <td>{item.out_network_details}</td>
                   <td>{item.notes}</td>
                   <td>{item.date}</td>
-                  <td style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
+                  <td onClick={() => {updateRecord(item)}} style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
                 </tr>
               )
             })
