@@ -29,10 +29,18 @@
 
 .top-bar-dark {
   background-color: #1a1a1a;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .top-bar-light {
   background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .filter-bar-dark, .filter-bar-light {

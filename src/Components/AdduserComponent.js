@@ -9,7 +9,6 @@ import { signUp } from 'aws-amplify/auth'
 
 
 const AdduserComponent = () => {
-  const cognitoIdentityServiceProvider = new AWS.CognitoIdentityServiceProvider();
 
   const { theme } = useTheme();
   const { toggleShowUserCreate } = useApp()
@@ -50,82 +49,6 @@ const AdduserComponent = () => {
     setCompany(e.target.value)
   }
 
-  const signUpUser = () => {
-
-    const params = {
-      UserPoolId: 'us-west-1_1prKqbiSI', 
-      Username: email, 
-      TemporaryPassword: '1SunnyDay!',
-      UserAttributes: [
-        {
-          Name: 'email',
-          Value: email,
-        },
-        {
-          Name: 'given_name',
-          Value: firstName,
-        },
-        {
-          Name: 'family_name',
-          Value: lastName,
-        },
-        {
-          Name: 'nickname',
-          Value: firstName,
-        },
-        {
-          Name: 'name',
-          Value: `${firstName} ${lastName}`,
-        },
-      ],
-    };
-    
-    cognitoIdentityServiceProvider.adminCreateUser(params, (err, data) => {
-      if (err) {
-        console.log(err, err.stack); // an error occurred
-      } else {
-        console.log('admin signup object: ', JSON.stringify(data)); 
-        createProfile(data.User.Username)
-        // Now you can handle the response, such as storing user details in your database
-      }
-    });
-  }
-
-  const createProfile = (userId) => {
-    let data = {
-      "first_name": firstName,
-      "last_name": lastName,
-      "name": `${firstName} ${lastName}`,
-      "email": email,
-      "status": 'active',
-      "priviledges": privileges,
-      "company": Company,
-      "user_id": userId
-    };
-
-    console.log(`user data creation object: ${data}`)
-
-    let config = {
-      method: 'put',
-      maxBodyLength: Infinity,
-      url: `https://intellasurebackend-docker.onrender.com/api/users/${userId}`,
-      headers: { 
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
-
-    axios.request(config)
-      .then((response) => {
-        console.log("successful request: ", JSON.stringify(response.data));
-        // handleAuthView('confirm')
-        toggleShowUserCreate()
-      })
-      .catch((error) => {
-        console.log("failed request: ", JSON.stringify(error))
-        console.log(error);
-      });
-  }
   
   return (
     <div className={`intake-container-${theme}`}>
@@ -188,11 +111,6 @@ const AdduserComponent = () => {
             onChange={(text) => {handleCompany(text)}}
           />
         </div>
-      </div>
-      <div onClick={() => {signUpUser()}} className='button-container'>
-        <p className='submit-button'>
-          Create User
-        </p>
       </div>
     </div>
   )
