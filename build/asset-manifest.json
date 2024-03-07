@@ -1,14 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.1f2b71b2.css",
-    "main.js": "/static/js/main.3a103730.js",
+    "main.css": "/static/css/main.3571e52c.css",
+    "main.js": "/static/js/main.c4cb2dce.js",
+    "static/media/lake.jpg": "/static/media/lake.79bba12f8a240bc38aef.jpg",
+    "static/media/mountain.jpg": "/static/media/mountain.4fbb0754fd8e91470ada.jpg",
+    "static/media/background.png": "/static/media/background.893958a05d0dff43c5e8.png",
     "static/media/IntellasuranceLogo.png": "/static/media/IntellasuranceLogo.c27ac498c642aea29ee5.png",
     "index.html": "/index.html",
-    "main.1f2b71b2.css.map": "/static/css/main.1f2b71b2.css.map",
-    "main.3a103730.js.map": "/static/js/main.3a103730.js.map"
+    "main.3571e52c.css.map": "/static/css/main.3571e52c.css.map",
+    "main.c4cb2dce.js.map": "/static/js/main.c4cb2dce.js.map"
   },
   "entrypoints": [
-    "static/css/main.1f2b71b2.css",
-    "static/js/main.3a103730.js"
+    "static/css/main.3571e52c.css",
+    "static/js/main.c4cb2dce.js"
   ]
 }
