@@ -49,49 +49,56 @@ const ChatWithAIComponent = () => {
     };
     
 
-    const handleSubmitText = async (text) => {
+    const getUserRole = () => {
+        // This should actually return the role of the current user (e.g., from global state or context)
+        return 'member'; // or 'admin'
+      };
+      
+      const handleSubmitText = async (text) => {
         if (text.trim() === '') return;
         console.log('Starting chat interaction with text:', text);
         setChatStarted(true);
         setIsLoading(true);
-    
+      
         const newUserMessage = { text, sender: 'user' };
         const loadingMessage = { text: 'Loading...', sender: 'loading' }; // Temporary loading message
-    
+      
         // Add user message and loading message
         setMessages(messages => [...messages, newUserMessage, loadingMessage]);
-    
+      
+        const role = getUserRole(); // Get the current user's role
+        // Decide the URL based on the user's role
+        const url = (role === 'admin' || role === 'dev') ? 'https://intellachat-kwtb.onrender.com/chat' : 'https://intellachatuser.onrender.com';
+      
         const data = JSON.stringify({ query: text });
         const config = {
-            method: 'post',
-            url: 'https://intellachat-kwtb.onrender.com/chat',
-            headers: { 'Content-Type': 'application/json' },
-            data: data,
+          method: 'post',
+          url: url, // Use the URL based on the user's role
+          headers: { 'Content-Type': 'application/json' },
+          data: data,
         };
-    
+      
         try {
-            const response = await axios.request(config);
-            console.log('Received response from server:', response.data);
-    
-            // Remove the temporary loading message and add the AI response
-            setMessages(messages => {
-                // Remove the last message (loading message)
-                let newMessages = messages.slice(0, -1);
-                // Add the AI response
-                if (response.data.response && response.data.response.output) {
-                    const newAiMessage = { text: response.data.response.output, sender: 'ai' };
-                    newMessages = [...newMessages, newAiMessage];
-                }
-                return newMessages;
-            });
+          const response = await axios.request(config);
+          console.log('Received response from server:', response.data);
+      
+          // Remove the temporary loading message and add the AI response
+          setMessages(messages => {
+            let newMessages = messages.slice(0, -1); // Remove the last message (loading message)
+            if (response.data.response && response.data.response.output) {
+              const newAiMessage = { text: response.data.response.output, sender: 'ai' };
+              newMessages = [...newMessages, newAiMessage];
+            }
+            return newMessages;
+          });
         } catch (error) {
-            console.error("Error during server request:", error);
-            // Handle errors as needed
+          console.error("Error during server request:", error);
+          // Handle errors as needed
         } finally {
-            setIsLoading(false);
+          setIsLoading(false);
         }
-    };
-    
+      };
+
   return (
         
         <div className="chat-container">
