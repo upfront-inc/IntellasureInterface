@@ -51,13 +51,13 @@ const BillingDetailsRecordsComponent = (props) => {
       <td>18 Days</td>
       <td>$18,324</td>
       <td>$10,2232</td>
+      <td>78%</td>
+      <td>Likely</td>
       {
         userProfile.priviledges === 'admin' || userProfile.priviledges === 'dev' || userProfile.priviledges === 'owner'
           ? <td>78%</td>
           : null
       }
-      <td>Likely</td>
-      <td>78%</td>
     </tr>
   )
 }
