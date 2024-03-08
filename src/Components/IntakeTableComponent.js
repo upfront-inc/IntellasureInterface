@@ -4,6 +4,7 @@ import { useApp } from '../Contexts/AppContext'
 import AddIntakeRecord from './AddIntakeRecord'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons'
+import { useUser } from '../Contexts/UserContext'
 
 const IntakeTableComponent = (props) => {
 
@@ -11,6 +12,7 @@ const IntakeTableComponent = (props) => {
 
   const { theme } = useTheme()
   const { toggleUpdateIntakeRecord, setUpdatingRecord } = useApp()
+  const { userProfile } = useUser()
 
   const [sort, setSort] = useState('asc')
   const [sortColumn, setSortColumn] = useState('prefix')
@@ -27,10 +29,11 @@ const IntakeTableComponent = (props) => {
 
   function convertDateToCustomFormat(dateStr) {
     const date = new Date(dateStr);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // JavaScript months are 0-indexed
-    const year = date.getFullYear();
-    return `${month}/${day}/${year}`;
+    const mm = String(date.getUTCMonth() + 1).padStart(2, '0'); // UTC months from 1-12
+    const dd = String(date.getUTCDate()).padStart(2, '0'); // UTC day of the month
+    const yyyy = date.getUTCFullYear(); // UTC full year
+
+    return `${mm}/${dd}/${yyyy}`;
   }
 
   return (
@@ -38,84 +41,36 @@ const IntakeTableComponent = (props) => {
       <table className='table-section'>
         <thead className={`table-header-${theme}`}>
           <tr>
-            <th onClick={() => {
-                if(sort === 'asc' && sortColumn === 'client'){
-                  updateSortWithColumn('dec', 'client')
-                } else {
-                  updateSortWithColumn('asc', 'client')
-                }
-              }} className='table-header-text column'>
-              Client <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'client' ? faAngleDoubleDown : faAngleDoubleUp} />
+            <th className='table-header-text column'>
+              Client
             </th>
-            <th onClick={() => {
-                if(sort === 'asc' && sortColumn === 'prefix'){
-                  updateSortWithColumn('dec', 'prefix')
-                } else {
-                  updateSortWithColumn('asc', 'prefix')
-                }
-              }} className='table-header-text column'>
-              Prefix <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'prefix' ? faAngleDoubleDown : faAngleDoubleUp} />
+            <th className='table-header-text column'>
+              Prefix 
             </th>
-            <th onClick={() => {
-                if(sort === 'asc' && sortColumn === 'policy'){
-                  updateSortWithColumn('dec', 'policy')
-                } else {
-                  updateSortWithColumn('asc', 'policy')
-                }
-              }} className='table-header-text column'>
-              Policy <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'policy' ? faAngleDoubleDown : faAngleDoubleUp} />
+            <th className='table-header-text column'>
+              Policy 
             </th>
-            <th onClick={() => {
-                if(sort === 'asc' && sortColumn === 'insurance'){
-                  updateSortWithColumn('dec', 'insurance')
-                } else {
-                  updateSortWithColumn('asc', 'insurance')
-                }
-              }} className='table-header-text column'>
-              Insurance <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'insurance' ? faAngleDoubleDown : faAngleDoubleUp} />
+            <th className='table-header-text column'>
+              Insurance 
             </th>
-            <th onClick={() => {
-                if(sort === 'asc' && sortColumn === 'active'){
-                  updateSortWithColumn('dec', 'active')
-                } else {
-                  updateSortWithColumn('asc', 'active')
-                }
-              }} className='table-header-text column'>
-              Active <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'active' ? faAngleDoubleDown : faAngleDoubleUp} />
+            <th className='table-header-text column'>
+              Active 
             </th>
-            <th onClick={() => {
-                if(sort === 'asc' && sortColumn === 'source'){
-                  updateSortWithColumn('dec', 'source')
-                } else {
-                  updateSortWithColumn('asc', 'source')
-                }
-              }} className='table-header-text column'>
-              Source <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'source' ? faAngleDoubleDown : faAngleDoubleUp} />
+            <th className='table-header-text column'>
+              Source 
             </th>
-            <th onClick={() => {
-                if(sort === 'asc' && sortColumn === 'coordinator'){
-                  updateSortWithColumn('dec', 'coordinator')
-                } else {
-                  updateSortWithColumn('asc', 'coordinator')
-                }
-              }} className='table-header-text column'>
-              Coordinator <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'coordinator' ? faAngleDoubleDown : faAngleDoubleUp} />
+            <th className='table-header-text column'>
+              Coordinator 
             </th>
-            <th onClick={() => {
-                if(sort === 'asc' && sortColumn === 'summaryOut'){
-                  updateSortWithColumn('dec', 'summaryOut')
-                } else {
-                  updateSortWithColumn('asc', 'summaryOut')
-                }
-              }} className='table-header-text column'>
-              Summary Out <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'summaryOut' ? faAngleDoubleDown : faAngleDoubleUp} />
+            <th className='table-header-text column'>
+              Summary Out 
             </th>
             <th className='table-header-text column'>
               Booked
             </th>
-            <th className='table-header-text column'>
+            {/* <th className='table-header-text column'>
               Checked In
-            </th>
+            </th> */}
             <th className='table-header-text column'>
               In-Network Details
             </th>
@@ -125,14 +80,8 @@ const IntakeTableComponent = (props) => {
             <th className='table-header-text column'>
               Notes
             </th>
-            <th onClick={() => {
-                if(sort === 'asc' && sortColumn === 'date'){
-                  updateSortWithColumn('dec', 'date')
-                } else {
-                  updateSortWithColumn('asc', 'date')
-                }
-              }} className='table-header-text column'>
-              Date <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'date' ? faAngleDoubleDown : faAngleDoubleUp} />
+            <th className='table-header-text column'>
+              Date 
             </th>
             <th style={{minWidth: '0px'}} className='table-header-text update-column'>
               Update
@@ -153,7 +102,7 @@ const IntakeTableComponent = (props) => {
                   <td>{item.coordinator}</td>
                   <td>{item.summary_out}</td>
                   <td>{item.booked ? 'Yes' : 'No'}</td>
-                  <td>{item.checked_in ? 'Yes' : 'No'}</td>
+                  {/* <td>{item.checked_in ? 'Yes' : 'No'}</td> */}
                   <td>{item.in_network_details}</td>
                   <td>{item.out_network_details}</td>
                   <td>{item.notes}</td>

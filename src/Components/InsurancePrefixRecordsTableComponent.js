@@ -2,11 +2,16 @@ import React, { useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons'
+import InsurancePrefixRecordComponent from './InsurancePrefixRecordComponent'
+import { useUser } from '../Contexts/UserContext'
 
 const InsurancePrefixRecordsTableComponent = (props) => {
   const {setViewingTab, viewingTab, tabDetails} = props
 
   const { theme } = useTheme()
+  const { userProfile } = useUser()
+
+  console.log(userProfile)
 
   const [sort, setSort] = useState('asc')
   const [sortColumn, setSortColumn] = useState('prefix')
@@ -38,19 +43,13 @@ const InsurancePrefixRecordsTableComponent = (props) => {
               Res. Days
             </th>
             <th className='table-header-text'>
-              Res. Visits
-            </th>
-            <th className='table-header-text'>
               Detox Days
             </th>
             <th className='table-header-text'>
-              Detox Visits
+              Avg. Charges 
             </th>
             <th className='table-header-text'>
-              Total Charges 
-            </th>
-            <th className='table-header-text'>
-              Total Paid 
+              Avg. Paid 
             </th>
             <th className='table-header-text'>
               Payout % 
@@ -58,195 +57,22 @@ const InsurancePrefixRecordsTableComponent = (props) => {
             <th className='table-header-text'>
               Admission 
             </th>
-            <th className='table-header-text'>
-              Admission % 
-            </th>
+            {
+              userProfile.priviledges === 'admin' || userProfile.priviledges === 'dev' || userProfile.priviledges === 'owner'
+                ? <th className='table-header-text'>
+                    Admission % 
+                  </th>
+                : null
+            }
             <th className='table-header-text'>
               Last Updated
             </th>
           </tr>
         </thead>
         <tbody className={`table-body-${theme}`}>
-          <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John DOe</td>
-            <td>SVD</td>
-            <td>SVD238948237</td>
-            <td>AETNA</td>
-            <td>In-Network</td>
-            <td>AXIS</td>
-            <td>12 Days</td>
-            <td>2 Visits</td>
-            <td>18 Days</td>
-            <td>2 Visits</td>
-            <td>$18,324</td>
-            <td>$10,2232</td>
-            <td>81%</td>
-            <td>Likely</td>
-            <td>78%</td>
-            <td>12/29/2023</td>
-          </tr>
-          <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John DOe</td>
-            <td>SVD</td>
-            <td>SVD238948237</td>
-            <td>AETNA</td>
-            <td>In-Network</td>
-            <td>AXIS</td>
-            <td>12 Days</td>
-            <td>2 Visits</td>
-            <td>18 Days</td>
-            <td>2 Visits</td>
-            <td>$18,324</td>
-            <td>$10,2232</td>
-            <td>81%</td>
-            <td>Likely</td>
-            <td>78%</td>
-            <td>12/29/2023</td>
-          </tr>
-          <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John DOe</td>
-            <td>SVD</td>
-            <td>SVD238948237</td>
-            <td>AETNA</td>
-            <td>In-Network</td>
-            <td>AXIS</td>
-            <td>12 Days</td>
-            <td>2 Visits</td>
-            <td>18 Days</td>
-            <td>2 Visits</td>
-            <td>$18,324</td>
-            <td>$10,2232</td>
-            <td>81%</td>
-            <td>Likely</td>
-            <td>78%</td>
-            <td>12/29/2023</td>
-          </tr>
-          <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John DOe</td>
-            <td>SVD</td>
-            <td>SVD238948237</td>
-            <td>AETNA</td>
-            <td>In-Network</td>
-            <td>AXIS</td>
-            <td>12 Days</td>
-            <td>2 Visits</td>
-            <td>18 Days</td>
-            <td>2 Visits</td>
-            <td>$18,324</td>
-            <td>$10,2232</td>
-            <td>81%</td>
-            <td>Likely</td>
-            <td>78%</td>
-            <td>12/29/2023</td>
-          </tr>
-          <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John DOe</td>
-            <td>SVD</td>
-            <td>SVD238948237</td>
-            <td>AETNA</td>
-            <td>In-Network</td>
-            <td>AXIS</td>
-            <td>12 Days</td>
-            <td>2 Visits</td>
-            <td>18 Days</td>
-            <td>2 Visits</td>
-            <td>$18,324</td>
-            <td>$10,2232</td>
-            <td>81%</td>
-            <td>Likely</td>
-            <td>78%</td>
-            <td>12/29/2023</td>
-          </tr>
-          <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John DOe</td>
-            <td>SVD</td>
-            <td>SVD238948237</td>
-            <td>AETNA</td>
-            <td>In-Network</td>
-            <td>AXIS</td>
-            <td>12 Days</td>
-            <td>2 Visits</td>
-            <td>18 Days</td>
-            <td>2 Visits</td>
-            <td>$18,324</td>
-            <td>$10,2232</td>
-            <td>81%</td>
-            <td>Likely</td>
-            <td>78%</td>
-            <td>12/29/2023</td>
-          </tr>
-          <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John DOe</td>
-            <td>SVD</td>
-            <td>SVD238948237</td>
-            <td>AETNA</td>
-            <td>In-Network</td>
-            <td>AXIS</td>
-            <td>12 Days</td>
-            <td>2 Visits</td>
-            <td>18 Days</td>
-            <td>2 Visits</td>
-            <td>$18,324</td>
-            <td>$10,2232</td>
-            <td>81%</td>
-            <td>Likely</td>
-            <td>78%</td>
-            <td>12/29/2023</td>
-          </tr>
-          <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John DOe</td>
-            <td>SVD</td>
-            <td>SVD238948237</td>
-            <td>AETNA</td>
-            <td>In-Network</td>
-            <td>AXIS</td>
-            <td>12 Days</td>
-            <td>2 Visits</td>
-            <td>18 Days</td>
-            <td>2 Visits</td>
-            <td>$18,324</td>
-            <td>$10,2232</td>
-            <td>81%</td>
-            <td>Likely</td>
-            <td>78%</td>
-            <td>12/29/2023</td>
-          </tr>
-          <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John DOe</td>
-            <td>SVD</td>
-            <td>SVD238948237</td>
-            <td>AETNA</td>
-            <td>In-Network</td>
-            <td>AXIS</td>
-            <td>12 Days</td>
-            <td>2 Visits</td>
-            <td>18 Days</td>
-            <td>2 Visits</td>
-            <td>$18,324</td>
-            <td>$10,2232</td>
-            <td>81%</td>
-            <td>Likely</td>
-            <td>78%</td>
-            <td>12/29/2023</td>
-          </tr>
-          <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-            <td>John DOe</td>
-            <td>SVD</td>
-            <td>SVD238948237</td>
-            <td>AETNA</td>
-            <td>In-Network</td>
-            <td>AXIS</td>
-            <td>12 Days</td>
-            <td>2 Visits</td>
-            <td>18 Days</td>
-            <td>2 Visits</td>
-            <td>$18,324</td>
-            <td>$10,2232</td>
-            <td>81%</td>
-            <td>Likely</td>
-            <td>78%</td>
-            <td>12/29/2023</td>
-          </tr>
+          {Array.from({ length: 2 }).map((_, index) => (
+            <InsurancePrefixRecordComponent setViewingTab={setViewingTab} record={''}/>
+          ))}
         </tbody>
       </table>
     </div>

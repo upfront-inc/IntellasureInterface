@@ -13,7 +13,7 @@ const SideBarComponent = () => {
   const { theme } = useTheme();
   const { selectedTab, toggleSelectedTab } = useApp();
   const { toggleSidebar, showProfile, toggleProfile } = useSidebar();
-  const { signOutUser } = useUser()
+  const { signOutUser,  } = useUser()
 
   const isSelected = (tabName) => selectedTab === tabName;
 
@@ -52,7 +52,7 @@ const SideBarComponent = () => {
             <div>
               {
                 sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>Billing Details</p>
+                  ? <p className={`label-${theme}`}>Historic</p>
                   : null
               }
             </div>
@@ -64,7 +64,7 @@ const SideBarComponent = () => {
             <div>
               {
                 sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>Zoho External</p>
+                  ? <p className={`label-${theme}`}>External</p>
                   : null
               }
             </div>

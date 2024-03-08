@@ -17,12 +17,12 @@ export const UserProvider = ({ children }) => {
     setLoading(true)
     getCurrentUser()
       .then(response => {
-        setCurrentUser(response)
-        setLoading(false)
+        console.log(response)
+        setCurrentUser(response.userId)
         grabCurrentUserProfile(response.userId)
       })
       .catch(error => {
-        console.log(`Error getting user: ${JSON.stringify(error)}`)
+        console.log(`Error getting user: ${error}`)
         setLoading(false)
       })
   }
@@ -38,6 +38,7 @@ export const UserProvider = ({ children }) => {
       .then((response) => {
         console.log("users profile: ", JSON.stringify(response.data.data));
         setUserProfile(response.data.data)
+        setLoading(false)
       })
       .catch((error) => {
         console.log(error);
