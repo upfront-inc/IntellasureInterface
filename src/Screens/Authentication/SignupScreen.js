@@ -96,7 +96,6 @@ const SignupScreen = (props) => {
     
     signUp(signupData)
       .then((currentUser) => {
-        console.log(`current user: ${currentUser.data}`)
         createProfile(currentUser.userId)
       })
       .catch((err) => {
@@ -119,8 +118,6 @@ const SignupScreen = (props) => {
       "user_id": userId
     };
 
-    console.log(`user data creation object: ${data}`)
-
     let config = {
       method: 'put',
       maxBodyLength: Infinity,
@@ -133,11 +130,9 @@ const SignupScreen = (props) => {
 
     axios.request(config)
       .then((response) => {
-        console.log("successful request: ", JSON.stringify(response.data));
         handleAuthView('confirm')
       })
       .catch((error) => {
-        console.log("failed request: ", JSON.stringify(error))
         console.log(error);
       });
   }

@@ -22,8 +22,8 @@ const BillingDetailsRecordsComponent = (props) => {
       "paid": record.average_paid,
       "balance": record.balance.toFixed(2),
       "payout_ratio": record.payout_ratio,
-      "dtx_days": record.avg_DTX_days,
-      "rtc_days": record.avg_RTC_days,
+      "DTX days": record.avg_DTX_days,
+      "RTC days": record.avg_RTC_days,
       "network": record.network
     });
     let config = {

@@ -5,7 +5,8 @@ import CareTableComponent from './CareTableComponent'
 import FinancialTableComponent from './FinancialTableComponent'
 import axios from 'axios'
 
-const SingleUserDetailsComponent = () => {
+const SingleUserDetailsComponent = (props) => {
+  const {selectedPolicy} = props
 
   const { theme } = useTheme()
   const [loading, setLoading] = useState(true)
@@ -18,7 +19,7 @@ const SingleUserDetailsComponent = () => {
   }, [])
 
   const grabUserInfo = () => {
-    let url = 'https://intellasurebackend-docker.onrender.com/level1/W172652365'
+    let url = `https://intellasurebackend-docker.onrender.com/level1/${selectedPolicy}`
     axios.get(url)
     .then((response) => {
       let newPatientInfo = {

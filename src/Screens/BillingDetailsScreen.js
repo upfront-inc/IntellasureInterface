@@ -26,6 +26,7 @@ const BillingDetailsScreen = () => {
   const [records, setRecords] = useState([])
 
   const [selectedPrefix, setSelectedPrefix] = useState('')
+  const [selectedPolicy, setSelectedPolicy] = useState('')
 
   useEffect(() => {
     grabRecords()
@@ -78,9 +79,9 @@ const BillingDetailsScreen = () => {
           viewingTab === 'billing'
             ? <BillingDetailsTablesComponent setSelectedPrefix={setSelectedPrefix} records={records} setViewingTab={setViewingTab} viewingTab={viewingTab} setTabDetails={setTabDetails}/>
             : viewingTab === 'prefix'
-                ? <InsurancePrefixRecordsTableComponent selectedPrefix={selectedPrefix} setViewingTab={setViewingTab} viewingTab={viewingTab} tabDetails={tabDetails}/>
+                ? <InsurancePrefixRecordsTableComponent setSelectedPolicy={setSelectedPolicy} selectedPrefix={selectedPrefix} setViewingTab={setViewingTab} viewingTab={viewingTab} tabDetails={tabDetails}/>
                 : viewingTab === 'user'
-                    ? <SingleUserDetailsComponent setViewingTab={setViewingTab} viewingTab={viewingTab} tabDetails={tabDetails}/>
+                    ? <SingleUserDetailsComponent selectedPolicy={selectedPolicy} setViewingTab={setViewingTab} viewingTab={viewingTab} tabDetails={tabDetails}/>
                     : <BillingDetailsTablesComponent setViewingTab={setViewingTab} viewingTab={viewingTab} setTabDetails={setTabDetails}/>
         }
       </div>

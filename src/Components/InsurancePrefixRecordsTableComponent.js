@@ -7,7 +7,7 @@ import { useUser } from '../Contexts/UserContext'
 import axios from 'axios'
 
 const InsurancePrefixRecordsTableComponent = (props) => {
-  const {setViewingTab, selectedPrefix} = props
+  const {setViewingTab, selectedPrefix, setSelectedPolicy} = props
 
   const { theme } = useTheme()
   const { userProfile } = useUser()
@@ -95,8 +95,9 @@ const InsurancePrefixRecordsTableComponent = (props) => {
               ? <>
                   {
                     records.map((record) => {
+                      console.log(record)
                       return(
-                        <InsurancePrefixRecordComponent setViewingTab={setViewingTab} record={record}/>
+                        <InsurancePrefixRecordComponent setSelectedPolicy={setSelectedPolicy} setViewingTab={setViewingTab} record={record}/>
                       )
                     })
                   }

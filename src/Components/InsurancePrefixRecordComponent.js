@@ -1,27 +1,31 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
 import { useUser } from '../Contexts/UserContext'
 
 const InsurancePrefixRecordComponent = (props) => {
-  const {record, setViewingTab} = props
+  const {record, setViewingTab, setSelectedPolicy} = props
 
   const { theme } = useTheme()
   const { userProfile } = useUser()
 
+  const [admissionPercent, setAdmissionPercent] = useState(.66)
+
   useEffect(() => {
+    console.log(record)
     grabAdmissionPercent()
   }, [])
 
   const grabAdmissionPercent = () => {
     let data = JSON.stringify({
-      "charged": 4500,
-      "paid": 1000,
+      "charged": record.average_charge,
+      "paid": record.average_paid,
       "balance": 200,
-      "payout_ratio": 0.2,
-      "total_auth_days": 12,
-      "facility": "BEACHSIDE RECOVERY CENTER, LLC",
-      "network": "in-network"
+      "payout_ratio": record.payout,
+      "DTX days": record.detox_days,
+      "RTC days": record.res_days,
+      "facility": record.facility,
+      "network": record.network
     });
     let config = {
       method: 'post',
@@ -34,14 +38,28 @@ const InsurancePrefixRecordComponent = (props) => {
     };
     axios.request(config)
     .then((response) => {
+      setAdmissionPercent(response.data['VOB_Score_(%)'])
     })
     .catch((error) => {
       console.log(error);
     });
   }
 
+  const selectInsurancePolicy = (policy) => {
+    setSelectedPolicy(policy)
+    setViewingTab('user')
+  }
+
+  const formatNumberAsCurrency = (amount) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    }).format(amount);
+  }
+
   return (
-    <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+    <tr onClick={() => {selectInsurancePolicy(record.policy_id)}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
       <td>{record.name}</td>
       <td>{record.prefix}</td>
       <td>{record.policy_id}</td>
@@ -49,14 +67,14 @@ const InsurancePrefixRecordComponent = (props) => {
       <td>{record.network}</td>
       <td>{record.facility}</td>
       <td>{record.res_days}</td>
-      <td>{record.detox}</td>
-      <td>{record.average_charge}</td>
-      <td>{record.average_paid}</td>
-      <td>{record.payout}</td>
-      <td>Likely</td>
+      <td>{record.detox_days}</td>
+      <td>{formatNumberAsCurrency(record.average_charge)}</td>
+      <td>{formatNumberAsCurrency(record.average_paid)}</td>
+      <td>{(record.payout * 100).toFixed(0)}%</td>
+      <td>{admissionPercent >= 60 ? 'Likely' : 'Unlikely'}</td>
       {
         userProfile.priviledges === 'admin' || userProfile.priviledges === 'dev' || userProfile.priviledges === 'owner'
-          ? <td>78%</td>
+          ? <td>{admissionPercent.toFixed(0)}%</td>
           : null
       }
       <td>12/29/2023</td>
