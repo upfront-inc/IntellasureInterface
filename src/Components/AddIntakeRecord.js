@@ -1,15 +1,17 @@
 import { faLightbulb, faMoon, faSun, faX } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../Css/Intake.css'
 import { useTheme } from '../Contexts/ThemeContext'
 import { useApp } from '../Contexts/AppContext'
 import axios from 'axios'
+import { useUser } from '../Contexts/UserContext'
 
 const AddIntakeRecord = () => {
 
   const { theme } = useTheme();
   const { toggleShowAddIntakeRecord } = useApp()
+  const { userProfile } = useUser()
 
   const [client, setClient] = useState('')
   const [prefix, setPrefix] = useState('')
@@ -78,6 +80,10 @@ const AddIntakeRecord = () => {
     setCheckedIn(!checkedIn)
   }
 
+  useEffect(() => {
+    console.log(userProfile)
+  }, [])
+
   const generateTenDigitNumber = () => {
     const min = 1000000000;
     const max = 9999999999;
@@ -103,9 +109,8 @@ const AddIntakeRecord = () => {
       "prefix": prefix.slice(0, 3),
       "policy_id": prefix,
       "insurance": insurance,
-      "active": acitvePolicy,
       "source": source,
-      "coordinator":coordinator,
+      "coordinator":userProfile.priviledges === 'member' ? userProfile.name : coordinator,
       "summary_out": summaryOut,
       "booked": booked,
       "checked_in": checkedIn,
@@ -164,29 +169,6 @@ const AddIntakeRecord = () => {
           />
         </div>
         <div className='row'>
-          <p className={`text-${theme}`}>Active Policy</p>
-          <div>
-            <label>
-              <input 
-                type="radio"
-                name="active"
-                value="yes"
-                checked={acitvePolicy === true}
-                onChange={() => handleActivePolicy()}
-              /> Yes
-            </label>
-            <label>
-              <input 
-                type="radio"
-                name="active"
-                value="no"
-                checked={acitvePolicy === false}
-                onChange={() => handleActivePolicy()}
-              /> No
-            </label>
-          </div>
-        </div>
-        <div className='row'>
           <p className={`text-${theme}`}>Source</p>
           <input 
             className={`input-${theme}`}
@@ -195,15 +177,19 @@ const AddIntakeRecord = () => {
             onChange={(text) => {handleSourceChnage(text)}}
           />
         </div>
-        <div className='row'>
-          <p className={`text-${theme}`}>Coordinator</p>
-          <input 
-            className={`input-${theme}`}
-            placeholder='coordinator name...'
-            value={coordinator}
-            onChange={(text) => {handleCoordinatorChnage(text)}}
-          />
-        </div>
+        {
+          userProfile.priviledges === 'member'
+            ? null
+            : <div className='row'>
+                <p className={`text-${theme}`}>Coordinator</p>
+                <input 
+                  className={`input-${theme}`}
+                  placeholder='coordinator name...'
+                  value={coordinator}
+                  onChange={(text) => {handleCoordinatorChnage(text)}}
+                />
+              </div>
+        }
         <div className='row'>
           <p className={`text-${theme}`}>Summary Out</p>
           <div>

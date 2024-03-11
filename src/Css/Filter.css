@@ -31,6 +31,7 @@
   padding: 8px 16px 8px 16px;
   background-color: #ededed;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .facilities-filter-container-closed {
@@ -40,6 +41,7 @@
   padding: 8px 16px 8px 16px;
   background-color: #ededed;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .columns-filter-container-open {
@@ -49,6 +51,7 @@
   padding: 8px 16px 8px 16px;
   background-color: #ededed;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .columns-filter-container-closed {
@@ -58,6 +61,7 @@
   padding: 8px 16px 8px 16px;
   background-color: #ededed;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .network-filter-container-open {

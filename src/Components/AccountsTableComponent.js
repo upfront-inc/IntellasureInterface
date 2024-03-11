@@ -24,8 +24,8 @@ const AccountsTableComponent = () => {
     
     axios.request(config)
       .then((response) => {
-        console.log('return data: ', response.data.data);
-        setProfiles(response.data.data)
+        console.log('return data: ', response.data);
+        setProfiles(response.data)
       })
       .catch((error) => {
         console.log(error);

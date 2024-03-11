@@ -10,18 +10,19 @@ const BillingDetailsRecordsComponent = (props) => {
   const { userProfile } = useUser()
 
   useEffect(() => {
-    grabAdmissionPercent()
+    // console.log(record)
+    // grabAdmissionPercent()
   }, [])
 
   const grabAdmissionPercent = () => {
     let data = JSON.stringify({
-      "charged": 4500,
-      "paid": 1000,
+      "charged": record.average_charged,
+      "paid": record.average_paid,
       "balance": 200,
-      "payout_ratio": 0.2,
-      "total_auth_days": 12,
-      "facility": "BEACHSIDE RECOVERY CENTER, LLC",
-      "network": "in-network"
+      "payout_ratio": record.payout_ratio,
+      "dtx_days": record.avg_DTX_days,
+      "rtc_days": record.avg_RTC_days,
+      "network": record.network
     });
     let config = {
       method: 'post',
@@ -34,24 +35,30 @@ const BillingDetailsRecordsComponent = (props) => {
     };
     axios.request(config)
     .then((response) => {
-      console.log(JSON.stringify(response.data));
     })
     .catch((error) => {
       console.log(error);
     });
   }
 
+  const formatNumberAsCurrency = (amount) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    }).format(amount);
+  }
+
   return (
     <tr onClick={() => {setViewingTab('prefix')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-      <td>SVD</td>
-      <td>AETNA</td>
-      <td>In-Network</td>
-      <td>AXIS</td>
-      <td>12 Days</td>
-      <td>18 Days</td>
-      <td>$18,324</td>
-      <td>$10,2232</td>
-      <td>78%</td>
+      <td>{record.prefix}</td>
+      <td>{record.insurance}</td>
+      <td>{record.network === 'out-of-network' ? 'out-network' : record.network}</td>
+      <td>{record.avg_DTX_days} Days</td>
+      <td>{record.avg_RTC_days} Days</td>
+      <td>{formatNumberAsCurrency(record.average_charged)}</td>
+      <td>{formatNumberAsCurrency(record.average_paid)}</td>
+      <td>{(record.payout_ratio * 100).toFixed(0)}%</td>
       <td>Likely</td>
       {
         userProfile.priviledges === 'admin' || userProfile.priviledges === 'dev' || userProfile.priviledges === 'owner'

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../Css/Content.css'
 import '../Css/Table.css'
 import { useTheme } from '../Contexts/ThemeContext'
@@ -10,6 +10,7 @@ import InsurancePrefixRecordsTableComponent from '../Components/InsurancePrefixR
 import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SingleUserDetailsComponent from '../Components/SingleUserDetailsComponent';
+import axios from 'axios';
 
 const BillingDetailsScreen = () => {
 
@@ -19,11 +20,42 @@ const BillingDetailsScreen = () => {
   const [viewingTab, setViewingTab] = useState('billing')
   const [tabDetails, setTabDetails] = useState(null)
 
+  const [searchTerm, setSearchTerm] = useState('')
+  const [activeSearch, setActiveSearch] = useState(false)
+
+  const [records, setRecords] = useState([])
+
+  useEffect(() => {
+    grabRecords()
+  }, [])
+
+  const grabRecords = () => {
+    const url = 'https://intellasurebackend-docker.onrender.com/level3'
+    axios.get(url)
+    .then((response) => {
+      setRecords(response.data)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  const searchPrefix = (search) => {
+    let searchResultsRecords = []
+    records.map((record) => {
+      if(record.prefix === search){
+        searchResultsRecords.push(record)
+      }
+    })
+    console.log(searchResultsRecords.length)
+    setRecords(searchResultsRecords)
+  }
+
   return (
     <div className={`content-container-${theme}`}>
       {
         viewingTab === 'billing'
-          ? <TopBarComponent />
+          ? <TopBarComponent searchPrefix={searchPrefix} grabRecords={grabRecords} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setActiveSearch={setActiveSearch} activeSearch={activeSearch}/>
           : viewingTab === 'prefix'
               ? <div onClick={() => {setViewingTab('billing')}} className={`top-bar-${theme}`}>
                   <FontAwesomeIcon icon={faAngleDoubleLeft} className='search-icon'/>
@@ -32,7 +64,7 @@ const BillingDetailsScreen = () => {
                   ? <div onClick={() => {setViewingTab('prefix')}} className={`top-bar-${theme}`}>
                       <FontAwesomeIcon icon={faAngleDoubleLeft} className='search-icon'/>
                     </div>
-                  : <TopBarComponent />
+                  : null
       }
       {
         tableFilter 
@@ -42,7 +74,7 @@ const BillingDetailsScreen = () => {
       <div className='table-container'>
         {
           viewingTab === 'billing'
-            ? <BillingDetailsTablesComponent setViewingTab={setViewingTab} viewingTab={viewingTab} setTabDetails={setTabDetails}/>
+            ? <BillingDetailsTablesComponent records={records} setViewingTab={setViewingTab} viewingTab={viewingTab} setTabDetails={setTabDetails}/>
             : viewingTab === 'prefix'
                 ? <InsurancePrefixRecordsTableComponent setViewingTab={setViewingTab} viewingTab={viewingTab} tabDetails={tabDetails}/>
                 : viewingTab === 'user'

@@ -1,19 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons'
 import { useFilter } from '../Contexts/FilterContext'
 import BillingDetailsRecordsComponent from './BillingDetailsRecordsComponent'
 import { useUser } from '../Contexts/UserContext'
+import axios from 'axios'
 
 const BillingDetailsTablesComponent = (props) => {
-  const {setViewingTab, viewingTab, setTabDetails} = props
+  const {setViewingTab, records, setTabDetails} = props
 
   const { theme } = useTheme()
   const { userProfile, loading } = useUser()
 
   const [sort, setSort] = useState('asc')
   const [sortColumn, setSortColumn] = useState('prefix')
+
+  useEffect(() => {
+    console.log(records)
+  }, [])
 
   const updateSortWithColumn = (sort, column) => {
     setSort(sort)
@@ -57,15 +62,6 @@ const BillingDetailsTablesComponent = (props) => {
               }
             }} className='table-header-text'>
               Network <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'network' ? faAngleDoubleDown : faAngleDoubleUp} />
-            </th>
-            <th onClick={() => {
-              if(sort === 'asc' && sortColumn === 'facility'){
-                updateSortWithColumn('dec', 'facility')
-              } else {
-                updateSortWithColumn('asc', 'facility')
-              }
-            }} className='table-header-text'>
-              Facility <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'facility' ? faAngleDoubleDown : faAngleDoubleUp} />
             </th>
             <th className='table-header-text'>
               Res. Days
@@ -125,9 +121,15 @@ const BillingDetailsTablesComponent = (props) => {
           </tr>
         </thead>
         <tbody className={`table-body-${theme}`}>
-          {Array.from({ length: 40 }).map((_, index) => (
-            <BillingDetailsRecordsComponent setViewingTab={setViewingTab} record={''}/>
-          ))}
+          {
+            records.map((record) => {
+              return(
+                <>
+                  <BillingDetailsRecordsComponent setViewingTab={setViewingTab} record={record}/>
+                </>
+              )
+            })
+          }
         </tbody>
       </table>
     </div>

@@ -5,11 +5,13 @@ import '../Css/Intake.css'
 import { useTheme } from '../Contexts/ThemeContext'
 import { useApp } from '../Contexts/AppContext'
 import axios from 'axios'
+import { useUser } from '../Contexts/UserContext'
 
 const UpdateIntakeRecord = () => {
 
   const { theme } = useTheme();
   const { toggleUpdateIntakeRecord, updatingRecord } = useApp()
+  const { userProfile } = useUser()
 
   const [intakeId, setIntakeId] = useState(updatingRecord.intake_id)
   const [client, setClient] = useState(updatingRecord.name)
@@ -75,14 +77,13 @@ const UpdateIntakeRecord = () => {
 
   const sendDataToServer = () => {
     let intakeData = { data: {
-      "intake_id": updatingRecord.intake_id,
+      "intake_id": intakeId,
       "name": client,
       "prefix": prefix.slice(0, 3),
       "policy_id": prefix,
       "insurance": insurance,
-      "active": acitvePolicy,
       "source": source,
-      "coordinator":coordinator,
+      "coordinator":userProfile.priviledges === 'member' ? userProfile.name : coordinator,
       "summary_out": summaryOut,
       "booked": booked,
       "checked_in": checkedIn,
@@ -107,7 +108,7 @@ const UpdateIntakeRecord = () => {
   return (
     <div className={`intake-container-${theme}`}>
       <div className='header'>
-        <p className={`page-title text-${theme}`}>Add New Intake Record</p>
+        <p className={`page-title text-${theme}`}>Update Intake Record</p>
         <FontAwesomeIcon onClick={() => {toggleUpdateIntakeRecord()}} icon={faX} height={24} width={24} color='#e94f4e' />
       </div>
       <div>
@@ -131,10 +132,19 @@ const UpdateIntakeRecord = () => {
           <p className={`text-${theme}`}>Source</p>
           <p>{updatingRecord.source}</p>
         </div>
-        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}} className='row'>
-          <p className={`text-${theme}`}>Coordinator</p>
-          <p>{updatingRecord.coordinator}</p>
-        </div>
+        {
+          userProfile.priviledges === 'member'
+            ? null
+            : <div className='row'>
+                <p className={`text-${theme}`}>Coordinator</p>
+                <input 
+                  className={`input-${theme}`}
+                  placeholder='coordinator name...'
+                  value={coordinator}
+                  onChange={(text) => {handleCoordinatorChnage(text)}}
+                />
+              </div>
+        }
         <div className='row'>
           <p className={`text-${theme}`}>Summary Out</p>
           <div>
