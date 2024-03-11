@@ -13,9 +13,14 @@ const TopBarComponent = (props) => {
 
   const [tempSearchTerm, setTempSearchTerm] = useState('')
 
-  const toggleSearchChange = (e) => {
-    setSearchTerm(e)
-    setTempSearchTerm(e)
+  const handleSearchSubmit = (e) => {
+    e.preventDefault() // Prevent the form from causing a page reload
+    setActiveSearch(true)
+    searchPrefix(tempSearchTerm)
+  }
+
+  const handleSearchChange = (e) => {
+    setTempSearchTerm(e.target.value.toUpperCase())
   }
 
   const clearSearch = () => {
@@ -31,17 +36,21 @@ const TopBarComponent = (props) => {
 
   return (
     <div className={`top-bar-${theme}`}>
-      <FontAwesomeIcon icon={faSearch} className='search-icon'/>
-      <input 
-        placeholder='Search Prefix...' 
-        className={`search-input-${theme}`}
-        value={searchTerm}
-        onChange={(e) => toggleSearchChange(e.target.value.toUpperCase())}/>
-      {
-        activeSearch
-          ? <p style={{marginLeft: '8px', color: '#0b8ec4'}} onClick={() => {clearSearch()}}>Clear</p>
-          : <p style={{marginLeft: '8px', color: '#0b8ec4'}}  onClick={() => {startSearchPrefix()}}>Search</p>
-      }
+      <form onSubmit={handleSearchSubmit} style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
+        <FontAwesomeIcon icon={faSearch} className='search-icon'/>
+        <input
+          placeholder='Search Prefix...'
+          className={`search-input-${theme}`}
+          value={tempSearchTerm}
+          style={{width: '100%'}}
+          onChange={handleSearchChange}
+        />
+        {
+          activeSearch
+            ? <button type="button" onClick={clearSearch} style={{ fontSize: '18px', marginLeft: '8px', color: '#0b8ec4', border: 'none', backgroundColor: 'white' }}>Clear</button>
+            : <button type="submit" style={{ fontSize: '18px', marginLeft: '8px', color: '#0b8ec4', border: 'none', backgroundColor: 'white' }}>Search</button>
+        }
+      </form>
       <div className={`spliter-${theme}`}></div>
       <div onClick={() => {toggleTableFilter()}}>
         <p className='filter-text'>Filter</p>
