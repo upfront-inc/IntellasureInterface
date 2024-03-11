@@ -64,8 +64,14 @@ const BillingDetailsRecordsComponent = (props) => {
       <td>{record.network === 'out-of-network' ? 'out-network' : record.network}</td>
       <td>{record.avg_DTX_days} Days</td>
       <td>{record.avg_RTC_days} Days</td>
-      <td>{formatNumberAsCurrency(record.average_charged)}</td>
-      <td>{formatNumberAsCurrency(record.average_paid)}</td>
+      {
+        userProfile.priviledges === 'member'
+          ? null
+          : <>
+              <td>{formatNumberAsCurrency(record.average_charged)}</td>
+              <td>{formatNumberAsCurrency(record.average_paid)}</td>
+            </>
+      }
       <td>{(record.payout_ratio * 100).toFixed(0)}%</td>
       <td>{admissionPercent >= 60 ? 'Likely' : 'Unlikely'}</td>
       {

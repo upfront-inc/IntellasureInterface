@@ -65,12 +65,18 @@ const InsurancePrefixRecordsTableComponent = (props) => {
             <th className='table-header-text'>
               Detox Days
             </th>
-            <th className='table-header-text'>
-              Avg. Charges 
-            </th>
-            <th className='table-header-text'>
-              Avg. Paid 
-            </th>
+            {
+              userProfile.priviledges === 'member'
+                ? null
+                : <>
+                    <th className='table-header-text'>
+                      Avg. Charges 
+                    </th>
+                    <th className='table-header-text'>
+                      Avg. Paid 
+                    </th>
+                  </>
+            }
             <th className='table-header-text'>
               Payout % 
             </th>

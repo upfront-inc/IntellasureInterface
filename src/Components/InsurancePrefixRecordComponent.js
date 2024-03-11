@@ -66,10 +66,16 @@ const InsurancePrefixRecordComponent = (props) => {
       <td>{record.insurance}</td>
       <td>{record.network}</td>
       <td>{record.facility}</td>
-      <td>{record.res_days}</td>
-      <td>{record.detox_days}</td>
-      <td>{formatNumberAsCurrency(record.average_charge)}</td>
-      <td>{formatNumberAsCurrency(record.average_paid)}</td>
+      <td>{record.res_days} Days</td>
+      <td>{record.detox_days} Days</td>
+      {
+        userProfile.priviledges === 'member'
+          ? null
+          : <>
+              <td>{formatNumberAsCurrency(record.average_charged)}</td>
+              <td>{formatNumberAsCurrency(record.average_paid)}</td>
+            </>
+      }
       <td>{(record.payout * 100).toFixed(0)}%</td>
       <td>{admissionPercent >= 60 ? 'Likely' : 'Unlikely'}</td>
       {

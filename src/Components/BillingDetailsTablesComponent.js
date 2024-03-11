@@ -65,24 +65,30 @@ const BillingDetailsTablesComponent = (props) => {
             <th className='table-header-text'>
               Detox Days
             </th>
-            <th onClick={() => {
-              if(sort === 'asc' && sortColumn === 'charged'){
-                updateSortWithColumn('dec', 'charged')
-              } else {
-                updateSortWithColumn('asc', 'charged')
-              }
-            }} className='table-header-text'>
-              Avg. Charges <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'charged' ? faAngleDoubleDown : faAngleDoubleUp} />
-            </th>
-            <th onClick={() => {
-              if(sort === 'asc' && sortColumn === 'paid'){
-                updateSortWithColumn('dec', 'paid')
-              } else {
-                updateSortWithColumn('asc', 'paid')
-              }
-            }} className='table-header-text'>
-              Avg. Paid <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'paid' ? faAngleDoubleDown : faAngleDoubleUp} />
-            </th>
+            {
+              userProfile.priviledges === 'member'
+                ? null 
+                : <>
+                    <th onClick={() => {
+                      if(sort === 'asc' && sortColumn === 'charged'){
+                        updateSortWithColumn('dec', 'charged')
+                      } else {
+                        updateSortWithColumn('asc', 'charged')
+                      }
+                    }} className='table-header-text'>
+                      Avg. Charges <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'charged' ? faAngleDoubleDown : faAngleDoubleUp} />
+                    </th>
+                    <th onClick={() => {
+                      if(sort === 'asc' && sortColumn === 'paid'){
+                        updateSortWithColumn('dec', 'paid')
+                      } else {
+                        updateSortWithColumn('asc', 'paid')
+                      }
+                    }} className='table-header-text'>
+                      Avg. Paid <FontAwesomeIcon height={20} width={20} color='black' icon={sort === 'asc' && sortColumn === 'paid' ? faAngleDoubleDown : faAngleDoubleUp} />
+                    </th>
+                  </>
+            }
             <th onClick={() => {
               if(sort === 'asc' && sortColumn === 'payout'){
                 updateSortWithColumn('dec', 'payout')
