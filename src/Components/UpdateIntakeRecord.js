@@ -97,7 +97,6 @@ const UpdateIntakeRecord = () => {
     
     axios.patch(url, intakeData)
     .then((response) => {
-      console.log(JSON.stringify(response.data));
       toggleUpdateIntakeRecord()
     })
     .catch((error) => {

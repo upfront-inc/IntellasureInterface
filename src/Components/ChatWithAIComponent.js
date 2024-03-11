@@ -53,7 +53,6 @@ const ChatWithAIComponent = () => {
       
       const handleSubmitText = async (text) => {
         if (text.trim() === '') return;
-        console.log('Starting chat interaction with text:', text);
         setChatStarted(true);
         setIsLoading(true);
       
@@ -77,7 +76,6 @@ const ChatWithAIComponent = () => {
       
         try {
           const response = await axios.request(config);
-          console.log('Received response from server:', response.data);
       
           // Remove the temporary loading message and add the AI response
           setMessages(messages => {

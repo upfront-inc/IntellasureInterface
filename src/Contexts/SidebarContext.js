@@ -15,7 +15,6 @@ export const SidebarProvider = ({ children }) => {
   };
 
   const toggleProfile = () => {
-    console.log(showProfile)
     setShowProfile(!showProfile);
   };
 

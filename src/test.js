@@ -6,12 +6,10 @@ let messages = [];
 
 const setIsLoading = (loading) => {
     isLoading = loading;
-    console.log(`Is Loading: ${isLoading}`);
 };
 
 const setMessages = (newMessages) => {
     messages = newMessages;
-    console.log('Messages:', messages);
 };
 
 const setInputText = (text) => {

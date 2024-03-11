@@ -43,7 +43,6 @@ const LoginScreen = (props) => {
     signOut({username, password})
       .then((response) => {
         setCurrentUser(null)
-        console.log('logged out')
         grabCurrentUser()
         setLoading(false)
       })

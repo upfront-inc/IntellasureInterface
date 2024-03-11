@@ -8,17 +8,13 @@ import { useUser } from '../Contexts/UserContext'
 import axios from 'axios'
 
 const BillingDetailsTablesComponent = (props) => {
-  const {setViewingTab, records, setTabDetails} = props
+  const {setViewingTab, setSelectedPrefix, records, setTabDetails} = props
 
   const { theme } = useTheme()
   const { userProfile, loading } = useUser()
 
   const [sort, setSort] = useState('asc')
   const [sortColumn, setSortColumn] = useState('prefix')
-
-  useEffect(() => {
-    console.log(records)
-  }, [])
 
   const updateSortWithColumn = (sort, column) => {
     setSort(sort)
@@ -125,7 +121,7 @@ const BillingDetailsTablesComponent = (props) => {
             records.map((record) => {
               return(
                 <>
-                  <BillingDetailsRecordsComponent setViewingTab={setViewingTab} record={record}/>
+                  <BillingDetailsRecordsComponent setSelectedPrefix={setSelectedPrefix} setViewingTab={setViewingTab} record={record}/>
                 </>
               )
             })

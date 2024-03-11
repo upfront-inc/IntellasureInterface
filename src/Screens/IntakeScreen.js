@@ -56,7 +56,6 @@ const IntakeScreen = () => {
     };
     axios.request(config)
     .then((response) => {
-      console.log(JSON.stringify(response.data.data));
       setResults(response.data.data)
     })
     .catch((error) => {

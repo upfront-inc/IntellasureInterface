@@ -34,7 +34,6 @@ const InsurancePrefixRecordComponent = (props) => {
     };
     axios.request(config)
     .then((response) => {
-      console.log(JSON.stringify(response.data));
     })
     .catch((error) => {
       console.log(error);
@@ -43,17 +42,17 @@ const InsurancePrefixRecordComponent = (props) => {
 
   return (
     <tr onClick={() => {setViewingTab('user')}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-      <td>John DOe</td>
-      <td>SVD</td>
-      <td>SVD238948237</td>
-      <td>AETNA</td>
-      <td>In-Network</td>
-      <td>AXIS</td>
-      <td>12 Days</td>
-      <td>18 Days</td>
-      <td>$18,324</td>
-      <td>$10,2232</td>
-      <td>81%</td>
+      <td>{record.name}</td>
+      <td>{record.prefix}</td>
+      <td>{record.policy_id}</td>
+      <td>{record.insurance}</td>
+      <td>{record.network}</td>
+      <td>{record.facility}</td>
+      <td>{record.res_days}</td>
+      <td>{record.detox}</td>
+      <td>{record.average_charge}</td>
+      <td>{record.average_paid}</td>
+      <td>{record.payout}</td>
       <td>Likely</td>
       {
         userProfile.priviledges === 'admin' || userProfile.priviledges === 'dev' || userProfile.priviledges === 'owner'

@@ -1,20 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons'
 import InsurancePrefixRecordComponent from './InsurancePrefixRecordComponent'
 import { useUser } from '../Contexts/UserContext'
+import axios from 'axios'
 
 const InsurancePrefixRecordsTableComponent = (props) => {
-  const {setViewingTab, viewingTab, tabDetails} = props
+  const {setViewingTab, selectedPrefix} = props
 
   const { theme } = useTheme()
   const { userProfile } = useUser()
 
-  console.log(userProfile)
+  const [records, setRecords] = useState([])
 
-  const [sort, setSort] = useState('asc')
-  const [sortColumn, setSortColumn] = useState('prefix')
+  useEffect(() => {
+    grabInsuranceRecords()
+  }, [])
+
+  const grabInsuranceRecords = () => {
+    console.log(selectedPrefix)
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `https://intellasurebackend-docker.onrender.com/level2/${selectedPrefix}`,
+      headers: { }
+    };
+    axios.request(config)
+    .then((response) => {
+      console.log(response.data);
+      setRecords(response.data)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
 
   return (
     <div className='table-parent'>
@@ -70,9 +90,19 @@ const InsurancePrefixRecordsTableComponent = (props) => {
           </tr>
         </thead>
         <tbody className={`table-body-${theme}`}>
-          {Array.from({ length: 2 }).map((_, index) => (
-            <InsurancePrefixRecordComponent setViewingTab={setViewingTab} record={''}/>
-          ))}
+          {
+            records.length > 0
+              ? <>
+                  {
+                    records.map((record) => {
+                      return(
+                        <InsurancePrefixRecordComponent setViewingTab={setViewingTab} record={record}/>
+                      )
+                    })
+                  }
+                </>
+              : null
+          }
         </tbody>
       </table>
     </div>

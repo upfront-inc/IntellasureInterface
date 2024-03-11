@@ -22,7 +22,6 @@ const DailyRatesTableComponent = (props) => {
     } else {
       let searchResults = []
       data.map((item) => {
-        console.log(item['BCBS Prefix'] === searchTerm)
         if(item['BCBS Prefix'] === searchTerm){
           searchResults.push(item)
         }

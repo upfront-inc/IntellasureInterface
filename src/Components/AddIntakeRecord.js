@@ -80,15 +80,10 @@ const AddIntakeRecord = () => {
     setCheckedIn(!checkedIn)
   }
 
-  useEffect(() => {
-    console.log(userProfile)
-  }, [])
-
   const generateTenDigitNumber = () => {
     const min = 1000000000;
     const max = 9999999999;
     const number = Math.floor(Math.random() * (max - min + 1)) + min;
-    console.log(number)
     return number.toString()
   }
 
@@ -102,7 +97,6 @@ const AddIntakeRecord = () => {
 
   const sendDataToServer = () => {
     let intakeId = generateTenDigitNumber()
-    console.log(intakeId)
     let intakeData = { data: {
       "intake_id": intakeId,
       "name": client,
@@ -124,7 +118,6 @@ const AddIntakeRecord = () => {
     
     axios.post(url, intakeData)
     .then((response) => {
-      console.log(JSON.stringify(response.data));
       toggleShowAddIntakeRecord()
     })
     .catch((error) => {

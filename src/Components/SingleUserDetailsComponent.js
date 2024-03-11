@@ -21,7 +21,6 @@ const SingleUserDetailsComponent = () => {
     let url = 'https://intellasurebackend-docker.onrender.com/level1/W172652365'
     axios.get(url)
     .then((response) => {
-      console.log(response.data);
       let newPatientInfo = {
         name: `${response.data.patient_info[0].first_fame} ${response.data.patient_info[0].last_name}`,
         insurance: response.data.patient_info[0].insurance_company,
