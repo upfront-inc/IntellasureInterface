@@ -10,6 +10,7 @@
 
 .table-parent {
   width: 100%; 
+  overflow-x: auto; /* Allows horizontal scrolling */
 }
 
 .table-section {
@@ -18,13 +19,6 @@
   border-collapse: collapse;
   background-color: lightgrey;
   border-radius: 8px;
-  overflow-x: scroll;
-}
-
-.table-header-dark tr, .table-header-light tr{
-  position: 'absolute';
-  left: 0;
-  top: 0;
 }
 
 .table-header-dark th, .table-header-light th {
@@ -32,6 +26,31 @@
   padding: 24px 8px;
   font-size: 18px;
   font-weight: bold;
+  background-color: #000000; /* or #f8fefe for light theme */
+  position: sticky;
+  top: 0; /* Makes header stick at the top */
+  z-index: 2; /* Ensures header is above other content */
+}
+
+/* Remove borders from cells */
+.table-body-dark td, .table-body-light td {
+  border: none; /* Removes cell borders */
+  text-align: center;
+  padding: 24px 8px;
+  font-size: 14px;
+}
+
+.table-body-dark td, .table-body-light td {
+  min-width: 150px; 
+  border: none;/* Match this with the thead th min-width */
+}
+
+.table-body-dark td {
+  color: 'white'
+}
+
+.table-body-light td {
+  color: #171717;
 }
 
 .column {

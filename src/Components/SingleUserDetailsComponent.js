@@ -40,33 +40,33 @@ const SingleUserDetailsComponent = (props) => {
   }
 
   return (
-    <div className='user-parent'>
+    <div className={`user-parent-${theme}`}>
       <div className='user-row'>
         <div className='user-header'>
-          <p className='user-name'>{loading ? '' : patientInfo.name}</p>
+          <p className={`user-name-${theme}`}>{loading ? '' : patientInfo.name}</p>
         </div>
       </div>
       {
         loading
           ? null
-          : <><div className='user-row'>
+          : <><div className={`user-row-${theme}`}>
               <div className='user-info'>
-                <p className='user-info-text'>{loading ? '' : patientInfo.insurance}</p>
+                <p className={`user-info-text-${theme}`}>{loading ? '' : patientInfo.insurance}</p>
                 <p style={{marginLeft: '8px', marginRight: '8px'}}>|</p>
-                <p className='user-info-text'>{loading ? '' : patientInfo.prefix}</p>
+                <p className={`user-info-text-${theme}`}>{loading ? '' : patientInfo.prefix}</p>
                 <p style={{marginLeft: '8px', marginRight: '8px'}}>|</p>
-                <p className='user-info-text'>{loading ? '' : patientInfo.policy}</p>
+                <p className={`user-info-text-${theme}`}>{loading ? '' : patientInfo.policy}</p>
                 {/* <p style={{marginLeft: '8px', marginRight: '8px'}}>|</p>
                 <p className='user-info-text'>In Network</p> */}
               </div>
             </div>
             <div className='user-row-tables'>
-              <div className='user-table margins'>
+              <div className={`user-table-${theme} margins`}>
                 <div>
                   <CareTableComponent careInfo={careInfo}/>
                 </div>
               </div>
-              <div className='user-table'>
+              <div className={`user-table-${theme}`}>
                 <FinancialTableComponent financialInfo={financialInfo}/>
               </div>
             </div></>

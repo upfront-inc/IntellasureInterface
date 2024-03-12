@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons'
+import '../Css/Table.css'
 
 const FinancialTableComponent = (props) => {
   const {financialInfo} = props
@@ -20,44 +21,43 @@ const FinancialTableComponent = (props) => {
     return `${mm}/${dd}/${yyyy}`;
   }
 
+  // claim #, charge code, status, reason, charged, paid, balance, payout, date
+
   return (
-    <div style={{overflowX: 'scroll'}} className='user-table-parent'>
-      <table className='user-section'>
-        <thead className={`table-header-${theme}`}>
+    <div className='table-parent'>
+      <table className='table-section'>
+      <thead className={`table-header-${theme}`}>
           <tr>
-            <th style={{minWidth: '180px'}} className='user-table-header-text'>
-              Claim #
+            <th className='table-header-text'>
+              Claim # 
             </th>
-            <th style={{minWidth: '180px'}} className='user-table-header-text'>
-              Charge Code
+            <th className='table-header-text'>
+              Charge Code 
             </th>
-            <th style={{minWidth: '180px'}} className='user-table-header-text'>
-              Status
+            <th className='table-header-text'>
+              Status 
             </th>
-            <th style={{minWidth: '180px'}} className='user-table-header-text'>
+            <th className='table-header-text'>
               Reason
             </th>
-            <th style={{minWidth: '180px'}} className='user-table-header-text'>
+            <th className='table-header-text'>
               Charged
             </th>
-            <th  style={{minWidth: '180px'}}className='user-table-header-text'>
+            <th className='table-header-text'>
               Paid
             </th>
-            <th  style={{minWidth: '180px'}}className='user-table-header-text'>
+            <th className='table-header-text'>
               Balance
             </th>
-            <th style={{minWidth: '180px'}} className='user-table-header-text'>
-              Payout %
+            <th className='table-header-text'>
+              Payout % 
             </th>
-            {/* <th style={{minWidth: '180px'}} className='user-table-header-text'>
-              Notes
-            </th> */}
-            <th style={{minWidth: '180px'}} className='user-table-header-text'>
+            <th className='table-header-text'>
               Date
             </th>
           </tr>
         </thead>
-        <tbody className={`user-table-body-${theme}`}>
+        <tbody className={`table-body-${theme}`}>
           {
             financialInfo.length >= 1
               ? <>
