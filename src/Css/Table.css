@@ -21,6 +21,12 @@
   overflow-x: scroll;
 }
 
+.table-header-dark tr, .table-header-light tr{
+  position: 'absolute';
+  left: 0;
+  top: 0;
+}
+
 .table-header-dark th, .table-header-light th {
   text-align: center;
   padding: 24px 8px;

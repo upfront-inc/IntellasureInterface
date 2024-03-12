@@ -20,7 +20,7 @@ const InsurancePrefixRecordComponent = (props) => {
     let data = JSON.stringify({
       "charged": record.average_charge,
       "paid": record.average_paid,
-      "balance": 200,
+      "balance": record.balance,
       "payout_ratio": record.payout,
       "DTX days": record.detox_days,
       "RTC days": record.res_days,
@@ -58,6 +58,15 @@ const InsurancePrefixRecordComponent = (props) => {
     }).format(amount);
   }
 
+  function convertDateToMMDDYYYY(dateString) {
+    const date = new Date(dateString);
+    const mm = String(date.getUTCMonth() + 1).padStart(2, '0'); // UTC months from 1-12
+    const dd = String(date.getUTCDate()).padStart(2, '0'); // UTC day of the month
+    const yyyy = date.getUTCFullYear(); // UTC full year
+  
+    return `${mm}/${dd}/${yyyy}`;
+  }
+
   return (
     <tr onClick={() => {selectInsurancePolicy(record.policy_id)}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
       <td>{record.name}</td>
@@ -72,7 +81,7 @@ const InsurancePrefixRecordComponent = (props) => {
         userProfile.priviledges === 'member'
           ? null
           : <>
-              <td>{formatNumberAsCurrency(record.average_charged)}</td>
+              <td>{formatNumberAsCurrency(record.average_charge)}</td>
               <td>{formatNumberAsCurrency(record.average_paid)}</td>
             </>
       }
@@ -83,7 +92,7 @@ const InsurancePrefixRecordComponent = (props) => {
           ? <td>{admissionPercent.toFixed(0)}%</td>
           : null
       }
-      <td>12/29/2023</td>
+      <td>{convertDateToMMDDYYYY(record.last_updated)}</td>
     </tr>
   )
 }

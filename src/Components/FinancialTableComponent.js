@@ -43,6 +43,9 @@ const FinancialTableComponent = (props) => {
             <th  style={{minWidth: '180px'}}className='user-table-header-text'>
               Paid
             </th>
+            <th  style={{minWidth: '180px'}}className='user-table-header-text'>
+              Balance
+            </th>
             <th style={{minWidth: '180px'}} className='user-table-header-text'>
               Payout %
             </th>
@@ -60,6 +63,7 @@ const FinancialTableComponent = (props) => {
               ? <>
                   {
                     financialInfo.map((item) => {
+                      console.log(item)
                       return(
                         <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
                           <td>{item.Claim_ID}</td>
@@ -68,6 +72,7 @@ const FinancialTableComponent = (props) => {
                           <td>{item.Status}</td>
                           <td>${item.Charged}</td>
                           <td>${item.Paid}</td>
+                          <td>${item.Balance}</td>
                           <td>{((item.Paid / item.Charged).toFixed(2) * 100).toFixed(0)}%</td>
                           {/* <td>{item.FU_Note}</td> */}
                           <td>{convertDateToMMDDYYYY(item.Date)}</td>

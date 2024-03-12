@@ -21,11 +21,6 @@ const BillingDetailsTablesComponent = (props) => {
     setSortColumn(column)
   }
 
-  const updateRecord = () => {
-    setTabDetails({name: ''})
-    setViewingTab('prefix')
-  }
-
   return (
     <div className='table-parent'>
       <table className='table-section'>
