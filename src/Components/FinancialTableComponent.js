@@ -74,7 +74,7 @@ const FinancialTableComponent = (props) => {
                           <td>{item.Claim_ID}</td>
                           <td>{item.Charge_code}</td>
                           <td>{item.State}</td>
-                          <td>{item.Status}</td>
+                          <td  style={{minWidth: '300px'}}>{item.Status}</td>
                           <td>{item.Reason}</td>
                           <td>${item.Charged}</td>
                           <td>${item.Paid}</td>
