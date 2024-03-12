@@ -23,7 +23,7 @@ const SingleUserDetailsComponent = (props) => {
     axios.get(url)
     .then((response) => {
       let newPatientInfo = {
-        name: `${response.data.patient_info[0].first_fame} ${response.data.patient_info[0].last_name}`,
+        name: response.data.patient_info[0].name,
         insurance: response.data.patient_info[0].insurance_company,
         policy: response.data.patient_info[0].policy_id,
         prefix: response.data.patient_info[0].prefix,
