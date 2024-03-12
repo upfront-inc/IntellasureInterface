@@ -152,7 +152,7 @@ const FilterComponent = () => {
             ? displayFilterFacility()
             : null
         }
-        <div onClick={() => {toggleFilterColumns()}} className={`filter-container-${theme}`}>
+        {/* <div onClick={() => {toggleFilterColumns()}} className={`filter-container-${theme}`}>
           <p>Columns</p>
           <FontAwesomeIcon className='filter-icon' icon={faChevronDown} />
         </div>
@@ -160,7 +160,7 @@ const FilterComponent = () => {
           filterColumns
             ? displayFilterColumns()
             : null
-        }
+        } */}
         {/* 
         <div onClick={() => {toggleNetworkColumns()}} className={`filter-container-${theme}`}>
           <p>Network</p>

@@ -70,9 +70,9 @@ const BillingDetailsRecordsComponent = (props) => {
           : <>
               <td>{formatNumberAsCurrency(record.average_charged)}</td>
               <td>{formatNumberAsCurrency(record.average_paid)}</td>
+              <td>{(record.payout_ratio * 100).toFixed(0)}%</td>
             </>
       }
-      <td>{(record.payout_ratio * 100).toFixed(0)}%</td>
       <td>{admissionPercent >= 60 ? 'Likely' : 'Unlikely'}</td>
       {
         userProfile.priviledges === 'admin' || userProfile.priviledges === 'dev' || userProfile.priviledges === 'owner'

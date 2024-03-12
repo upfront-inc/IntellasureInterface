@@ -92,7 +92,7 @@ const BillingDetailsTablesComponent = (props) => {
               Detox Days
             </th>
             {
-              userProfile.priviledges === 'member'
+              userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
                 ? null 
                 : <>
                     <th onClick={() => {
@@ -113,17 +113,17 @@ const BillingDetailsTablesComponent = (props) => {
                     }} className='table-header-text'>
                       Avg. Paid <FontAwesomeIcon height={20} width={20} color='black' icon={sortDirection === 'asc' && sortColumn === 'average_paid' ? faAngleDoubleDown : faAngleDoubleUp} />
                     </th>
+                    <th onClick={() => {
+                      if(sortDirection === 'asc' && sortColumn === 'payout_ratio'){
+                        handleSort('dec', 'payout_ratio')
+                      } else {
+                        handleSort('asc', 'payout_ratio')
+                      }
+                    }} className='table-header-text'>
+                      Payout % <FontAwesomeIcon height={20} width={20} color='black' icon={sortDirection === 'asc' && sortColumn === 'payout_ratio' ? faAngleDoubleDown : faAngleDoubleUp} />
+                    </th>
                   </>
             }
-            <th onClick={() => {
-              if(sortDirection === 'asc' && sortColumn === 'payout_ratio'){
-                handleSort('dec', 'payout_ratio')
-              } else {
-                handleSort('asc', 'payout_ratio')
-              }
-            }} className='table-header-text'>
-              Payout % <FontAwesomeIcon height={20} width={20} color='black' icon={sortDirection === 'asc' && sortColumn === 'payout_ratio' ? faAngleDoubleDown : faAngleDoubleUp} />
-            </th>
             <th onClick={() => {
               if(sortDirection === 'asc' && sortColumn === 'admission'){
                 handleSort('dec', 'admission')

@@ -67,8 +67,15 @@ const InsurancePrefixRecordComponent = (props) => {
     return `${mm}/${dd}/${yyyy}`;
   }
 
+  const goToLevel1 = (policy_id) => {
+    if (userProfile.priviledges === 'member' || userProfile.priviledges === 'manager') {
+      return; // early return if the user doesn't have the correct privileges
+    }
+    selectInsurancePolicy(policy_id);
+  }
+
   return (
-    <tr onClick={() => {selectInsurancePolicy(record.policy_id)}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+    <tr onClick={() => {goToLevel1(record.policy_id)}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
       <td>{record.name}</td>
       <td>{record.prefix}</td>
       <td>{record.policy_id}</td>
@@ -78,14 +85,14 @@ const InsurancePrefixRecordComponent = (props) => {
       <td>{record.res_days} Days</td>
       <td>{record.detox_days} Days</td>
       {
-        userProfile.priviledges === 'member'
+        userProfile.priviledges === 'member' || userProfile.priviledges === 'manager' 
           ? null
           : <>
               <td>{formatNumberAsCurrency(record.average_charge)}</td>
               <td>{formatNumberAsCurrency(record.average_paid)}</td>
+              <td>{(record.payout * 100).toFixed(0)}%</td>
             </>
       }
-      <td>{(record.payout * 100).toFixed(0)}%</td>
       <td>{admissionPercent >= 60 ? 'Likely' : 'Unlikely'}</td>
       {
         userProfile.priviledges === 'admin' || userProfile.priviledges === 'dev' || userProfile.priviledges === 'owner'

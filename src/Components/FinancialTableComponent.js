@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons'
+import { useUser } from '../Contexts/UserContext'
 
 const FinancialTableComponent = (props) => {
   const {financialInfo} = props
 
   const { theme } = useTheme()
+  const { userProfile } = useUser()
 
   const [sort, setSort] = useState('asc')
   const [sortColumn, setSortColumn] = useState('prefix')
