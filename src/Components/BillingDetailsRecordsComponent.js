@@ -12,7 +12,7 @@ const BillingDetailsRecordsComponent = (props) => {
   const [admissionPercent, setAdmissionPercent] = useState(0)
 
   useEffect(() => {
-    // console.log(record)
+    console.log(record)
     grabAdmissionPercent()
   }, [])
 
