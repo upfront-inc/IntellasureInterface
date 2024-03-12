@@ -13,7 +13,7 @@ const SideBarComponent = () => {
   const { theme } = useTheme();
   const { selectedTab, toggleSelectedTab } = useApp();
   const { toggleSidebar, showProfile, toggleProfile } = useSidebar();
-  const { signOutUser,  } = useUser()
+  const { signOutUser, userProfile } = useUser()
 
   const isSelected = (tabName) => selectedTab === tabName;
 
@@ -107,18 +107,22 @@ const SideBarComponent = () => {
           </div>
         </div>
         <div>
-          <div onClick={() => {toggleSelectedTab('accounts')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('accounts') ? `menu-bar-item-selected-${theme}` : ''}`}>
-            <div className='icon-container'>
-              <FontAwesomeIcon icon={faUsers} className="icon-menu"/>
-            </div>
-            <div>
-              {
-                sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>Accounts</p>
-                  : null
-              }
-            </div>
-          </div>
+          {
+            userProfile.priviledges === 'member' || userProfile.priviledges === 'member'
+              ? null
+              : <div onClick={() => {toggleSelectedTab('accounts')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('accounts') ? `menu-bar-item-selected-${theme}` : ''}`}>
+                  <div className='icon-container'>
+                    <FontAwesomeIcon icon={faUsers} className="icon-menu"/>
+                  </div>
+                  <div>
+                    {
+                      sidebarPosition === 'open'
+                        ? <p className={`label-${theme}`}>Accounts</p>
+                        : null
+                    }
+                  </div>
+                </div>
+          }
           {/* <div onClick={() => {toggleSelectedTab('backend')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('backend') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faCode} className="icon-menu"/>
