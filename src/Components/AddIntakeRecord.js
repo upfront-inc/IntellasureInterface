@@ -14,8 +14,10 @@ const AddIntakeRecord = () => {
   const { userProfile } = useUser()
 
   const [client, setClient] = useState('')
+  const [dob, setDob] = useState('')
   const [prefix, setPrefix] = useState('')
   const [insurance, setInsurance] = useState('')
+  const [payer_id, setPayer_id] = useState('')
   const [source, setSource] = useState('')
   const [coordinator, setCoordinator] = useState('')
   const [summaryOut, setSummaryOut] = useState('Good Vob')
@@ -36,6 +38,10 @@ const AddIntakeRecord = () => {
 
   const handlePrefixChange = (e) => {
     setPrefix(e.target.value)
+  }
+
+  const handleDobChnage = (e) => {
+    setDob(e.target.value)
   }
 
   const handleInsuranceChnage = (e) => {
@@ -135,6 +141,8 @@ const AddIntakeRecord = () => {
       "date": getCurrentDateFormatted()
     }}
 
+    console.log(JSON.stringify(intakeData))
+
     const url = 'https://intellasurebackend-docker.onrender.com/update_intake_table/'
     
     axios.post(url, intakeData)
@@ -146,6 +154,13 @@ const AddIntakeRecord = () => {
     });
   };
   
+  const updatedSelectedInsurance = (payer_id, insurance) => {
+    console.log(payer_id)
+    console.log(insurance)
+    setInsurance(insurance)
+    setPayer_id(payer_id)
+  }
+
   return (
     <div className={`intake-container-${theme}`}>
       <div className='header'>
@@ -166,9 +181,9 @@ const AddIntakeRecord = () => {
           <p className={`text-${theme}`} title='figure out how to integrate'>Date Of Birth</p>
           <input 
             className={`input-${theme}`}
-            placeholder='dob...'
-            value={client}
-            onChange={(text) => {handleClientNammeChnage(text)}}
+            placeholder='dobgit status...'
+            value={dob}
+            onChange={(text) => {handleDobChnage(text)}}
           />
         </div>
         <div className='row'>
@@ -184,14 +199,14 @@ const AddIntakeRecord = () => {
           <p className={`text-${theme}`}>Insurance</p>
           <select
             value={insurance}
-            onChange={handleInsuranceChange}
+            onChange={(e) => updatedSelectedInsurance(e.target.value, e.target.options[e.target.selectedIndex].text)}
             className={`input-${theme}`}
           >
             <option value="">Select Insurance</option>
             {
               insuranceOptions.map((option) => {
                 return(
-                  <option key={option.payid} value={option.insurance}>
+                  <option key={option.payer_id} value={option.insurance}>
                     {option.insurance}
                   </option>
                 )
