@@ -57,30 +57,36 @@ const SideBarComponent = () => {
             }
           </div>
         </div>
-          <div onClick={() => {toggleSelectedTab('billingDetails')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('billingDetails') ? `menu-bar-item-selected-${theme}` : ''}`}>
-            <div className='icon-container'>
-              <FontAwesomeIcon icon={faShieldAlt} className="icon-menu"/>
-            </div>
-            <div>
-              {
-                sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>Historic</p>
-                  : null
-              }
-            </div>
-          </div>
-          <div onClick={() => {toggleSelectedTab('dailyRates')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('dailyRates') ? `menu-bar-item-selected-${theme}` : ''}`}>
-            <div className='icon-container'>
-              <FontAwesomeIcon icon={faMoneyBill} className="icon-menu"/>
-            </div>
-            <div>
-              {
-                sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>External</p>
-                  : null
-              }
-            </div>
-          </div>
+          {
+            userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+              ? null 
+              : <>
+                  <div onClick={() => {toggleSelectedTab('billingDetails')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('billingDetails') ? `menu-bar-item-selected-${theme}` : ''}`}>
+                    <div className='icon-container'>
+                      <FontAwesomeIcon icon={faShieldAlt} className="icon-menu"/>
+                    </div>
+                    <div>
+                      {
+                        sidebarPosition === 'open'
+                          ? <p className={`label-${theme}`}>Historic</p>
+                          : null
+                      }
+                    </div>
+                  </div>
+                  <div onClick={() => {toggleSelectedTab('dailyRates')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('dailyRates') ? `menu-bar-item-selected-${theme}` : ''}`}>
+                    <div className='icon-container'>
+                      <FontAwesomeIcon icon={faMoneyBill} className="icon-menu"/>
+                    </div>
+                    <div>
+                      {
+                        sidebarPosition === 'open'
+                          ? <p className={`label-${theme}`}>External</p>
+                          : null
+                      }
+                    </div>
+                  </div>
+              </>
+          }
           {/* <div onClick={() => {toggleSelectedTab('flagged')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('flagged') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faFlag} className="icon-menu"/>
