@@ -76,14 +76,28 @@ const InsurancePrefixRecordComponent = (props) => {
 
   return (
     <tr onClick={() => {goToLevel1(record.policy_id)}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-      <td>{record.name}</td>
-      <td>{record.prefix}</td>
+      {
+        userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+          ? null
+          : <td>{record.name}</td>
+      }
+      {
+        userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+          ? null
+          : <td>{record.prefix}</td>
+      }
       <td>{record.policy_id}</td>
       <td>{record.insurance}</td>
       <td>{record.network}</td>
       <td>{record.facility}</td>
-      <td>{record.res_days} Days</td>
-      <td>{record.detox_days} Days</td>
+      {
+        userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+          ? null
+          : <>
+              <td>{record.res_days} Days</td>
+              <td>{record.detox_days} Days</td>
+            </>
+      }
       {
         userProfile.priviledges === 'member' || userProfile.priviledges === 'manager' 
           ? null

@@ -5,11 +5,13 @@ import '../Css/profile.css'
 import { useTheme } from '../Contexts/ThemeContext'
 import { useApp } from '../Contexts/AppContext'
 import { useSidebar } from '../Contexts/SidebarContext'
+import { useUser } from '../Contexts/UserContext'
 
 const ProfileComponent = () => {
 
   const { theme, toggleTheme } = useTheme();
   const { toggleProfile } = useSidebar()
+  const { userProfile } = useUser()
 
   const [isResetPassword, setIsResetPassword] = useState(false)
 
@@ -17,14 +19,14 @@ const ProfileComponent = () => {
     <div className={`container-${theme}`}>
       <div>
         <div className='headerTop'>
-          <span className='userName'>Omar Jandali</span>
+          <span className='userName'>{userProfile.name}</span>
           <FontAwesomeIcon onClick={toggleProfile} icon={faX} height={22} width={22} color='#e94f4e'/>
         </div>
         <div className='headerRow'>
-          <span className='userInfo'>omarj@premierhealthgroup.net</span>
+          <span className='userInfo'>{userProfile.email}</span>
         </div>
         <div className='headerRow'>
-          <span className='userInfo'>member</span>
+          <span className='userInfo'>{userProfile.priviledges}</span>
         </div>
       </div>
       <div className='subContent'>

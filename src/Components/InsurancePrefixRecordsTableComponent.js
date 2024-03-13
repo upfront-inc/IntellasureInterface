@@ -41,15 +41,23 @@ const InsurancePrefixRecordsTableComponent = (props) => {
       <table className='table-section'>
         <thead className={`table-header-${theme}`}>
           <tr>
-            <th className='table-header-text'>
-              Name 
-            </th>
+            {
+              userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+                ? null
+                : <th className='table-header-text'>
+                    Name 
+                  </th>
+            }
             <th className='table-header-text'>
               Prefix 
             </th>
-            <th className='table-header-text'>
-              Policy 
-            </th>
+            {
+              userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+                ? null
+                : <th className='table-header-text'>
+                    Policy 
+                  </th>
+            }
             <th className='table-header-text'>
               Insurance 
             </th>
@@ -59,12 +67,16 @@ const InsurancePrefixRecordsTableComponent = (props) => {
             <th className='table-header-text'>
               Facility 
             </th>
-            <th className='table-header-text'>
-              Res. Days
-            </th>
-            <th className='table-header-text'>
-              Detox Days
-            </th>
+            {
+              userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+                ? null
+                : <><th className='table-header-text'>
+                    Res. Days
+                  </th>
+                  <th className='table-header-text'>
+                    Detox Days
+                  </th></>
+            }
             {
               userProfile.priviledges === 'member' || userProfile.priviledges === 'manager' 
                 ? null
