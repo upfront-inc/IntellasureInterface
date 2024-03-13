@@ -6,36 +6,50 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const DailyRateTopBarComponent = (props) => {
-  const {setSearchTerm, setActiveSearch, activeSearch} = props
+  const {setSearchTerm, setActiveSearch, activeSearch, searchTerm, updateSearch} = props
 
   const { theme } = useTheme()
   const { tableFilter, toggleTableFilter } = useApp()
 
   const [term, setTerm] = useState('')
 
-  const updateSearchTerm = () => {
-    setActiveSearch(true)
+  const updateSearchTerm = (e) => {
+    e.preventDefault();
     setSearchTerm(term)
+    setActiveSearch(true)
+    updateSearch(term)
   }
 
-  const updateActiveSearch = () => {
+  const updateSearchTermClick = () => {
+    setSearchTerm(term)
+    setActiveSearch(true)
+    updateSearch(term)
+  }
+
+  const clearActiveSearch = () => {
+    setTerm('')
     setSearchTerm('')
     setActiveSearch(false)
+    updateSearch('')
   }
 
   return (
     <div className={`top-bar-${theme}`}>
-      <FontAwesomeIcon icon={faSearch} className='search-icon'/>
-      <input 
-        value={term}
-        onChange={(e) => {setTerm((e.target.value).toUpperCase())}}
-        placeholder='Search Prefix...' 
-        className={`search-input-${theme}`}/>
-        {
-          activeSearch
-            ? <p onClick={() => {updateActiveSearch()}} style={{marginLeft: '8px', color: '#0b8ec4'}}>Clear</p>
-            : <p onClick={() => {updateSearchTerm()}} style={{marginLeft: '8px', color: '#0b8ec4'}}>Search</p>
-        }
+      <form onSubmit={updateSearchTerm} style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
+        <FontAwesomeIcon icon={faSearch} className='search-icon'/>
+        <input
+          placeholder='Search Prefix...'
+          className={`search-input-${theme}`}
+          value={term.toUpperCase()}
+          style={{width: '100%'}}
+          onChange={(e) => {setTerm(e.target.value)}}
+        />
+      </form>
+      {
+        activeSearch
+          ? <p onClick={() => {clearActiveSearch()}} style={{marginLeft: '8px', color: '#0b8ec4'}}>X</p>
+          : <p onClick={() => {updateSearchTermClick()}} style={{marginLeft: '8px', color: '#0b8ec4'}}>Search</p>
+      }
     </div>
     
   )

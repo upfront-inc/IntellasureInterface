@@ -6,66 +6,10 @@ import { faAnglesDown, faAnglesUp } from '@fortawesome/free-solid-svg-icons'
 import { useUser } from '../Contexts/UserContext.js'
 
 const DailyRatesTableComponent = (props) => {
-  const {searchTerm} = props
+  const { updateSort, sort, column, results} = props
 
   const { theme } = useTheme()
   const {userProfile} = useUser()
-  
-  const [sort, setSort] = useState('desc')
-  const [column, setColumn] = useState('prefix')
-
-  const [results, setResults] = useState(data)
-
-  useEffect(() => {
-    if(searchTerm === ''){
-      setResults(data)
-    } else {
-      let searchResults = []
-      data.map((item) => {
-        if(item['BCBS Prefix'] === searchTerm){
-          searchResults.push(item)
-        }
-      })
-      setResults(searchResults)
-    }
-  }, [searchTerm])
-
-  const updateSort = (columnName, columnNameSorting) => {
-    if(sort === 'asc'){
-      setSort('desc')
-    } else {
-      setSort('asc')
-    }
-    setColumn(columnName)
-    sortData(columnNameSorting)
-  }
-
-  const sortData = (columnName) => {
-    // const sortOrderToSet = sortedColumn === columnName && sortOrder === 'asc' ? 'desc' : 'asc';
-    // setSort(sortOrderToSet);
-    // setColumn(columnName);
-
-    // Sorting logic
-    return data.sort((a, b) => {
-      let valueA = a[columnName];
-      let valueB = b[columnName];
-
-      // Handling special cases for numeric and date sorting
-      if (columnName === 'Allowed %' || columnName === 'Paid %' || columnName === 'Avg Daily Rate') {
-        valueA = parseFloat(valueA);
-        valueB = parseFloat(valueB);
-      } else if (columnName === 'Last Paid') {
-        valueA = new Date(valueA);
-        valueB = new Date(valueB);
-      }
-
-      if (sort === 'asc') {
-        return valueA > valueB ? 1 : -1;
-      } else {
-        return valueA < valueB ? 1 : -1;
-      }
-    });
-  };
 
   const formatDollarAmount = (str) => {
     const num = parseFloat(str);

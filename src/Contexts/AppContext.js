@@ -7,7 +7,7 @@ export function useApp() {
 }
 
 export const AppProvider = ({ children }) => {
-  const [selectedTab, setSelectedTab] = useState('billingDetails'); 
+  const [selectedTab, setSelectedTab] = useState('intake'); 
   const [tableFilter, setTableFilter] = useState(false)
 
   const [filterFacility, setFilterFacility] = useState(false)

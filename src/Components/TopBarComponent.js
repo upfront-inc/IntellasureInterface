@@ -50,7 +50,7 @@ const TopBarComponent = (props) => {
       {
         activeSearch
           ? <button type="button" onClick={clearSearch} style={{ fontSize: '18px', marginLeft: '8px', color: '#0b8ec4', border: 'none', backgroundColor: 'white' }}>Clear</button>
-          : <button type="submit" style={{ fontSize: '18px', marginLeft: '8px', color: '#0b8ec4', border: 'none', backgroundColor: 'white' }}>Search</button>
+          : <button type="submit" onClick={() => {startSearchPrefix()}} style={{ fontSize: '18px', marginLeft: '8px', color: '#0b8ec4', border: 'none', backgroundColor: 'white' }}>Search</button>
       }
       <div className={`spliter-${theme}`}></div>
       <div onClick={() => {toggleTableFilter()}}>

@@ -4,7 +4,7 @@ import { useSidebar } from '../Contexts/SidebarContext';
 import { useTheme } from '../Contexts/ThemeContext';
 import { useApp } from '../Contexts/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDoubleLeft, faAngleDoubleRight, faArrowAltCircleRight, faCode, faFlag, faGear, faInbox, faInfoCircle, faList, faMoneyBill, faQuestion, faRightFromBracket, faSheetPlastic, faShield, faShieldAlt, faTicket, faUser, faUsers, faWandSparkles, faX } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleLeft, faAngleDoubleRight, faHome, faGear, faMoneyBill, faRightFromBracket, faShieldAlt, faUsers, faWandSparkles } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from '../Contexts/UserContext';
 
 const SideBarComponent = () => {
@@ -45,6 +45,18 @@ const SideBarComponent = () => {
               }
             </div>
           </div>
+          <div onClick={() => {toggleSelectedTab('intake')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('intake') ? `menu-bar-item-selected-${theme}` : ''}`}>
+          <div className='icon-container'>
+            <FontAwesomeIcon icon={faHome} className="icon-menu"/>
+          </div>
+          <div>
+            {
+              sidebarPosition === 'open'
+                ? <p className={`label-${theme}`}>Dashboard</p>
+                : null
+            }
+          </div>
+        </div>
           <div onClick={() => {toggleSelectedTab('billingDetails')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('billingDetails') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faShieldAlt} className="icon-menu"/>
@@ -93,18 +105,6 @@ const SideBarComponent = () => {
               }
             </div>
           </div> */}
-          <div onClick={() => {toggleSelectedTab('intake')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('intake') ? `menu-bar-item-selected-${theme}` : ''}`}>
-            <div className='icon-container'>
-              <FontAwesomeIcon icon={faArrowAltCircleRight} className="icon-menu"/>
-            </div>
-            <div>
-              {
-                sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>VOB</p>
-                  : null
-              }
-            </div>
-          </div>
         </div>
         <div>
           {

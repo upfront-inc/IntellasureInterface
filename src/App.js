@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import amplifyconfig from './amplifyconfiguration.json';
 
@@ -29,15 +29,58 @@ import UpdateIntakeRecord from './Components/UpdateIntakeRecord';
 
 Amplify.configure(amplifyconfig)
 
+const TIMEOUT = 25 * 60 * 1000; // Set timeout as 5 minutes
+
+
 function App() {
   const { theme } = useTheme(); 
   const { sidebarPosition, showProfile } = useSidebar();
   const { selectedTab, showAddIntakeRecord, showAddUserRecord, showUpdateIntakeRecord } = useApp();
-  const { grabCurrentUser, currentUser, loading } = useUser()
+  const { grabCurrentUser, currentUser, loading, signOutUser } = useUser()
+
+  const [isActive, setIsActive] = useState(true);
+  const [timer, setTimer] = useState(TIMEOUT);
 
   useEffect(() => {
     grabCurrentUser()
   }, [])
+  
+  const handleActivity = useCallback(() => {
+    setIsActive(true);
+    setTimer(TIMEOUT);
+  }, []);
+
+  useEffect(() => {
+    if (isActive && timer === 0) {
+      // Do something after inactivity, like logout the user
+      console.log('User has been inactive for 25 minutes');
+      setIsActive(false);
+      signOutUser()
+    }
+  }, [isActive, timer]);
+
+  useEffect(() => {
+    // Events that will reset the timer
+    window.addEventListener('mousemove', handleActivity);
+    window.addEventListener('keypress', handleActivity);
+    window.addEventListener('scroll', handleActivity);
+    window.addEventListener('touchstart', handleActivity);
+    window.addEventListener('click', handleActivity);
+
+    let interval = setInterval(() => {
+      setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1000 : 0));
+    }, 1000);
+
+    // Cleanup
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('mousemove', handleActivity);
+      window.removeEventListener('keypress', handleActivity);
+      window.removeEventListener('scroll', handleActivity);
+      window.removeEventListener('touchstart', handleActivity);
+      window.removeEventListener('click', handleActivity);
+    };
+  }, [handleActivity]);
 
   const displayLoading = () => {
     return(

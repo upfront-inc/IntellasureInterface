@@ -7,7 +7,8 @@ import { useApp } from '../Contexts/AppContext'
 import axios from 'axios'
 import { useUser } from '../Contexts/UserContext'
 
-const UpdateIntakeRecord = () => {
+const UpdateIntakeRecord = (props) => {
+  const {getIntakeRecords} = props
 
   const { theme } = useTheme();
   const { toggleUpdateIntakeRecord, updatingRecord } = useApp()
@@ -98,6 +99,7 @@ const UpdateIntakeRecord = () => {
     axios.patch(url, intakeData)
     .then((response) => {
       toggleUpdateIntakeRecord()
+      getIntakeRecords()
     })
     .catch((error) => {
       console.log(error);

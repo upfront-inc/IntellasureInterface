@@ -24,9 +24,11 @@ const AddIntakeRecord = () => {
   const [inNetworkDetails, setInNetworkDetails] = useState('')
   const [notes, setNotes] = useState('')
   const [date, setDate] = useState('')
-  const [acitvePolicy, setActivePolicy] = useState(true)
+  const [acitvePolicy, setActivePolicy] = useState(false)
   const [booked, setBooked] = useState(false)
   const [checkedIn, setCheckedIn] = useState(false)
+
+  const [insuranceOptions, setInsuranceOptions] = useState([])
 
   const handleClientNammeChnage = (e) => {
     setClient(e.target.value)
@@ -80,6 +82,21 @@ const AddIntakeRecord = () => {
     setCheckedIn(!checkedIn)
   }
 
+  useEffect(() => {
+    grabInsuranceOptions()
+  }, [])
+
+  const grabInsuranceOptions = () => {
+    const url = 'https://intellasurebackend-docker.onrender.com//verify_tx_payers'
+    axios.get(url)
+      .then((response) => {
+        setInsuranceOptions(response.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   const generateTenDigitNumber = () => {
     const min = 1000000000;
     const max = 9999999999;
@@ -95,6 +112,10 @@ const AddIntakeRecord = () => {
     return `${month}/${day}/${year}`;
   }
 
+  const handleInsuranceChange = (e) => {
+    setInsurance(e.target.value);
+  };
+
   const sendDataToServer = () => {
     let intakeId = generateTenDigitNumber()
     let intakeData = { data: {
@@ -105,7 +126,7 @@ const AddIntakeRecord = () => {
       "insurance": insurance,
       "source": source,
       "coordinator":userProfile.priviledges === 'member' ? userProfile.name : coordinator,
-      "summary_out": summaryOut,
+      "summary_out": null,
       "booked": booked,
       "checked_in": checkedIn,
       "out_network_details": outNetworkDetails,
@@ -124,8 +145,6 @@ const AddIntakeRecord = () => {
       console.log(error);
     });
   };
-
-
   
   return (
     <div className={`intake-container-${theme}`}>
@@ -154,12 +173,22 @@ const AddIntakeRecord = () => {
         </div>
         <div className='row'>
           <p className={`text-${theme}`}>Insurance</p>
-          <input 
-            className={`input-${theme}`}
-            placeholder='insurance name...'
+          <select
             value={insurance}
-            onChange={(text) => {handleInsuranceChnage(text)}}
-          />
+            onChange={handleInsuranceChange}
+            className={`input-${theme}`}
+          >
+            <option value="">Select Insurance</option>
+            {
+              insuranceOptions.map((option) => {
+                return(
+                  <option key={option.payid} value={option.insurance}>
+                    {option.insurance}
+                  </option>
+                )
+              })
+            }
+          </select>
         </div>
         <div className='row'>
           <p className={`text-${theme}`}>Source</p>
@@ -183,7 +212,7 @@ const AddIntakeRecord = () => {
                 />
               </div>
         }
-        <div className='row'>
+        {/* <div className='row'>
           <p className={`text-${theme}`}>Summary Out</p>
           <div>
             <label>
@@ -269,7 +298,7 @@ const AddIntakeRecord = () => {
             value={outNetworkDetails}
             onChange={(text) => {handleOutNetworkDetailsChange(text)}}
           />
-        </div>
+        </div> */}
         <div className='row'>
           <p className={`text-${theme}`}>Notes</p>
           <input 

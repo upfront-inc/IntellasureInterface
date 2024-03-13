@@ -72,7 +72,7 @@ const IntakeScreen = () => {
       }
       {
         showUpdateIntakeRecord
-          ? <div className={`popup-${sidebarPosition}`}><UpdateIntakeRecord/></div>
+          ? <div className={`popup-${sidebarPosition}`}><UpdateIntakeRecord getIntakeRecords={getIntakeRecords}/></div>
           : null
       }
       <div className={`content-container-${theme}`}>
