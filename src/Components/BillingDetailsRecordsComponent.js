@@ -4,7 +4,7 @@ import { useTheme } from '../Contexts/ThemeContext'
 import { useUser } from '../Contexts/UserContext'
 
 const BillingDetailsRecordsComponent = (props) => {
-  const {record, setSelectedPrefix, setViewingTab} = props
+  const {record, setSelectedPrefix, setSelectedNetwork, setViewingTab} = props
 
   const { theme } = useTheme()
   const { userProfile } = useUser()
@@ -52,13 +52,15 @@ const BillingDetailsRecordsComponent = (props) => {
     }).format(amount);
   }
 
-  const viewPrefixRecords = (prefix) => {
+  const viewPrefixRecords = (prefix, network) => {
+    console.log(network)
+    setSelectedNetwork(network)
     setSelectedPrefix(prefix)
     setViewingTab('prefix')
   }
 
   return (
-    <tr onClick={() => {viewPrefixRecords(record.prefix)}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
+    <tr onClick={() => {viewPrefixRecords(record.prefix, record.network)}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
       <td>{record.prefix}</td>
       <td>{record.insurance}</td>
       <td>{record.network === 'out-of-network' ? 'out-network' : record.network}</td>

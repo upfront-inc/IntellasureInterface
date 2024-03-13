@@ -68,7 +68,6 @@ const FinancialTableComponent = (props) => {
               ? <>
                   {
                     financialInfo.map((item) => {
-                      console.log(item)
                       return(
                         <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
                           <td>{item.Claim_ID}</td>

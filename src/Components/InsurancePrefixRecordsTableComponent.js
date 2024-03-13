@@ -7,7 +7,7 @@ import { useUser } from '../Contexts/UserContext'
 import axios from 'axios'
 
 const InsurancePrefixRecordsTableComponent = (props) => {
-  const {setViewingTab, selectedPrefix, setSelectedPolicy} = props
+  const {setViewingTab, selectedPrefix, setSelectedPolicy, selectedNetwor} = props
 
   const { theme } = useTheme()
   const { userProfile } = useUser()
@@ -19,16 +19,14 @@ const InsurancePrefixRecordsTableComponent = (props) => {
   }, [])
 
   const grabInsuranceRecords = () => {
-    console.log(selectedPrefix)
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: `https://intellasurebackend-docker.onrender.com/level2/${selectedPrefix}`,
+      url: `https://intellasurebackend-docker.onrender.com/level2/${selectedPrefix}_${selectedNetwor}`,
       headers: { }
     };
     axios.request(config)
     .then((response) => {
-      console.log(response.data);
       setRecords(response.data)
     })
     .catch((error) => {

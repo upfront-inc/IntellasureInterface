@@ -8,7 +8,7 @@ import { useUser } from '../Contexts/UserContext'
 import axios from 'axios'
 
 const BillingDetailsTablesComponent = (props) => {
-  const {setViewingTab, setSelectedPrefix, records, setTabDetails} = props
+  const {setViewingTab, setSelectedPrefix, records, setSelectedNetwork} = props
 
   const { theme } = useTheme()
   const { userProfile, loading } = useUser()
@@ -153,7 +153,7 @@ const BillingDetailsTablesComponent = (props) => {
             sortedRecords.map((record) => {
               return(
                 <>
-                  <BillingDetailsRecordsComponent setSelectedPrefix={setSelectedPrefix} setViewingTab={setViewingTab} record={record}/>
+                  <BillingDetailsRecordsComponent setSelectedNetwork={setSelectedNetwork} setSelectedPrefix={setSelectedPrefix} setViewingTab={setViewingTab} record={record}/>
                 </>
               )
             })

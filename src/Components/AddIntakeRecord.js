@@ -163,6 +163,15 @@ const AddIntakeRecord = () => {
           />
         </div>
         <div className='row'>
+          <p className={`text-${theme}`} title='figure out how to integrate'>Date Of Birth</p>
+          <input 
+            className={`input-${theme}`}
+            placeholder='dob...'
+            value={client}
+            onChange={(text) => {handleClientNammeChnage(text)}}
+          />
+        </div>
+        <div className='row'>
           <p className={`text-${theme}`}>Policy</p>
           <input 
             className={`input-${theme}`}
