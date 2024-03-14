@@ -56,7 +56,10 @@ const IntakeScreen = () => {
     };
     axios.request(config)
     .then((response) => {
-      setResults(response.data.data)
+      console.log(response.data.data)
+      if(response.data.data.length > 0){
+        setResults(response.data.data)
+      } 
     })
     .catch((error) => {
       console.log(error);
@@ -78,7 +81,7 @@ const IntakeScreen = () => {
       <div className={`content-container-${theme}`}>
         <TopBarAddComponent page={page} nextPage={nextPage} previousPage={previousPage}/>
         <div className='table-container'>
-          <IntakeTableComponent  results={results}/>
+          <IntakeTableComponent results={results}/>
         </div>
       </div>
     </>

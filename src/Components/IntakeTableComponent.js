@@ -90,27 +90,46 @@ const IntakeTableComponent = (props) => {
         </thead>
         <tbody className={`table-body-${theme}`}>
           {
-            results.map((item) => {
-              return(
-                <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px', minWidth: '350px'}}>
-                  <td>{item.name}</td>
-                  <td style={{minWidth: '0px'}}>{item.prefix === 'na' ? '--' : item.prefix}</td>
-                  <td>{item.policy_id === 'na' ? '--' : item.policy_id}</td>
-                  <td>{item.insurance}</td>
-                  <td>{item.active ? 'Yes' : 'No'}</td>
-                  <td style={{minWidth: '0px'}}>{item.source}</td>
-                  <td>{item.coordinator}</td>
-                  <td>{item.summary_out}</td>
-                  <td>{item.booked ? 'Yes' : 'No'}</td>
+            results.length > 0
+              ? results.map((item) => {
+                  // console.log(item)
+                  return(
+                    <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px', minWidth: '350px'}}>
+                      <td>{item.name}</td>
+                      <td style={{minWidth: '0px'}}>{item.prefix === 'na' ? '--' : item.prefix}</td>
+                      <td>{item.policy_id === 'na' ? '--' : item.policy_id}</td>
+                      <td>{item.insurance}</td>
+                      <td>{item.active === "YES" ? 'Yes' : 'No'}</td>
+                      <td style={{minWidth: '0px'}}>{item.source}</td>
+                      <td>{item.coordinator}</td>
+                      <td>{item.summary_out}</td>
+                      <td>{item.booked ? 'Yes' : 'No'}</td>
+                      {/* <td>{item.checked_in ? 'Yes' : 'No'}</td> */}
+                      <td>{item.in_network_details}</td>
+                      <td>{item.out_network_details}</td>
+                      <td>{item.notes}</td>
+                      <td>{convertDateToCustomFormat(item.date)}</td>
+                      <td onClick={() => {updateRecord(item)}} style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
+                    </tr>
+                  )
+                })
+              : <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px', minWidth: '350px'}}>
+                  <td></td>
+                  <td style={{minWidth: '0px'}}></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td style={{minWidth: '0px'}}></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                   {/* <td>{item.checked_in ? 'Yes' : 'No'}</td> */}
-                  <td>{item.in_network_details}</td>
-                  <td>{item.out_network_details}</td>
-                  <td>{item.notes}</td>
-                  <td>{convertDateToCustomFormat(item.date)}</td>
-                  <td onClick={() => {updateRecord(item)}} style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td style={{minWidth: '0px'}} className='update-column'></td>
                 </tr>
-              )
-            })
           }
         </tbody>
       </table>

@@ -7,6 +7,24 @@ import { useApp } from '../Contexts/AppContext'
 import axios from 'axios'
 import { useUser } from '../Contexts/UserContext'
 
+const coordinatorListUsers = [
+  {
+    "name": "George Wallis",
+    "email": "gwalllis@gmail.com",
+    "department": "intake"
+  },
+  {
+    "name": "Alexander Lowerly",
+    "email": "alowery@gmail.com",
+    "department": "intake"
+  },
+  {
+    "name": "Ashley Alvarex",
+    "email": "aalvarez@gmail.com",
+    "department": "intake"
+  },
+]
+
 const AddIntakeRecord = () => {
 
   const { theme } = useTheme();
@@ -21,7 +39,6 @@ const AddIntakeRecord = () => {
   const [source, setSource] = useState('')
   const [coordinator, setCoordinator] = useState('')
   const [summaryOut, setSummaryOut] = useState('Good Vob')
-  const [details, setDetails] = useState('')
   const [outNetworkDetails, setOutNetworkDetails] = useState('')
   const [inNetworkDetails, setInNetworkDetails] = useState('')
   const [notes, setNotes] = useState('')
@@ -31,6 +48,7 @@ const AddIntakeRecord = () => {
   const [checkedIn, setCheckedIn] = useState(false)
 
   const [insuranceOptions, setInsuranceOptions] = useState([])
+  const [cooredinatorList, setCoordinatorList] = useState(coordinatorListUsers)
 
   const handleClientNammeChnage = (e) => {
     setClient(e.target.value)
@@ -130,11 +148,13 @@ const AddIntakeRecord = () => {
       "prefix": prefix.slice(0, 3),
       "policy_id": prefix,
       "insurance": insurance,
+      "payer_id": payer_id,
+      "date_of_birth": dob,
       "source": source,
       "coordinator":userProfile.priviledges === 'member' ? userProfile.name : coordinator,
       "summary_out": null,
       "booked": booked,
-      "checked_in": checkedIn,
+      "check_in": checkedIn,
       "out_network_details": outNetworkDetails,
       "in_network_details": inNetworkDetails,
       "notes": notes,
@@ -154,11 +174,13 @@ const AddIntakeRecord = () => {
     });
   };
   
-  const updatedSelectedInsurance = (payer_id, insurance) => {
+  const updatedSelectedInsurance = (payer_id) => {
+    // Find the insurance name using the payer_id from insuranceOptions
+    const selectedInsurance = insuranceOptions.find(option => option.payer_id === payer_id).insurance;
     console.log(payer_id)
-    console.log(insurance)
-    setInsurance(insurance)
-    setPayer_id(payer_id)
+    console.log(selectedInsurance)
+    setInsurance(selectedInsurance);
+    setPayer_id(payer_id);
   }
 
   return (
@@ -198,15 +220,15 @@ const AddIntakeRecord = () => {
         <div className='row'>
           <p className={`text-${theme}`}>Insurance</p>
           <select
-            value={insurance}
-            onChange={(e) => updatedSelectedInsurance(e.target.value, e.target.options[e.target.selectedIndex].text)}
+            value={payer_id} // Set value to payer_id
+            onChange={(e) => updatedSelectedInsurance(e.target.value)}
             className={`input-${theme}`}
           >
             <option value="">Select Insurance</option>
             {
               insuranceOptions.map((option) => {
                 return(
-                  <option key={option.payer_id} value={option.insurance}>
+                  <option key={option.payer_id} value={option.payer_id}>
                     {option.insurance}
                   </option>
                 )
@@ -228,12 +250,22 @@ const AddIntakeRecord = () => {
             ? null
             : <div className='row'>
                 <p className={`text-${theme}`}>Coordinator</p>
-                <input 
-                  className={`input-${theme}`}
-                  placeholder='coordinator name...'
+                <select
                   value={coordinator}
-                  onChange={(text) => {handleCoordinatorChnage(text)}}
-                />
+                  onChange={(e) => setCoordinator(e.target.value)}
+                  className={`input-${theme}`}
+                >
+                  <option value="">Select Coordinator</option>
+                  {
+                    cooredinatorList.map((option) => {
+                      return(
+                        <option key={option.email} value={option.name}>
+                          {option.name}
+                        </option>
+                      )
+                    })
+                  }
+                </select>
               </div>
         }
         {/* <div className='row'>
