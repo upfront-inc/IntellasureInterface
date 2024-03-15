@@ -25,6 +25,7 @@ const ConfirmEmailScreen = (props) => {
   };
 
   const resetConfirmEmail = () => {
+    console.log(username)
     resendSignUpCode({
       username: username
     })

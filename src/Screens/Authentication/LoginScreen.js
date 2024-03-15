@@ -33,7 +33,7 @@ const LoginScreen = (props) => {
         setLoading(false)
       })
       .catch((error) => {
-        console.log(error)
+        console.log(JSON.stringify(error))
         setValidLogin(false)
       })
   }
@@ -56,7 +56,7 @@ const LoginScreen = (props) => {
     <div style={styles.appContainer}>
       <div style={styles.formContainer}>
         <h1>Login</h1>
-        {/* <p onClick={() => {signOutUser()}}>logout</p> */}
+        <p onClick={() => {signOutUser()}}>logout</p>
         {
           validLogin
             ? null 

@@ -96,6 +96,7 @@ const SignupScreen = (props) => {
     
     signUp(signupData)
       .then((currentUser) => {
+        console.log(currentUser.userId)
         createProfile(currentUser.userId)
       })
       .catch((err) => {
