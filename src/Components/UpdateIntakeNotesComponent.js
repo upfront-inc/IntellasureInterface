@@ -37,25 +37,27 @@ const UpdateIntakeNotesComponent = (props) => {
         setRecords(response.data)
       })
       .catch((error) => {
-        console.log(error);
+        console.log('error getting notes: ',error);
       });
   }
 
   const createNewNote = () => {
-    let intakeData = { data: {
+    let intakeData = {
       "intake_id": selectedIntakeId,  
       "date": convertDateToMMDDYYYY(new Date()),
       "notes": newNote
-    }}
+    }
 
+    console.log('intake data: ', intakeData)
     const url = `https://intellasurebackend-docker.onrender.com/intake/update_intake_note`
     
     axios.post(url, intakeData)
     .then((response) => {
-      grabAllNotes()
+      setNewNote('')
+      grabAllNotes(selectedIntakeId)
     })
     .catch((error) => {
-      console.log(error);
+      console.log('error adding new note: ', error);
     });
   }
 
