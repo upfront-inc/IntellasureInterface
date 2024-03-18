@@ -13,6 +13,7 @@ import AdduserComponent from '../Components/AdduserComponent';
 import { useUser } from '../Contexts/UserContext';
 import { useSidebar } from '../Contexts/SidebarContext';
 import UpdateIntakeRecord from '../Components/UpdateIntakeRecord';
+import UpdateIntakeNotesComponent from '../Components/UpdateIntakeNotesComponent';
 
 const IntakeScreen = () => {
   const { theme } = useTheme(); 
@@ -23,6 +24,10 @@ const IntakeScreen = () => {
 
   const [results, setResults] = useState([])
   const [page, setPage] = useState(1)
+
+  const [showIntakeRecordNotes, setShowIntakeRecordsNotes] = useState(false)
+
+  const [selectedIntakeId, setSelectedIntakeId] = useState('')
 
   const nextPage = () => {
     if(page >= 1 && page < 20){
@@ -88,10 +93,15 @@ const IntakeScreen = () => {
           ? <div className={`popup-${sidebarPosition}`}><UpdateIntakeRecord getIntakeRecords={getIntakeRecords}/></div>
           : null
       }
+      {
+        showIntakeRecordNotes
+          ? <div className={`popup-${sidebarPosition}`}><UpdateIntakeNotesComponent selectedIntakeId={selectedIntakeId}/></div>
+          : null
+      }
       <div className={`content-container-${theme}`}>
         <TopBarAddComponent page={page} nextPage={nextPage} previousPage={previousPage}/>
         <div className='table-container'>
-          <IntakeTableComponent results={results}/>
+          <IntakeTableComponent setShowIntakeRecordsNotes={setShowIntakeRecordsNotes} setSelectedIntakeId={setSelectedIntakeId} results={results}/>
         </div>
       </div>
     </>

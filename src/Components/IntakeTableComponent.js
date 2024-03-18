@@ -9,7 +9,7 @@ import IntakeItemComponent from './IntakeItemComponent'
 
 const IntakeTableComponent = (props) => {
 
-  const {results} = props
+  const {results, setSelectedIntakeId, setShowIntakeRecordsNotes} = props
 
   const { theme } = useTheme()
   const { toggleUpdateIntakeRecord, setUpdatingRecord } = useApp()
@@ -107,7 +107,7 @@ const IntakeTableComponent = (props) => {
               ? results.map((item) => {
                   return(
                     <>
-                    <IntakeItemComponent item={item}/>
+                    <IntakeItemComponent setShowIntakeRecordsNotes={setShowIntakeRecordsNotes} setSelectedIntakeId={setSelectedIntakeId} item={item}/>
                     </>
                   )
                 })

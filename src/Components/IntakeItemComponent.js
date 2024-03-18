@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons'
 
 const IntakeItemComponent = (props) => {
-  const {item} = props
+  const {item, setSelectedIntakeId, setShowIntakeRecordsNotes} = props
 
   const { theme } = useTheme()
   const { toggleUpdateIntakeRecord, setUpdatingRecord } = useApp()
@@ -55,6 +55,11 @@ const IntakeItemComponent = (props) => {
     return "$" + numberWithCommas;
   }
 
+  const UpdateViewingNotes = (intakeId) => {
+    setSelectedIntakeId(intakeId)
+    setShowIntakeRecordsNotes(true)
+  }
+
 
   return (
     <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px', minWidth: '350px'}}>
@@ -72,7 +77,7 @@ const IntakeItemComponent = (props) => {
       <td>{item.in_network_oop === null ? '$0' : floatToDollarAmount(item.in_network_oop)}</td>
       <td>{item.onn_deductible === null ? '$0' : floatToDollarAmount(item.onn_deductible)}</td>
       <td>{item.out_network_oop === null ? '$0' : floatToDollarAmount(item.out_network_oop)}</td>
-      <td>{item.notes}</td>
+      <td onClick={() => {UpdateViewingNotes(item.intake_id)}}><span style={{color: 'blue'}}>View Notes</span></td>
       <td>{convertDateToCustomFormat(item.date)}</td>
       <td onClick={() => {updateRecord(item)}} style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
     </tr>
