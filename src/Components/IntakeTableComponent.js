@@ -72,12 +72,13 @@ const IntakeTableComponent = (props) => {
             <th className='table-header-text column'>
               Active 
             </th>
-            <th className='table-header-text column'>
-              Source 
-            </th>
-            <th className='table-header-text column'>
-              Coordinator 
-            </th>
+            {
+              userProfile.privileges === 'staff'
+                ? null 
+                : <th className='table-header-text column'>
+                    Coordinator 
+                  </th>
+            }
             <th className='table-header-text column'>
               Summary Out 
             </th>
@@ -92,6 +93,9 @@ const IntakeTableComponent = (props) => {
             </th>
             <th className='table-header-text column'>
               Out-Network OOP
+            </th>
+            <th className='table-header-text column'>
+              Source 
             </th>
             <th className='table-header-text column'>
               Notes

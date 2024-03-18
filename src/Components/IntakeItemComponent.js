@@ -4,12 +4,14 @@ import { useTheme } from '../Contexts/ThemeContext'
 import { useApp } from '../Contexts/AppContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons'
+import { useUser } from '../Contexts/UserContext'
 
 const IntakeItemComponent = (props) => {
   const {item, setSelectedIntakeId, setShowIntakeRecordsNotes} = props
 
   const { theme } = useTheme()
   const { toggleUpdateIntakeRecord, setUpdatingRecord } = useApp()
+  const { userProfile } = useUser()
 
   const [coordinator, setCoordinator] = useState('')
 
@@ -71,13 +73,17 @@ const IntakeItemComponent = (props) => {
       <td>{item.policy_id === 'na' ? '--' : item.policy_id}</td>
       <td>{item.insurance}</td>
       <td>{item.active === "YES" ? 'Yes' : 'No'}</td>
-      <td style={{minWidth: '0px'}}>{item.source}</td>
-      <td>{coordinator}</td>
+      {
+        userProfile.privileges === 'staff'
+        ? <td></td>
+        : <td>{coordinator}</td>
+      }
       <td>{item.summary_out}</td>
       <td>{item.inn_deductible === null ? '$0' : floatToDollarAmount(item.inn_deductible)}</td>
       <td>{item.in_network_oop === null ? '$0' : floatToDollarAmount(item.in_network_oop)}</td>
       <td>{item.onn_deductible === null ? '$0' : floatToDollarAmount(item.onn_deductible)}</td>
       <td>{item.out_network_oop === null ? '$0' : floatToDollarAmount(item.out_network_oop)}</td>
+      <td style={{minWidth: '0px'}}>{item.source}</td>
       <td onClick={() => {UpdateViewingNotes(item.intake_id)}}><span style={{color: 'blue'}}>View Notes</span></td>
       <td onClick={() => {updateRecord(item)}} style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
     </tr>
