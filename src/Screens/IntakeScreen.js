@@ -95,7 +95,7 @@ const IntakeScreen = () => {
       }
       {
         showIntakeRecordNotes
-          ? <div className={`popup-${sidebarPosition}`}><UpdateIntakeNotesComponent selectedIntakeId={selectedIntakeId}/></div>
+          ? <div className={`popup-${sidebarPosition}`}><UpdateIntakeNotesComponent selectedIntakeId={selectedIntakeId} setShowIntakeRecordsNotes={setShowIntakeRecordsNotes}/></div>
           : null
       }
       <div className={`content-container-${theme}`}>

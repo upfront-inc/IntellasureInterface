@@ -1,6 +1,6 @@
 .intake-container-dark, .intake-container-light {
-  min-width: 350px;
-  min-height: 250px;
+  min-width: 450px;
+  min-height: 450px;
   background-color: white;
   z-index: 4;
   padding: 16px;
