@@ -20,6 +20,7 @@ export const UserProvider = ({ children }) => {
         console.log(response)
         setCurrentUser(response.userId)
         grabCurrentUserProfile(response.userId)
+        // setLoading(false)
       })
       .catch(error => {
         console.log(`Error getting user: ${error}`)

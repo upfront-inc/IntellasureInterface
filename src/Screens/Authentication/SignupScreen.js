@@ -11,11 +11,13 @@ const SignupScreen = (props) => {
   const [verify, setVerify] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [companyId, setCompanyId] = useState('PHG')
 
   const [validEmail, setValidEmail] = useState(false)
   const [validPassword, setValidPassword] = useState(false)
   const [matchingVerify, setMatchingVerify] = useState(false)
+  const [validPhoneNumber, setValidPhoneNumber] = useState(false)
 
   const [invalidEmail, setInvalidEmail] = useState(false)
 
@@ -27,6 +29,18 @@ const SignupScreen = (props) => {
       : setValidEmail(false)
     setEmail(val.target.value)
   }
+
+  function isValidPhoneNumber(phoneNumber) {
+    // Remove any non-digit characters from the phone number
+    const cleanedPhoneNumber = phoneNumber.replace(/\D/g, '');
+
+    // Check if the cleaned phone number consists of exactly 10 digits
+    if (cleanedPhoneNumber.length === 10) {
+      setValidPhoneNumber(true) // Valid phone number
+    } else {
+      setValidPhoneNumber(false) // Invalid phone number
+    }
+}
 
   const handlePasswordChange = (val) => {
     const isValidLength = password.length >= 8;
@@ -62,6 +76,11 @@ const SignupScreen = (props) => {
     setLastName(val.target.value)
   }
 
+  const handlePhoneChange = (val) => {
+    isValidPhoneNumber(val.target.value)
+    setPhoneNumber(val.target.value)
+  }
+
   const handleCompanyIdChange = (val) => {
     setCompanyId(val.target.value)
   }
@@ -89,7 +108,8 @@ const SignupScreen = (props) => {
           given_name: firstName,
           family_name: lastName,
           nickname: firstName,
-          name: `${firstName} ${lastName}`
+          name: `${firstName} ${lastName}`,
+          phone_number: phoneNumber
         }
       }
     }
@@ -213,6 +233,20 @@ const SignupScreen = (props) => {
           matchingVerify
             ? null
             : <p style={styles.validationMessage}>Verify: Password and Verify don't match</p>
+        }
+        <InputComponent
+          value={phoneNumber}
+          handleFunction={handlePhoneChange}
+          placeHolder={'phone...'}
+          type='text'
+          capitalize={'none'}
+          icon={'phone'}
+          split={'full'}
+        />
+        {
+          validPhoneNumber
+            ? null
+            : <p style={styles.validationMessage}>Phone: Invalid Number</p>
         }
         <div style={styles.buttonContainer}>
           <div onClick={() => {signUpUser()}} style={styles.buttonContainerSingle}>

@@ -8,6 +8,7 @@ import Background from '../../Assets/mountain.jpg'
 import Lake from '../../Assets/lake.jpg'
 import BackgroundImage from '../../Assets/background.png'
 import AccessCodeScreen from './AccessCodeScreen'
+import PhoneVerificationScreen from './PhoneVerificationScreen'
 
 const AuthenticationScreen = () => {
 
@@ -33,13 +34,15 @@ const AuthenticationScreen = () => {
             ? <LoginScreen handleAuthView={handleAuthView}/>
             : authView === 'signup'
                 ? <SignupScreen handleAuthView={handleAuthView} setUsername={setUsername}/>
-                : authView === 'confirm'
-                    ? <ConfirmEmailScreen handleAuthView={handleAuthView} username={username}/>
-                    : authView === 'forgot'
-                        ? <ForgotPasswordScreen handleAuthView={handleAuthView} />
-                        : authView === 'access'
-                            ? <AccessCodeScreen handleAuthView={handleAuthView}/>
-                            : null
+                : authView === 'mfa'
+                    ? <PhoneVerificationScreen username={username} handleAuthView={handleAuthView}/>
+                    : authView === 'confirm'
+                        ? <ConfirmEmailScreen handleAuthView={handleAuthView} username={username}/>
+                        : authView === 'forgot'
+                            ? <ForgotPasswordScreen handleAuthView={handleAuthView} />
+                            : authView === 'access'
+                                ? <AccessCodeScreen handleAuthView={handleAuthView}/>
+                                : null
         }
       </div>
     </div>

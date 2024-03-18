@@ -1,7 +1,7 @@
 import React from 'react'
 import '../Css/userinput.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBuilding, faEnvelope, faHashtag, faList, faLock, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faBuilding, faEnvelope, faHashtag, faList, faLock, faPhone, faUser } from '@fortawesome/free-solid-svg-icons'
 
 const InputComponent = (props) => {
   const {value, handleFunction, placeHolder, icon, type, capitalize, split} = props
@@ -12,7 +12,8 @@ const InputComponent = (props) => {
     envelope: faEnvelope,
     lock: faLock,
     building: faBuilding,
-    number: faHashtag
+    number: faHashtag,
+    phone: faPhone
   };
 
   const iconObject = iconMapping[icon];

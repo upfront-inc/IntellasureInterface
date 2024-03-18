@@ -29,7 +29,7 @@ const LoginScreen = (props) => {
     setLoading(true)
     signIn({username, password})
       .then((response) => {
-        grabCurrentUser()
+        handleAuthView('intake')
         setLoading(false)
       })
       .catch((error) => {

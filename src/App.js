@@ -42,6 +42,7 @@ function App() {
   const [timer, setTimer] = useState(TIMEOUT);
 
   useEffect(() => {
+    // signOutUser()
     grabCurrentUser()
   }, [])
   
