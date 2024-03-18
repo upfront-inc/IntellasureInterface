@@ -40,7 +40,7 @@ const InsurancePrefixRecordsTableComponent = (props) => {
         <thead className={`table-header-${theme}`}>
           <tr>
             {
-              userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+              userProfile.privileges === 'member' || userProfile.privileges === 'manager'
                 ? null
                 : <th className='table-header-text'>
                     Name 
@@ -50,7 +50,7 @@ const InsurancePrefixRecordsTableComponent = (props) => {
               Prefix 
             </th>
             {
-              userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+              userProfile.privileges === 'member' || userProfile.privileges === 'manager'
                 ? null
                 : <th className='table-header-text'>
                     Policy 
@@ -66,7 +66,7 @@ const InsurancePrefixRecordsTableComponent = (props) => {
               Facility 
             </th>
             {
-              userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+              userProfile.privileges === 'member' || userProfile.privileges === 'manager'
                 ? null
                 : <><th className='table-header-text'>
                     Res. Days
@@ -76,7 +76,7 @@ const InsurancePrefixRecordsTableComponent = (props) => {
                   </th></>
             }
             {
-              userProfile.priviledges === 'member' || userProfile.priviledges === 'manager' 
+              userProfile.privileges === 'member' || userProfile.privileges === 'manager' 
                 ? null
                 : <>
                     <th className='table-header-text'>
@@ -94,7 +94,7 @@ const InsurancePrefixRecordsTableComponent = (props) => {
               Admission 
             </th>
             {
-              userProfile.priviledges === 'admin' || userProfile.priviledges === 'dev' || userProfile.priviledges === 'owner'
+              userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'
                 ? <th className='table-header-text'>
                     Admission % 
                   </th>

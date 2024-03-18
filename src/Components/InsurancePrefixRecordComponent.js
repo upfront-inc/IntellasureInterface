@@ -68,7 +68,7 @@ const InsurancePrefixRecordComponent = (props) => {
   }
 
   const goToLevel1 = (policy_id) => {
-    if (userProfile.priviledges === 'member' || userProfile.priviledges === 'manager') {
+    if (userProfile.privileges === 'member' || userProfile.privileges === 'manager') {
       return; // early return if the user doesn't have the correct privileges
     }
     selectInsurancePolicy(policy_id);
@@ -77,12 +77,12 @@ const InsurancePrefixRecordComponent = (props) => {
   return (
     <tr onClick={() => {goToLevel1(record.policy_id)}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
       {
-        userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+        userProfile.privileges === 'member' || userProfile.privileges === 'manager'
           ? null
           : <td>{record.name}</td>
       }
       {
-        userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+        userProfile.privileges === 'member' || userProfile.privileges === 'manager'
           ? null
           : <td>{record.prefix}</td>
       }
@@ -91,7 +91,7 @@ const InsurancePrefixRecordComponent = (props) => {
       <td>{record.network}</td>
       <td>{record.facility}</td>
       {
-        userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+        userProfile.privileges === 'member' || userProfile.privileges === 'manager'
           ? null
           : <>
               <td>{record.res_days} Days</td>
@@ -99,7 +99,7 @@ const InsurancePrefixRecordComponent = (props) => {
             </>
       }
       {
-        userProfile.priviledges === 'member' || userProfile.priviledges === 'manager' 
+        userProfile.privileges === 'member' || userProfile.privileges === 'manager' 
           ? null
           : <>
               <td>{formatNumberAsCurrency(record.average_charge)}</td>
@@ -109,7 +109,7 @@ const InsurancePrefixRecordComponent = (props) => {
       }
       <td>{admissionPercent >= 60 ? 'Likely' : 'Unlikely'}</td>
       {
-        userProfile.priviledges === 'admin' || userProfile.priviledges === 'dev' || userProfile.priviledges === 'owner'
+        userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'
           ? <td>{admissionPercent.toFixed(0)}%</td>
           : null
       }

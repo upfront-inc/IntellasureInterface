@@ -16,7 +16,7 @@ const AccountsTableComponent = () => {
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'https://intellasurebackend-docker.onrender.com/api/users/all',
+      url: 'https://intellasurebackend-docker.onrender.com/users/all',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -43,7 +43,7 @@ const AccountsTableComponent = () => {
               Email
             </th>
             <th className='table-header-text'>
-              Priviledges
+              privileges
             </th>
             <th className='table-header-text'>
               Comapny
@@ -68,7 +68,7 @@ const AccountsTableComponent = () => {
                       <td>{profile.privileges}</td>
                       <td>{(profile.company).toUpperCase()}</td>
                       {
-                        profile.priviledges === 'admin'
+                        profile.privileges === 'admin'
                           ? <td>Remove Admin</td>
                           : <td>Make Admin</td>
                       }

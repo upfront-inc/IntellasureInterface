@@ -84,7 +84,7 @@ const UpdateIntakeRecord = (props) => {
       "policy_id": prefix,
       "insurance": insurance,
       "source": source,
-      "coordinator":userProfile.priviledges === 'member' ? userProfile.name : coordinator,
+      "coordinator":userProfile.privileges === 'member' ? userProfile.name : coordinator,
       "summary_out": summaryOut,
       "booked": booked,
       "checked_in": checkedIn,
@@ -134,7 +134,7 @@ const UpdateIntakeRecord = (props) => {
           <p>{updatingRecord.source}</p>
         </div>
         {
-          userProfile.priviledges === 'member'
+          userProfile.privileges === 'member'
             ? null
             : <div className='row'>
                 <p className={`text-${theme}`}>Coordinator</p>

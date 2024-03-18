@@ -134,7 +134,8 @@ const SignupScreen = (props) => {
       "name": `${firstName} ${lastName}`,
       "email": email,
       "status": 'active',
-      "priviledges": "member",
+      "privileges": "member",
+      "department": "intake",
       "company": "phg",
       "user_id": userId
     };
@@ -142,7 +143,7 @@ const SignupScreen = (props) => {
     let config = {
       method: 'put',
       maxBodyLength: Infinity,
-      url: `https://intellasurebackend-docker.onrender.com/api/users/${userId}`,
+      url: `https://intellasurebackend-docker.onrender.com/users/${userId}`,
       headers: { 
         'Content-Type': 'application/json'
       },

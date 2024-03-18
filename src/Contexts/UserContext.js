@@ -17,27 +17,31 @@ export const UserProvider = ({ children }) => {
     setLoading(true)
     getCurrentUser()
       .then(response => {
-        console.log(response)
+        console.log('current user: ', response.userId)
         setCurrentUser(response.userId)
         grabCurrentUserProfile(response.userId)
-        // setLoading(false)
       })
       .catch(error => {
-        console.log(`Error getting user: ${error}`)
+        console.log(`Error getting user when login: ${error}`)
         setLoading(false)
       })
   }
 
+  useEffect(() => {
+    console.log('updated user profile: ', userProfile)
+  }, [userProfile])
+
   const grabCurrentUserProfile = (userId) => {
+    console.log(userId)
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: `https://intellasurebackend-docker.onrender.com/api/users/${userId}`,
+      url: `https://intellasurebackend-docker.onrender.com/users/${userId}`,
       headers: { }
     };
     axios.request(config)
       .then((response) => {
-        console.log("users profile: ", JSON.stringify(response.data.data));
+        console.log("profile: ", response.data)
         setUserProfile(response.data.data)
         setLoading(false)
       })

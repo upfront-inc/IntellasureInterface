@@ -94,7 +94,9 @@ function App() {
   return (
     <>
       {
-            !currentUser
+        loading
+          ? displayLoading()
+          : !currentUser
               ? <AuthenticationScreen />
               : <div className={`App-${sidebarPosition} ${theme}`}>
                   <SideBarComponent />

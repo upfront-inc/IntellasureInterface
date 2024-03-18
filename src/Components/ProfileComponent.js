@@ -26,7 +26,7 @@ const ProfileComponent = () => {
           <span className='userInfo'>{userProfile.email}</span>
         </div>
         <div className='headerRow'>
-          <span className='userInfo'>{userProfile.priviledges}</span>
+          <span className='userInfo'>{userProfile.privileges}</span>
         </div>
       </div>
       <div className='subContent'>

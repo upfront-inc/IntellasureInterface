@@ -61,7 +61,7 @@ const ChatWithAIComponent = () => {
       
         // Add user message and loading message
         setMessages(messages => [...messages, newUserMessage, loadingMessage]);
-        const privileges = userProfile.priviledges; // Assuming privileges is an array or similar structure
+        const privileges = userProfile.privileges; // Assuming privileges is an array or similar structure
 
         // Decide the URL based on the user's role
         const url = (privileges === 'admin' || privileges === 'dev') ? 'https://intellachat-kwtb.onrender.com/chat' : 'https://intellachatuser.onrender.com/chat';

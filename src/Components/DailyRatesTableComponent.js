@@ -90,7 +90,7 @@ const DailyRatesTableComponent = (props) => {
                   <td>{(entry['Allowed %'] * 100).toFixed(0)}%</td>
                   <td>{(entry['Paid %']* 100).toFixed(0)}%</td>
                   {
-                    userProfile.priviledges === 'admin' || userProfile.priviledges === 'dev' || userProfile.priviledges === 'owner'
+                    userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'
                       ? <td>{formatDollarAmount(entry['Avg Daily Rate'])}</td>
                       : <td>
                           {

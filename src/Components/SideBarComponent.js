@@ -58,7 +58,7 @@ const SideBarComponent = () => {
           </div>
         </div>
           {
-            userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+            userProfile.privileges === 'member' || userProfile.privileges === 'manager'
               ? null 
               : <>
                   <div onClick={() => {toggleSelectedTab('billingDetails')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('billingDetails') ? `menu-bar-item-selected-${theme}` : ''}`}>
@@ -114,7 +114,7 @@ const SideBarComponent = () => {
         </div>
         <div>
           {
-            userProfile.priviledges === 'member' || userProfile.priviledges === 'member'
+            userProfile.privileges === 'member' || userProfile.privileges === 'member'
               ? null
               : <div onClick={() => {toggleSelectedTab('accounts')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('accounts') ? `menu-bar-item-selected-${theme}` : ''}`}>
                   <div className='icon-container'>

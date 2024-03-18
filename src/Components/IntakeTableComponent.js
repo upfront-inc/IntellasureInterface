@@ -36,6 +36,12 @@ const IntakeTableComponent = (props) => {
     return `${mm}/${dd}/${yyyy}`;
   }
 
+  function floatToDollarAmount(number) {
+    const numberWithCommas = number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+    return "$" + numberWithCommas;
+  }
+
   return (
     <div className='table-parent'>
       <table className='table-section'>
@@ -75,7 +81,19 @@ const IntakeTableComponent = (props) => {
               In-Network Details
             </th>
             <th className='table-header-text column'>
+              In-Network Ded.
+            </th>
+            <th className='table-header-text column'>
+              In-Network OOP
+            </th>
+            <th className='table-header-text column'>
               Out-Network Details
+            </th>
+            <th className='table-header-text column'>
+              Out-Network Ded.
+            </th>
+            <th className='table-header-text column'>
+              Out-Network OOP
             </th>
             <th className='table-header-text column'>
               Notes
@@ -106,7 +124,11 @@ const IntakeTableComponent = (props) => {
                       <td>{item.booked ? 'Yes' : 'No'}</td>
                       {/* <td>{item.checked_in ? 'Yes' : 'No'}</td> */}
                       <td>{item.in_network_details}</td>
+                      <td>{item.inn_deductible === null ? '$0' : floatToDollarAmount(item.inn_deductible)}</td>
+                      <td>{item.in_network_oop === null ? '$0' : floatToDollarAmount(item.in_network_oop)}</td>
                       <td>{item.out_network_details}</td>
+                      <td>{item.onn_deductible === null ? '$0' : floatToDollarAmount(item.onn_deductible)}</td>
+                      <td>{item.out_network_oop === null ? '$0' : floatToDollarAmount(item.out_network_oop)}</td>
                       <td>{item.notes}</td>
                       <td>{convertDateToCustomFormat(item.date)}</td>
                       <td onClick={() => {updateRecord(item)}} style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>

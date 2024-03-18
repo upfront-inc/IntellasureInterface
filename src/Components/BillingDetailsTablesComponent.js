@@ -92,7 +92,7 @@ const BillingDetailsTablesComponent = (props) => {
               Detox Days
             </th>
             {
-              userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+              userProfile.privileges === 'member' || userProfile.privileges === 'manager'
                 ? null 
                 : <>
                     <th onClick={() => {
@@ -134,7 +134,7 @@ const BillingDetailsTablesComponent = (props) => {
               Admission <FontAwesomeIcon height={20} width={20} color='black' icon={sortDirection === 'asc' && sortColumn === 'admission' ? faAngleDoubleDown : faAngleDoubleUp} />
             </th>
             {
-              userProfile.priviledges === 'admin' || userProfile.priviledges === 'dev' || userProfile.priviledges === 'owner'
+              userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'
                 ? <th onClick={() => {
                     if(sortDirection === 'asc' && sortColumn === 'admitPercent'){
                       handleSort('dec', 'admitPercent')

@@ -48,7 +48,7 @@ const IntakeScreen = () => {
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'https://intellasurebackend-docker.onrender.com/get_all_intake/',
+      url: 'https://intellasurebackend-docker.onrender.com/intake/',
       headers: {
         'Content-Type': 'application/json'
       },

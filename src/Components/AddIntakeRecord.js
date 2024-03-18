@@ -151,7 +151,7 @@ const AddIntakeRecord = () => {
       "payer_id": payer_id,
       "date_of_birth": dob,
       "source": source,
-      "coordinator":userProfile.priviledges === 'member' ? userProfile.name : coordinator,
+      "coordinator":userProfile.privileges === 'member' ? userProfile.name : coordinator,
       "summary_out": null,
       "booked": booked,
       "check_in": checkedIn,
@@ -246,7 +246,7 @@ const AddIntakeRecord = () => {
           />
         </div>
         {
-          userProfile.priviledges === 'member'
+          userProfile.privileges === 'member'
             ? null
             : <div className='row'>
                 <p className={`text-${theme}`}>Coordinator</p>

@@ -67,7 +67,7 @@ const BillingDetailsRecordsComponent = (props) => {
       <td>{record.avg_DTX_days} Days</td>
       <td>{record.avg_RTC_days} Days</td>
       {
-        userProfile.priviledges === 'member'
+        userProfile.privileges === 'member'
           ? null
           : <>
               <td>{formatNumberAsCurrency(record.average_charged)}</td>
@@ -77,7 +77,7 @@ const BillingDetailsRecordsComponent = (props) => {
       }
       <td>{admissionPercent >= 60 ? 'Likely' : 'Unlikely'}</td>
       {
-        userProfile.priviledges === 'admin' || userProfile.priviledges === 'dev' || userProfile.priviledges === 'owner'
+        userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'
           ? <td>{admissionPercent.toFixed(0)}%</td>
           : null
       }
