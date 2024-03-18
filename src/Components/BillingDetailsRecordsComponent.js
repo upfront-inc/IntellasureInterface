@@ -67,7 +67,7 @@ const BillingDetailsRecordsComponent = (props) => {
       <td>{record.avg_DTX_days} Days</td>
       <td>{record.avg_RTC_days} Days</td>
       {
-        userProfile.privileges === 'member'
+        userProfile.privileges === 'staff'
           ? null
           : <>
               <td>{formatNumberAsCurrency(record.average_charged)}</td>

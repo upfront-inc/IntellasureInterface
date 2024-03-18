@@ -68,7 +68,7 @@ const InsurancePrefixRecordComponent = (props) => {
   }
 
   const goToLevel1 = (policy_id) => {
-    if (userProfile.privileges === 'member' || userProfile.privileges === 'manager') {
+    if (userProfile.privileges === 'staff' || userProfile.privileges === 'manager') {
       return; // early return if the user doesn't have the correct privileges
     }
     selectInsurancePolicy(policy_id);
@@ -77,12 +77,12 @@ const InsurancePrefixRecordComponent = (props) => {
   return (
     <tr onClick={() => {goToLevel1(record.policy_id)}} className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
       {
-        userProfile.privileges === 'member' || userProfile.privileges === 'manager'
+        userProfile.privileges === 'staff' || userProfile.privileges === 'manager'
           ? null
           : <td>{record.name}</td>
       }
       {
-        userProfile.privileges === 'member' || userProfile.privileges === 'manager'
+        userProfile.privileges === 'staff' || userProfile.privileges === 'manager'
           ? null
           : <td>{record.prefix}</td>
       }
@@ -91,7 +91,7 @@ const InsurancePrefixRecordComponent = (props) => {
       <td>{record.network}</td>
       <td>{record.facility}</td>
       {
-        userProfile.privileges === 'member' || userProfile.privileges === 'manager'
+        userProfile.privileges === 'staff' || userProfile.privileges === 'manager'
           ? null
           : <>
               <td>{record.res_days} Days</td>
@@ -99,7 +99,7 @@ const InsurancePrefixRecordComponent = (props) => {
             </>
       }
       {
-        userProfile.privileges === 'member' || userProfile.privileges === 'manager' 
+        userProfile.privileges === 'staff' || userProfile.privileges === 'manager' 
           ? null
           : <>
               <td>{formatNumberAsCurrency(record.average_charge)}</td>

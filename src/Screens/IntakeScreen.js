@@ -18,7 +18,7 @@ const IntakeScreen = () => {
   const { theme } = useTheme(); 
   const { sidebarPosition, showProfile } = useSidebar();
   const { selectedTab, showAddIntakeRecord, showAddUserRecord, showUpdateIntakeRecord } = useApp();
-  const { grabCurrentUser, currentUser, loading } = useUser()
+  const { grabCurrentUser, currentUser, loading, userProfile } = useUser()
 
 
   const [results, setResults] = useState([])
@@ -56,8 +56,19 @@ const IntakeScreen = () => {
     };
     axios.request(config)
     .then((response) => {
+      console.log(response.data.data[0])
       if(response.data.data.length > 0){
-        setResults(response.data.data)
+        if(userProfile.privileges === 'manager' || userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'){
+          setResults(response.data.data)
+        } else {
+          let coordinatorRecords = []
+          response.data.data.map((record) => {
+            if(record.coordinator === userProfile.userid){
+              coordinatorRecords.push(record)
+            }
+          })
+          setResults(coordinatorRecords)
+        }
       } 
     })
     .catch((error) => {

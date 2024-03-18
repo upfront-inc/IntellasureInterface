@@ -134,7 +134,7 @@ const SignupScreen = (props) => {
       "name": `${firstName} ${lastName}`,
       "email": email,
       "status": 'active',
-      "privileges": "member",
+      "privileges": "staff",
       "department": "intake",
       "company": "phg",
       "user_id": userId

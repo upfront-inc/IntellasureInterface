@@ -17,7 +17,7 @@ const AdduserComponent = () => {
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [tempPassword, setTempPassword] = useState('')
-  const [privileges, setPrivileges] = useState('member')
+  const [privileges, setPrivileges] = useState('staff')
   const [status, setStatus] = useState('active')
   const [Company, setCompany] = useState('PHG')
 

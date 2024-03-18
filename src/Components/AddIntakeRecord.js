@@ -48,7 +48,14 @@ const AddIntakeRecord = () => {
   const [checkedIn, setCheckedIn] = useState(false)
 
   const [insuranceOptions, setInsuranceOptions] = useState([])
-  const [cooredinatorList, setCoordinatorList] = useState(coordinatorListUsers)
+  const [cooredinatorList, setCoordinatorList] = useState([])
+
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    grabAllProfiles()
+    grabInsuranceOptions()
+  }, [])
 
   const handleClientNammeChnage = (e) => {
     setClient(e.target.value)
@@ -62,63 +69,31 @@ const AddIntakeRecord = () => {
     setDob(e.target.value)
   }
 
-  const handleInsuranceChnage = (e) => {
-    setInsurance(e.target.value)
-  }
-
   const handleSourceChnage = (e) => {
     setSource(e.target.value)
-  }
-
-  const handleCoordinatorChnage = (e) => {
-    setCoordinator(e.target.value)
-  }
-
-  const handleSummaryOutChnage = (text) => {
-    setSummaryOut(text)
-  }
-
-  const handleInNetworkDetailsChange = (e) => {
-    setInNetworkDetails(e.target.value)
-  }
-
-  const handleOutNetworkDetailsChange = (e) => {
-    setOutNetworkDetails(e.target.value)
   }
 
   const handleNotesChange = (e) => {
     setNotes(e.target.value)
   }
 
-  const handleDateChnage = (e) => {
-    setDate(e.target.value)
-  }
-
-  const handleActivePolicy = () => {
-    setActivePolicy(!acitvePolicy)
-  }
-
-  const handleBooked = () => {
-    setBooked(!booked)
-  }
-
-  const handleCheckedIn = () => {
-    setCheckedIn(!checkedIn)
-  }
-
-  useEffect(() => {
-    grabInsuranceOptions()
-  }, [])
-
-  const grabInsuranceOptions = () => {
-    const url = 'https://intellasurebackend-docker.onrender.com//verify_tx_payers'
-    axios.get(url)
+  const grabAllProfiles = () => {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'https://intellasurebackend-docker.onrender.com/users/all',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    };
+    
+    axios.request(config)
       .then((response) => {
-        setInsuranceOptions(response.data)
+        setCoordinatorList(response.data)
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   const generateTenDigitNumber = () => {
@@ -136,11 +111,12 @@ const AddIntakeRecord = () => {
     return `${month}/${day}/${year}`;
   }
 
-  const handleInsuranceChange = (e) => {
-    setInsurance(e.target.value);
-  };
+  useEffect(() => {
+    console.log(coordinator)
+  }, [coordinator])
 
   const sendDataToServer = () => {
+    setLoading(true)
     let intakeId = generateTenDigitNumber()
     let intakeData = { data: {
       "intake_id": intakeId,
@@ -151,7 +127,7 @@ const AddIntakeRecord = () => {
       "payer_id": payer_id,
       "date_of_birth": dob,
       "source": source,
-      "coordinator":userProfile.privileges === 'member' ? userProfile.name : coordinator,
+      "coordinator": userProfile.privileges === 'staff' ? userProfile.userid : coordinator,
       "summary_out": null,
       "booked": booked,
       "check_in": checkedIn,
@@ -161,24 +137,34 @@ const AddIntakeRecord = () => {
       "date": getCurrentDateFormatted()
     }}
 
-    console.log(JSON.stringify(intakeData))
-
-    const url = 'https://intellasurebackend-docker.onrender.com/update_intake_table/'
+    const url = 'https://intellasurebackend-docker.onrender.com/intake/'
     
     axios.post(url, intakeData)
     .then((response) => {
       toggleShowAddIntakeRecord()
+      setLoading(false)
     })
     .catch((error) => {
       console.log(error);
+      setLoading(false)
     });
   };
+
+  const grabInsuranceOptions = () => {
+    const url = 'https://intellasurebackend-docker.onrender.com/verifytx_payers'
+    axios.get(url)
+      .then((response) => {
+        console.log(response.data)
+        setInsuranceOptions(response.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
   
   const updatedSelectedInsurance = (payer_id) => {
     // Find the insurance name using the payer_id from insuranceOptions
     const selectedInsurance = insuranceOptions.find(option => option.payer_id === payer_id).insurance;
-    console.log(payer_id)
-    console.log(selectedInsurance)
     setInsurance(selectedInsurance);
     setPayer_id(payer_id);
   }
@@ -246,7 +232,7 @@ const AddIntakeRecord = () => {
           />
         </div>
         {
-          userProfile.privileges === 'member'
+          userProfile.privileges === 'staff' 
             ? null
             : <div className='row'>
                 <p className={`text-${theme}`}>Coordinator</p>
@@ -259,8 +245,8 @@ const AddIntakeRecord = () => {
                   {
                     cooredinatorList.map((option) => {
                       return(
-                        <option key={option.email} value={option.name}>
-                          {option.name}
+                        <option key={option.email} value={option.userid}>
+                          {option.name} - {option.email}
                         </option>
                       )
                     })
@@ -365,11 +351,19 @@ const AddIntakeRecord = () => {
           />
         </div>
       </div>
-      <div onClick={() => {sendDataToServer()}} className='button-container'>
-        <p className='submit-button'>
-          Submit Record
-        </p>
-      </div>
+      {
+        loading 
+          ? <div className='button-container'>
+              <p className='submit-button'>
+                Submitting...
+              </p>
+            </div>
+          : <div onClick={() => {sendDataToServer()}} className='button-container'>
+              <p className='submit-button'>
+                Submit Record
+              </p>
+            </div>
+      }
     </div>
   )
 }

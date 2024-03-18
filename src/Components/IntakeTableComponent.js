@@ -5,6 +5,7 @@ import AddIntakeRecord from './AddIntakeRecord'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons'
 import { useUser } from '../Contexts/UserContext'
+import IntakeItemComponent from './IntakeItemComponent'
 
 const IntakeTableComponent = (props) => {
 
@@ -78,16 +79,10 @@ const IntakeTableComponent = (props) => {
               Checked In
             </th> */}
             <th className='table-header-text column'>
-              In-Network Details
-            </th>
-            <th className='table-header-text column'>
               In-Network Ded.
             </th>
             <th className='table-header-text column'>
               In-Network OOP
-            </th>
-            <th className='table-header-text column'>
-              Out-Network Details
             </th>
             <th className='table-header-text column'>
               Out-Network Ded.
@@ -110,38 +105,19 @@ const IntakeTableComponent = (props) => {
           {
             results.length > 0
               ? results.map((item) => {
-                  // console.log(item)
                   return(
-                    <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px', minWidth: '350px'}}>
-                      <td>{item.name}</td>
-                      <td style={{minWidth: '0px'}}>{item.prefix === 'na' ? '--' : item.prefix}</td>
-                      <td>{item.policy_id === 'na' ? '--' : item.policy_id}</td>
-                      <td>{item.insurance}</td>
-                      <td>{item.active === "YES" ? 'Yes' : 'No'}</td>
-                      <td style={{minWidth: '0px'}}>{item.source}</td>
-                      <td>{item.coordinator}</td>
-                      <td>{item.summary_out}</td>
-                      <td>{item.booked ? 'Yes' : 'No'}</td>
-                      {/* <td>{item.checked_in ? 'Yes' : 'No'}</td> */}
-                      <td>{item.in_network_details}</td>
-                      <td>{item.inn_deductible === null ? '$0' : floatToDollarAmount(item.inn_deductible)}</td>
-                      <td>{item.in_network_oop === null ? '$0' : floatToDollarAmount(item.in_network_oop)}</td>
-                      <td>{item.out_network_details}</td>
-                      <td>{item.onn_deductible === null ? '$0' : floatToDollarAmount(item.onn_deductible)}</td>
-                      <td>{item.out_network_oop === null ? '$0' : floatToDollarAmount(item.out_network_oop)}</td>
-                      <td>{item.notes}</td>
-                      <td>{convertDateToCustomFormat(item.date)}</td>
-                      <td onClick={() => {updateRecord(item)}} style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
-                    </tr>
+                    <>
+                    <IntakeItemComponent item={item}/>
+                    </>
                   )
                 })
               : <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px', minWidth: '350px'}}>
                   <td></td>
-                  <td style={{minWidth: '0px'}}></td>
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td style={{minWidth: '0px'}}></td>
+                  <td></td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -150,7 +126,7 @@ const IntakeTableComponent = (props) => {
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td style={{minWidth: '0px'}} className='update-column'></td>
+                  <td></td>
                 </tr>
           }
         </tbody>

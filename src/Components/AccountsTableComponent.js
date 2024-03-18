@@ -119,7 +119,7 @@ const AccountsTableComponent = () => {
                                   : <span onClick={() => {updateUserProfile(profile, true)}} style={{color: 'blue'}}>Activate</span>
                               }
                             </td>
-                          : null
+                          : <td></td>
                       }
                     </tr>
                   )

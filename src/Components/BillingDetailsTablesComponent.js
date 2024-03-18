@@ -92,7 +92,7 @@ const BillingDetailsTablesComponent = (props) => {
               Detox Days
             </th>
             {
-              userProfile.privileges === 'member' || userProfile.privileges === 'manager'
+              userProfile.privileges === 'staff' || userProfile.privileges === 'manager'
                 ? null 
                 : <>
                     <th onClick={() => {
