@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
 import axios from 'axios'
+import { useUser } from '../Contexts/UserContext'
+import PrivilegeDropDownComponent from './PrivilegeDropDownComponent'
+import DepartmentDropDownComponent from './DepartmentDropDownComponent'
 
 const AccountsTableComponent = () => {
 
   const { theme } = useTheme()
+  const { userProfile } = useUser()
 
   const [profiles, setProfiles] = useState([])
 
@@ -13,6 +17,7 @@ const AccountsTableComponent = () => {
   }, [])
 
   const grabAllProfiles = () => {
+    setProfiles([])
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
@@ -25,6 +30,30 @@ const AccountsTableComponent = () => {
     axios.request(config)
       .then((response) => {
         setProfiles(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  const updateUserProfile = (profile, active) => {
+    const data = {
+      "department": profile.department,
+      "privileges": profile.privileges,
+      "active": active
+    }
+    let config = {
+      method: 'put',
+      maxBodyLength: Infinity,
+      url: `https://intellasurebackend-docker.onrender.com/users/update/${profile.userid}`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data,
+    };
+    axios.request(config)
+      .then((response) => {
+        grabAllProfiles()
       })
       .catch((error) => {
         console.log(error);
@@ -46,13 +75,16 @@ const AccountsTableComponent = () => {
               privileges
             </th>
             <th className='table-header-text'>
+              Department
+            </th>
+            <th className='table-header-text'>
               Comapny
             </th>
             <th className='table-header-text'>
-              Account
+              Status
             </th>
             <th className='table-header-text'>
-              Remove
+              Activity
             </th>
           </tr>
         </thead>
@@ -65,14 +97,30 @@ const AccountsTableComponent = () => {
                       <td>{profile.name}</td>
                       <td>{profile.email}</td>
                       {/* <td>{profile.status}</td> */}
-                      <td>{profile.privileges}</td>
-                      <td>{(profile.company).toUpperCase()}</td>
                       {
-                        profile.privileges === 'admin'
-                          ? <td>Remove Admin</td>
-                          : <td>Make Admin</td>
+                        userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'
+                          ? <td><PrivilegeDropDownComponent profile={profile} grabAllProfiles={grabAllProfiles}/></td>
+                          : <td>{profile.privileges}</td>
                       }
-                      <td>X</td>
+                      {
+                        userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'
+                          ? <td><DepartmentDropDownComponent profile={profile} grabAllProfiles={grabAllProfiles}/></td>
+                          : <td>{profile.department}</td>
+                      }
+                      {/* <td>{profile.department}</td> */}
+                      <td>{(profile.company).toUpperCase()}</td>
+                      <td>{profile.active ? 'Acitve' : 'Suspended'}</td>
+                      {
+                        userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'
+                          ? <td>
+                              {
+                                profile.active
+                                  ? <span onClick={() => {updateUserProfile(profile, false)}} style={{color: 'blue'}}>Deactivate</span>
+                                  : <span onClick={() => {updateUserProfile(profile, true)}} style={{color: 'blue'}}>Activate</span>
+                              }
+                            </td>
+                          : null
+                      }
                     </tr>
                   )
                 })

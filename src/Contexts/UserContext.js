@@ -17,7 +17,6 @@ export const UserProvider = ({ children }) => {
     setLoading(true)
     getCurrentUser()
       .then(response => {
-        console.log('current user: ', response.userId)
         setCurrentUser(response.userId)
         grabCurrentUserProfile(response.userId)
       })
@@ -27,12 +26,7 @@ export const UserProvider = ({ children }) => {
       })
   }
 
-  useEffect(() => {
-    console.log('updated user profile: ', userProfile)
-  }, [userProfile])
-
   const grabCurrentUserProfile = (userId) => {
-    console.log(userId)
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
@@ -41,7 +35,6 @@ export const UserProvider = ({ children }) => {
     };
     axios.request(config)
       .then((response) => {
-        console.log("profile: ", response.data)
         setUserProfile(response.data.data)
         setLoading(false)
       })

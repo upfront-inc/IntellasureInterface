@@ -42,7 +42,6 @@ function App() {
   const [timer, setTimer] = useState(TIMEOUT);
 
   useEffect(() => {
-    // signOutUser()
     grabCurrentUser()
   }, [])
   
@@ -54,7 +53,6 @@ function App() {
   useEffect(() => {
     if (isActive && timer === 0) {
       // Do something after inactivity, like logout the user
-      console.log('User has been inactive for 25 minutes');
       setIsActive(false);
       signOutUser()
     }
