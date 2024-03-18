@@ -128,7 +128,7 @@ const AddIntakeRecord = () => {
       "date_of_birth": dob,
       "source": source,
       "coordinator": userProfile.privileges === 'staff' ? userProfile.userid : coordinator,
-      "summary_out": null,
+      "summary_out": 'PENDING',
       "booked": booked,
       "check_in": checkedIn,
       "out_network_details": outNetworkDetails,

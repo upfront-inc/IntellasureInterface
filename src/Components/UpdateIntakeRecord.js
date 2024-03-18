@@ -88,8 +88,8 @@ const UpdateIntakeRecord = (props) => {
       "summary_out": summaryOut,
       "booked": booked,
       "checked_in": checkedIn,
-      "out_network_details": outNetworkDetails,
-      "in_network_details": inNetworkDetails,
+      "out_network_details": null,
+      "in_network_details": null,
       "notes": notes,
       // "date": getCurrentDateFormatted()
     }}
@@ -146,29 +146,33 @@ const UpdateIntakeRecord = (props) => {
                 />
               </div>
         }
-        <div className='row'>
-          <p className={`text-${theme}`}>Summary Out</p>
-          <div>
-            <label>
-              <input 
-                type="radio"
-                name="summary"
-                value="Good Vob"
-                checked={summaryOut === 'Good Vob'}
-                onChange={() => handleSummaryOutChnage('Good Vob')}
-              /> Good Vob
-            </label>
-            <label>
-              <input 
-                type="radio"
-                name="summary"
-                value="Bad Vob"
-                checked={summaryOut === 'Bad Vob'}
-                onChange={() => handleSummaryOutChnage('Bad Vob')}
-              /> Bad Vob
-            </label>
-          </div>
-        </div>
+        {
+          userProfile.privileges === 'staff'
+            ? null
+            : <div className='row'>
+                <p className={`text-${theme}`}>Summary Out</p>
+                <div>
+                  <label>
+                    <input 
+                      type="radio"
+                      name="summary"
+                      value="Good Vob"
+                      checked={summaryOut === 'Good Vob'}
+                      onChange={() => handleSummaryOutChnage('Good Vob')}
+                    /> Good Vob
+                  </label>
+                  <label>
+                    <input 
+                      type="radio"
+                      name="summary"
+                      value="Bad Vob"
+                      checked={summaryOut === 'Bad Vob'}
+                      onChange={() => handleSummaryOutChnage('Bad Vob')}
+                    /> Bad Vob
+                  </label>
+                </div>
+              </div>
+        }
         <div className='row'>
           <p className={`text-${theme}`}>Booked</p>
           <div>
@@ -192,47 +196,33 @@ const UpdateIntakeRecord = (props) => {
             </label>
           </div>
         </div>
-        <div className='row'>
-          <p className={`text-${theme}`}>Checked In</p>
-          <div>
-            <label>
-              <input 
-                type="radio"
-                name="checkedin"
-                value="yes"
-                checked={checkedIn === true}
-                onChange={() => handleCheckedIn()}
-              /> Yes
-            </label>
-            <label>
-              <input 
-                type="radio"
-                name="checkedin"
-                value="no"
-                checked={checkedIn === false}
-                onChange={() => handleCheckedIn()}
-              /> No
-            </label>
-          </div>
-        </div>
-        <div className='row'>
-          <p className={`text-${theme}`}> In-Network Details</p>
-          <input 
-            className={`input-${theme}`}
-            placeholder='details...'
-            value={inNetworkDetails}
-            onChange={(text) => {handleInNetworkDetailsChange(text)}}
-          />
-        </div>
-        <div className='row'>
-          <p className={`text-${theme}`}> Out-Network Details</p>
-          <input 
-            className={`input-${theme}`}
-            placeholder='details...'
-            value={outNetworkDetails}
-            onChange={(text) => {handleOutNetworkDetailsChange(text)}}
-          />
-        </div>
+        {
+          userProfile.privileges === 'staff'
+            ? null
+            : <div className='row'>
+                <p className={`text-${theme}`}>Checked In</p>
+                <div>
+                  <label>
+                    <input 
+                      type="radio"
+                      name="checkedin"
+                      value="yes"
+                      checked={checkedIn === true}
+                      onChange={() => handleCheckedIn()}
+                    /> Yes
+                  </label>
+                  <label>
+                    <input 
+                      type="radio"
+                      name="checkedin"
+                      value="no"
+                      checked={checkedIn === false}
+                      onChange={() => handleCheckedIn()}
+                    /> No
+                  </label>
+                </div>
+              </div>
+        }
         <div className='row'>
           <p className={`text-${theme}`}>Notes</p>
           <input 
