@@ -29,8 +29,9 @@ const LoginScreen = (props) => {
     setLoading(true)
     signIn({username, password})
       .then((response) => {
-        handleAuthView('intake')
+        grabCurrentUser()
         setLoading(false)
+        handleAuthView('intake')
       })
       .catch((error) => {
         console.log(JSON.stringify(error))
