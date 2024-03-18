@@ -75,7 +75,7 @@ const IntakeItemComponent = (props) => {
       <td>{item.active === "YES" ? 'Yes' : 'No'}</td>
       {
         userProfile.privileges === 'staff'
-        ? <td></td>
+        ? null
         : <td>{coordinator}</td>
       }
       <td>{item.summary_out}</td>
