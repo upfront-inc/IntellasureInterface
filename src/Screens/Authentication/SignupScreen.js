@@ -108,8 +108,7 @@ const SignupScreen = (props) => {
           given_name: firstName,
           family_name: lastName,
           nickname: firstName,
-          name: `${firstName} ${lastName}`,
-          phone_number: phoneNumber
+          name: `${firstName} ${lastName}`
         }
       }
     }
@@ -234,20 +233,6 @@ const SignupScreen = (props) => {
           matchingVerify
             ? null
             : <p style={styles.validationMessage}>Verify: Password and Verify don't match</p>
-        }
-        <InputComponent
-          value={phoneNumber}
-          handleFunction={handlePhoneChange}
-          placeHolder={'phone...'}
-          type='text'
-          capitalize={'none'}
-          icon={'phone'}
-          split={'full'}
-        />
-        {
-          validPhoneNumber
-            ? null
-            : <p style={styles.validationMessage}>Phone: Invalid Number</p>
         }
         <div style={styles.buttonContainer}>
           <div onClick={() => {signUpUser()}} style={styles.buttonContainerSingle}>
