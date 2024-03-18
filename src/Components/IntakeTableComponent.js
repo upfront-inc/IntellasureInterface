@@ -49,6 +49,15 @@ const IntakeTableComponent = (props) => {
         <thead className={`table-header-${theme}`}>
           <tr>
             <th className='table-header-text column'>
+              Date 
+            </th>
+            <th className='table-header-text column'>
+              Checked In
+            </th>
+            <th className='table-header-text column'>
+              Booked
+            </th>
+            <th className='table-header-text column'>
               Client
             </th>
             <th className='table-header-text column'>
@@ -73,12 +82,6 @@ const IntakeTableComponent = (props) => {
               Summary Out 
             </th>
             <th className='table-header-text column'>
-              Booked
-            </th>
-            {/* <th className='table-header-text column'>
-              Checked In
-            </th> */}
-            <th className='table-header-text column'>
               In-Network Ded.
             </th>
             <th className='table-header-text column'>
@@ -92,9 +95,6 @@ const IntakeTableComponent = (props) => {
             </th>
             <th className='table-header-text column'>
               Notes
-            </th>
-            <th className='table-header-text column'>
-              Date 
             </th>
             <th style={{minWidth: '0px'}} className='table-header-text update-column'>
               Update

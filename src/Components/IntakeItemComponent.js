@@ -63,6 +63,9 @@ const IntakeItemComponent = (props) => {
 
   return (
     <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px', minWidth: '350px'}}>
+      <td>{convertDateToCustomFormat(item.date)}</td>
+      <td>{item.checked_in ? 'Yes' : 'No'}</td>
+      <td>{item.booked ? 'Yes' : 'No'}</td>
       <td>{item.name}</td>
       <td style={{minWidth: '0px'}}>{item.prefix === 'na' ? '--' : item.prefix}</td>
       <td>{item.policy_id === 'na' ? '--' : item.policy_id}</td>
@@ -71,14 +74,11 @@ const IntakeItemComponent = (props) => {
       <td style={{minWidth: '0px'}}>{item.source}</td>
       <td>{coordinator}</td>
       <td>{item.summary_out}</td>
-      <td>{item.booked ? 'Yes' : 'No'}</td>
-      {/* <td>{item.checked_in ? 'Yes' : 'No'}</td> */}
       <td>{item.inn_deductible === null ? '$0' : floatToDollarAmount(item.inn_deductible)}</td>
       <td>{item.in_network_oop === null ? '$0' : floatToDollarAmount(item.in_network_oop)}</td>
       <td>{item.onn_deductible === null ? '$0' : floatToDollarAmount(item.onn_deductible)}</td>
       <td>{item.out_network_oop === null ? '$0' : floatToDollarAmount(item.out_network_oop)}</td>
       <td onClick={() => {UpdateViewingNotes(item.intake_id)}}><span style={{color: 'blue'}}>View Notes</span></td>
-      <td>{convertDateToCustomFormat(item.date)}</td>
       <td onClick={() => {updateRecord(item)}} style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
     </tr>
   )
