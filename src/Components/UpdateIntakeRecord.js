@@ -223,15 +223,6 @@ const UpdateIntakeRecord = (props) => {
                 </div>
               </div>
         }
-        <div className='row'>
-          <p className={`text-${theme}`}>Notes</p>
-          <input 
-            className={`input-${theme}`}
-            placeholder='notes...'
-            value={notes}
-            onChange={(text) => {handleNotesChange(text)}}
-          />
-        </div>
       </div>
       <div onClick={() => {sendDataToServer()}} className='button-container'>
         <p className='submit-button'>
