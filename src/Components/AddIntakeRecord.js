@@ -155,7 +155,20 @@ const AddIntakeRecord = () => {
     axios.get(url)
       .then((response) => {
         console.log(response.data)
-        setInsuranceOptions(response.data)
+        let records = response.data 
+        records.sort((a, b) => {
+          const insuranceA = a.insurance.toUpperCase(); // Convert to uppercase for case-insensitive sorting
+          const insuranceB = b.insurance.toUpperCase();
+        
+          if (insuranceA < insuranceB) {
+            return -1;
+          }
+          if (insuranceA > insuranceB) {
+            return 1;
+          }
+          return 0;
+        });
+        setInsuranceOptions(records)
       })
       .catch((err) => {
         console.log(err)
