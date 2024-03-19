@@ -131,6 +131,13 @@ const IntakeTableComponent = (props) => {
                   <td></td>
                   <td></td>
                   <td></td>
+                  <td></td>
+                  <td></td>
+                  {
+                    userProfile.privileges === 'staff'
+                      ? null 
+                      : <th></th>
+                  }
                 </tr>
           }
         </tbody>
