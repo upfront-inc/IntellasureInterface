@@ -20,7 +20,7 @@ const UpdateIntakeRecord = (props) => {
   const [insurance, setInsurance] = useState(updatingRecord.insurance)
   const [source, setSource] = useState(updatingRecord.source)
   const [coordinator, setCoordinator] = useState(updatingRecord.coordinator)
-  const [coordinatorList, setCoordinatorList] = useState()
+  const [coordinatorList, setCoordinatorList] = useState([])
   const [summaryOut, setSummaryOut] = useState(updatingRecord.summary_out)
   const [outNetworkDetails, setOutNetworkDetails] = useState(updatingRecord.out_network_details)
   const [inNetworkDetails, setInNetworkDetails] = useState(updatingRecord.in_network_details)
