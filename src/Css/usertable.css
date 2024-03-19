@@ -95,7 +95,7 @@
 .user-table-parent {
   flex: 1;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .user-section {

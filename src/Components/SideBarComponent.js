@@ -4,7 +4,7 @@ import { useSidebar } from '../Contexts/SidebarContext';
 import { useTheme } from '../Contexts/ThemeContext';
 import { useApp } from '../Contexts/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDoubleLeft, faAngleDoubleRight, faHome, faGear, faMoneyBill, faRightFromBracket, faShieldAlt, faUsers, faWandSparkles, faTicket, faQuestion, faCode, faCodeCommit, faCodeBranch } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleLeft, faAngleDoubleRight, faHome, faGear, faMoneyBill, faRightFromBracket, faShieldAlt, faUsers, faWandSparkles, faTicket, faQuestion, faCode, faCodeCommit, faCodeBranch, faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from '../Contexts/UserContext';
 
 const SideBarComponent = () => {
@@ -81,6 +81,18 @@ const SideBarComponent = () => {
                       {
                         sidebarPosition === 'open'
                           ? <p className={`label-${theme}`}>External</p>
+                          : null
+                      }
+                    </div>
+                  </div>
+                  <div onClick={() => {toggleSelectedTab('claims')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('claims') ? `menu-bar-item-selected-${theme}` : ''}`}>
+                    <div className='icon-container'>
+                      <FontAwesomeIcon icon={faHashtag} className="icon-menu"/>
+                    </div>
+                    <div>
+                      {
+                        sidebarPosition === 'open'
+                          ? <p className={`label-${theme}`}>Claims</p>
                           : null
                       }
                     </div>
