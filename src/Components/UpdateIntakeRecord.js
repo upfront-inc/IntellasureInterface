@@ -1,6 +1,6 @@
 import { faLightbulb, faMoon, faSun, faX } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../Css/Intake.css'
 import { useTheme } from '../Contexts/ThemeContext'
 import { useApp } from '../Contexts/AppContext'
@@ -20,6 +20,7 @@ const UpdateIntakeRecord = (props) => {
   const [insurance, setInsurance] = useState(updatingRecord.insurance)
   const [source, setSource] = useState(updatingRecord.source)
   const [coordinator, setCoordinator] = useState(updatingRecord.coordinator)
+  const [coordinatorList, setCoordinatorList] = useState()
   const [summaryOut, setSummaryOut] = useState(updatingRecord.summary_out)
   const [outNetworkDetails, setOutNetworkDetails] = useState(updatingRecord.out_network_details)
   const [inNetworkDetails, setInNetworkDetails] = useState(updatingRecord.in_network_details)
@@ -27,6 +28,10 @@ const UpdateIntakeRecord = (props) => {
   const [acitvePolicy, setActivePolicy] = useState(updatingRecord.active)
   const [booked, setBooked] = useState(updatingRecord.booked)
   const [checkedIn, setCheckedIn] = useState(updatingRecord.checked_in)
+
+  useEffect(() => {
+    grabAllProfiles()
+  }, [])
 
   const handleClientNammeChnage = (e) => {
     setClient(e.target.value)
@@ -105,6 +110,25 @@ const UpdateIntakeRecord = (props) => {
       console.log(error);
     });
   };
+  
+  const grabAllProfiles = () => {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'https://intellasurebackend-docker.onrender.com/users/all',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    };
+    
+    axios.request(config)
+      .then((response) => {
+        setCoordinatorList(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
     <div className={`intake-container-${theme}`}>
@@ -134,16 +158,26 @@ const UpdateIntakeRecord = (props) => {
           <p>{updatingRecord.source}</p>
         </div>
         {
-          userProfile.privileges === 'staff'
+          userProfile.privileges === 'staff' 
             ? null
             : <div className='row'>
                 <p className={`text-${theme}`}>Coordinator</p>
-                <input 
-                  className={`input-${theme}`}
-                  placeholder='coordinator name...'
+                <select
                   value={coordinator}
-                  onChange={(text) => {handleCoordinatorChnage(text)}}
-                />
+                  onChange={(e) => setCoordinator(e.target.value)}
+                  className={`input-${theme}`}
+                >
+                  <option value="">Select Coordinator</option>
+                  {
+                    coordinatorList.map((option) => {
+                      return(
+                        <option key={option.email} value={option.userid}>
+                          <>{option.name} - {option.email}</>
+                        </option>
+                      )
+                    })
+                  }
+                </select>
               </div>
         }
         {
