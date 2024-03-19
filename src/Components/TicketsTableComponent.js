@@ -52,9 +52,9 @@ const TicketsTableComponent = () => {
             <th className='table-header-text'>
               Status
             </th>
-            <th className='table-header-text'>
+            {/* <th className='table-header-text'>
               Details
-            </th>
+            </th> */}
           </tr>
         </thead>
         <tbody className={`table-body-${theme}`}>
@@ -68,7 +68,7 @@ const TicketsTableComponent = () => {
                       <td>{record.ticket_id}</td>
                       <td>{record.subject}</td>
                       <td style={{minWidth: '450px'}}>{record.message}</td>
-                      <td>{record.status ? 'Open' : 'Close'}</td>
+                      {/* <td>{record.status ? 'Open' : 'Close'}</td> */}
                     </tr>
                   )
                 })
@@ -78,7 +78,7 @@ const TicketsTableComponent = () => {
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
+                  {/* <td></td> */}
                 </tr>
           }
         </tbody>
