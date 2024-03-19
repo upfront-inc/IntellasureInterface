@@ -126,6 +126,13 @@ const IntakeTableComponent = (props) => {
                   <td></td>
                   <td></td>
                   {/* <td>{item.checked_in ? 'Yes' : 'No'}</td> */}
+                  {
+                    userProfile.privileges === 'staff'
+                      ? null 
+                      : <th></th>
+                  }
+                  <td></td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
