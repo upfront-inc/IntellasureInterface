@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
 import '../Css/usertable.css'
 import ClaimTableRecordComponent from './ClaimTableRecordComponent'
+import FollowUpTableRecordComponent from './FollowUpTableRecordComponent'
 
-const ClaimTableComponent = (props) => {
-  const {results} = props
+const FollowUpTableComponent = (props) => {
+  const {results, getClaimRecords} = props
 
   const { theme } = useTheme()
 
@@ -52,7 +53,7 @@ const ClaimTableComponent = (props) => {
                   {
                     results.map((item) => {
                       return(
-                        <ClaimTableRecordComponent item={item}/>
+                        <FollowUpTableRecordComponent getClaimRecords={getClaimRecords} item={item}/>
                       )
                     })
                   }
@@ -76,4 +77,4 @@ const ClaimTableComponent = (props) => {
   )
 }
 
-export default ClaimTableComponent
+export default FollowUpTableComponent

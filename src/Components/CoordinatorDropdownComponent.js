@@ -22,12 +22,16 @@ const CoordinatorDropdownComponent = ({ item, getIntakeRecords }) => {
     
     axios.request(config)
       .then((response) => {
-        setPrivilegeOPtions(response.data)
+        let allCoordinators = []
         response.data.map((selection) => {
+          if(selection.department === 'intake'){
+            allCoordinators.push(selection)
+          }
           if(selection.userid === item.coordinator){
             setSelectedPrivilege(selection.userid)
           } 
         })
+        setPrivilegeOPtions(allCoordinators)
       })
       .catch((error) => {
         console.log(error);
@@ -74,7 +78,7 @@ const CoordinatorDropdownComponent = ({ item, getIntakeRecords }) => {
       <select value={selectedPrivilege} onChange={handlePrivilegeChange}>
         {privilegeOptions.map((privilege) => (
           <option key={privilege.userid} value={privilege.userid}>
-            {privilege.name} - {privilege.userid}
+            {privilege.name} - {privilege.email}
           </option>
         ))}
       </select>

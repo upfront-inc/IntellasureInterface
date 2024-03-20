@@ -106,7 +106,7 @@ const SideBarComponent = () => {
             <div>
               {
                 sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>Follow Up</p>
+                  ? <p className={`label-${theme}`}>Reprocessing</p>
                   : null
               }
             </div>

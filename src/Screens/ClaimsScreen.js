@@ -45,7 +45,7 @@ const ClaimsScreen = () => {
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'https://intellasurebackend-docker.onrender.com//claims/claim_main_page',
+      url: 'https://intellasurebackend-docker.onrender.com/claims/claim_main_page',
       headers: {},
     };
     
