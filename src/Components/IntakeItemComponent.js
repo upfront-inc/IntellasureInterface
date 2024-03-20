@@ -5,9 +5,13 @@ import { useApp } from '../Contexts/AppContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons'
 import { useUser } from '../Contexts/UserContext'
+import SummaryOutDropdownComponent from './SummaryOutDropdownComponent'
+import BookedDropdownComponent from './BookedDropdownComponent'
+import CheckedInDropdownComponent from './CheckedInDropdownComponent'
+import CoordinatorDropdownComponent from './CoordinatorDropdownComponent'
 
 const IntakeItemComponent = (props) => {
-  const {item, setSelectedIntakeId, setShowIntakeRecordsNotes} = props
+  const {item, setSelectedIntakeId, setShowIntakeRecordsNotes, getIntakeRecords} = props
 
   const { theme } = useTheme()
   const { toggleUpdateIntakeRecord, setUpdatingRecord } = useApp()
@@ -16,6 +20,7 @@ const IntakeItemComponent = (props) => {
   const [coordinator, setCoordinator] = useState('')
 
   useEffect(() => {
+    console.log('coordinator userid: ', item.coordinator)
     grabUserByUserid(item.coordinator)
   }, [])
 
@@ -66,8 +71,16 @@ const IntakeItemComponent = (props) => {
   return (
     <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px', minWidth: '350px'}}>
       <td>{convertDateToCustomFormat(item.date)}</td>
-      <td>{item.checked_in ? 'Yes' : 'No'}</td>
-      <td>{item.booked ? 'Yes' : 'No'}</td>
+      {
+        userProfile.privileges === 'manager' || userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'
+          ? <td><CheckedInDropdownComponent getIntakeRecords={getIntakeRecords} item={item}/></td>
+          : <td>{item.checked_in}</td>
+      }
+      {
+        userProfile.privileges === 'manager' || userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'
+          ? <td><BookedDropdownComponent getIntakeRecords={getIntakeRecords} item={item}/></td>
+          : <td>{item.booked ? 'Yes' : 'No'}</td>
+      }
       <td>{item.name}</td>
       <td style={{minWidth: '0px'}}>{item.prefix === 'na' ? '--' : item.prefix}</td>
       <td>{item.policy_id === 'na' ? '--' : item.policy_id}</td>
@@ -76,16 +89,19 @@ const IntakeItemComponent = (props) => {
       {
         userProfile.privileges === 'staff'
         ? null
-        : <td>{coordinator}</td>
+        : <td><CoordinatorDropdownComponent getIntakeRecords={getIntakeRecords} item={item}/></td>
       }
-      <td>{item.summary_out}</td>
-      <td>{item.inn_deductible === null ? '$0' : floatToDollarAmount(item.inn_deductible)}</td>
-      <td>{item.in_network_oop === null ? '$0' : floatToDollarAmount(item.in_network_oop)}</td>
-      <td>{item.onn_deductible === null ? '$0' : floatToDollarAmount(item.onn_deductible)}</td>
-      <td>{item.out_network_oop === null ? '$0' : floatToDollarAmount(item.out_network_oop)}</td>
+      {
+        userProfile.privileges === 'manager' || userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'
+          ? <td><SummaryOutDropdownComponent getIntakeRecords={getIntakeRecords} item={item}/></td>
+          : <td>{item.summary_out}</td>
+      }
+      <td>{item.inn_deductible === null ? 'Not Found' : floatToDollarAmount(item.inn_deductible)}</td>
+      <td>{item.in_network_oop === null ? 'Not Found' : floatToDollarAmount(item.in_network_oop)}</td>
+      <td>{item.onn_deductible === null ? 'Not Found' : floatToDollarAmount(item.onn_deductible)}</td>
+      <td>{item.out_network_oop === null ? 'Not Found' : floatToDollarAmount(item.out_network_oop)}</td>
       <td style={{minWidth: '0px'}}>{item.source}</td>
       <td onClick={() => {UpdateViewingNotes(item.intake_id)}}><span style={{color: 'blue'}}>View Notes</span></td>
-      <td onClick={() => {updateRecord(item)}} style={{minWidth: '0px'}} className='update-column'><FontAwesomeIcon icon={faEdit}/></td>
     </tr>
   )
 }

@@ -9,7 +9,7 @@ import IntakeItemComponent from './IntakeItemComponent'
 
 const IntakeTableComponent = (props) => {
 
-  const {results, setSelectedIntakeId, setShowIntakeRecordsNotes} = props
+  const {results, setSelectedIntakeId, setShowIntakeRecordsNotes, getIntakeRecords} = props
 
   const { theme } = useTheme()
   const { toggleUpdateIntakeRecord, setUpdatingRecord } = useApp()
@@ -100,18 +100,16 @@ const IntakeTableComponent = (props) => {
             <th className='table-header-text column'>
               Notes
             </th>
-            <th style={{minWidth: '0px'}} className='table-header-text update-column'>
-              Update
-            </th>
           </tr>
         </thead>
         <tbody className={`table-body-${theme}`}>
           {
             results.length > 0
               ? results.map((item) => {
+                  // console.log('item: ', item)
                   return(
                     <>
-                    <IntakeItemComponent setShowIntakeRecordsNotes={setShowIntakeRecordsNotes} setSelectedIntakeId={setSelectedIntakeId} item={item}/>
+                    <IntakeItemComponent getIntakeRecords={getIntakeRecords} setShowIntakeRecordsNotes={setShowIntakeRecordsNotes} setSelectedIntakeId={setSelectedIntakeId} item={item}/>
                     </>
                   )
                 })
@@ -133,11 +131,6 @@ const IntakeTableComponent = (props) => {
                   <td></td>
                   <td></td>
                   <td></td>
-                  {
-                    userProfile.privileges === 'staff'
-                      ? null 
-                      : <th></th>
-                  }
                 </tr>
           }
         </tbody>

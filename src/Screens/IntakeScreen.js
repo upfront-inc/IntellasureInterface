@@ -101,7 +101,7 @@ const IntakeScreen = () => {
       <div className={`content-container-${theme}`}>
         <TopBarAddComponent page={page} nextPage={nextPage} previousPage={previousPage}/>
         <div className='table-container'>
-          <IntakeTableComponent setShowIntakeRecordsNotes={setShowIntakeRecordsNotes} setSelectedIntakeId={setSelectedIntakeId} results={results}/>
+          <IntakeTableComponent setShowIntakeRecordsNotes={setShowIntakeRecordsNotes} setSelectedIntakeId={setSelectedIntakeId} results={results} getIntakeRecords={getIntakeRecords}/>
         </div>
       </div>
     </>
