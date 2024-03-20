@@ -41,7 +41,7 @@ const ClaimTableComponent = (props) => {
               Status
             </th>
             <th className='table-header-text'>
-              Follow Up
+              Check Box
             </th>
           </tr>
         </thead>
