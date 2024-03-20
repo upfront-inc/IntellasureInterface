@@ -66,15 +66,6 @@ const FollowUpTableRecordComponent = (props) => {
 
   return (
     <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-      <td>{item.claim_id}</td>
-      <td>{item.name}</td>
-      <td>{item.facility}</td>
-      <td>{item.status}</td>
-      <td>{formatDollarAmount(item.charged_total)}</td>
-      <td>{formatDollarAmount(item.paid_total)}</td>
-      <td>{formatDollarAmount(item.balance_total)}</td>
-      <td>{convertDateToMMDDYYYY(item.start_date)}</td>
-      <td>{convertDateToMMDDYYYY(item.end_date)}</td>
       <td>
         <input
           type="checkbox"
@@ -82,6 +73,17 @@ const FollowUpTableRecordComponent = (props) => {
           onChange={handleCheckboxChange}
         />
       </td>
+      <td>{item.claim_id}</td>
+      <td>{item.name}</td>
+      <td>{item.facility === "BEACHSIDE RECOVERY CENTER, LLC" ? 'BEACHSIDE' : item.facility === 'AFFINITY GROUP' ? 'AFFINITY' : 'AXIS'}</td>
+      <td>{item.network === 'out-of-network' ? 'Out Netowrk' : 'In Network'}</td>
+      <td>{item.status}</td>
+      <td>{item.fu_notes === NaN ? 'None' : item.fu_notes}</td>
+      <td>{formatDollarAmount(item.charged_total)}</td>
+      <td>{formatDollarAmount(item.paid_total)}</td>
+      <td>{formatDollarAmount(item.balance_total)}</td>
+      <td>{convertDateToMMDDYYYY(item.start_date)}</td>
+      <td>{convertDateToMMDDYYYY(item.end_date)}</td>
     </tr>
   )
 }

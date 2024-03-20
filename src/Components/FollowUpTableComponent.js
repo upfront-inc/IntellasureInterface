@@ -13,36 +13,42 @@ const FollowUpTableComponent = (props) => {
     <div className='user-table-parent'>
       <table className='user-section'>
         <thead className={`user-table-header-${theme}`}>
-          <tr>
-            <th className='table-header-text'>
+        <tr>
+            <th style={{minWidth: '150px'}} className='table-header-text'>
+              Check Box
+            </th>
+            <th style={{minWidth: '150px'}} className='table-header-text'>
               Claim Id
             </th>
-            <th className='table-header-text'>
+            <th style={{minWidth: '200px'}} className='table-header-text'>
               Name
             </th>
-            <th className='table-header-text'>
+            <th style={{minWidth: '150px'}} className='table-header-text'>
               Facility
             </th>
-            <th className='table-header-text'>
-              Charged Total
+            <th style={{minWidth: '150px'}} className='table-header-text'>
+              Network
             </th>
-            <th className='table-header-text'>
-              Paid Total
-            </th>
-            <th className='table-header-text'>
-              Balance Total
-            </th>
-            <th className='table-header-text'>
-              Start Date
-            </th>
-            <th className='table-header-text'>
-              End Date
-            </th>
-            <th className='table-header-text'>
+            <th style={{minWidth: '350px'}} className='table-header-text'>
               Status
             </th>
-            <th className='table-header-text'>
-              Check Box
+            <th style={{minWidth: '150px'}} className='table-header-text'>
+              Notes
+            </th>
+            <th style={{minWidth: '150px'}} className='table-header-text'>
+              Charged Total
+            </th>
+            <th style={{minWidth: '150px'}} className='table-header-text'>
+              Paid Total
+            </th>
+            <th style={{minWidth: '150px'}} className='table-header-text'>
+              Balance Total
+            </th>
+            <th style={{minWidth: '150px'}} className='table-header-text'>
+              Start Date
+            </th>
+            <th style={{minWidth: '150px'}} className='table-header-text'>
+              End Date
             </th>
           </tr>
         </thead>

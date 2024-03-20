@@ -99,7 +99,7 @@ const SideBarComponent = () => {
                   </div>
               </>
           }
-          <div onClick={() => {toggleSelectedTab('followup')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('AI') ? `menu-bar-item-selected-${theme}` : ''}`}>
+          <div onClick={() => {toggleSelectedTab('followup')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('followup') ? `menu-bar-item-selected-${theme}` : ''}`}>
             <div className='icon-container'>
               <FontAwesomeIcon icon={faRefresh} className="icon-menu"/>
             </div>
