@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
 import '../Css/usertable.css'
 import ClaimTableRecordComponent from './ClaimTableRecordComponent'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAnglesDown, faAnglesUp } from '@fortawesome/free-solid-svg-icons'
 
 const ClaimTableComponent = (props) => {
   const {results} = props

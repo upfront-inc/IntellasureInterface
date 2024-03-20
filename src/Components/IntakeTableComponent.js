@@ -37,12 +37,6 @@ const IntakeTableComponent = (props) => {
     return `${mm}/${dd}/${yyyy}`;
   }
 
-  function floatToDollarAmount(number) {
-    const numberWithCommas = number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    
-    return "$" + numberWithCommas;
-  }
-
   return (
     <div className='table-parent'>
       <table className='table-section'>

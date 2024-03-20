@@ -57,9 +57,9 @@ const IntakeItemComponent = (props) => {
   }
 
   function floatToDollarAmount(number) {
-    const numberWithCommas = number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // const numberWithCommas = number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     
-    return "$" + numberWithCommas;
+    return "$" + number;
   }
 
   const UpdateViewingNotes = (intakeId) => {

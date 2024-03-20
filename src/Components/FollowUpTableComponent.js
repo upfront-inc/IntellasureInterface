@@ -3,6 +3,8 @@ import { useTheme } from '../Contexts/ThemeContext'
 import '../Css/usertable.css'
 import ClaimTableRecordComponent from './ClaimTableRecordComponent'
 import FollowUpTableRecordComponent from './FollowUpTableRecordComponent'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAnglesDown, faAnglesUp } from '@fortawesome/free-solid-svg-icons'
 
 const FollowUpTableComponent = (props) => {
   const {results, getClaimRecords} = props
