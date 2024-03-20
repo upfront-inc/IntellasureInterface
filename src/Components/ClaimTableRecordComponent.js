@@ -78,7 +78,7 @@ const ClaimTableRecordComponent = (props) => {
       <td>{item.facility === "BEACHSIDE RECOVERY CENTER, LLC" ? 'BEACHSIDE' : item.facility === 'AFFINITY GROUP' ? 'AFFINITY' : 'AXIS'}</td>
       <td>{item.network === 'out-of-network' ? 'Out Netowrk' : 'In Network'}</td>
       <td>{item.status}</td>
-      <td>{item.fu_notes === NaN ? 'None' : item.fu_notes}</td>
+      <td style={{minWidth: '200px'}}>{item.fu_note === "NaN" ? 'None' : item.fu_note}</td>
       <td>{formatDollarAmount(item.charged_total)}</td>
       <td>{formatDollarAmount(item.paid_total)}</td>
       <td>{formatDollarAmount(item.balance_total)}</td>
