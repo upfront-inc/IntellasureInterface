@@ -3,25 +3,16 @@ import '../Css/Content.css'
 import '../Css/Table.css'
 import { useTheme } from '../Contexts/ThemeContext'
 import { useApp } from '../Contexts/AppContext';
-import TopBarComponent from '../Components/TopBarComponent';
-import FilterComponent from '../Components/FilterComponent';
-import MissingTableComponent from '../Components/MissingTableComponent';
-import IntakeTableComponent from '../Components/IntakeTableComponent';
-import TopBarAddComponent from '../Components/TopBarAddComponent';
 import axios from 'axios';
-import AdduserComponent from '../Components/AdduserComponent';
 import { useUser } from '../Contexts/UserContext';
 import { useSidebar } from '../Contexts/SidebarContext';
-import UpdateIntakeRecord from '../Components/UpdateIntakeRecord';
-import UpdateIntakeNotesComponent from '../Components/UpdateIntakeNotesComponent';
 import ClaimTableComponent from '../Components/ClaimTableComponent';
 import ClaimTopBarComponent from '../Components/ClaimTopBarComponent'
+import ClaimDetailsTableComponent from '../Components/ClaimDetailsTableComponent'
+import ClaimDetailsTopBar from '../Components/ClaimDetailsTopBar';
 
 const ClaimsScreen = () => {
   const { theme } = useTheme(); 
-  const { sidebarPosition, showProfile } = useSidebar();
-  const { selectedTab, showAddIntakeRecord, showAddUserRecord, showUpdateIntakeRecord } = useApp();
-  const { grabCurrentUser, currentUser, loading, userProfile } = useUser()
 
   const [results, setResults] = useState([])
   const [claimAtInsurance, setClaimAtInsurance] = useState([])
@@ -33,6 +24,9 @@ const ClaimsScreen = () => {
   const [balanceDuePatient, setBalanceDuePatient] = useState([])
   const [deniedAtInsurance, setDeniedAtInsurance] = useState([])
   const [allClaims, setAllClaims] = useState([])
+
+  const [viewingTab, setViewingTab] = useState('claims')
+  const [selectedClaim, setSelectedClaim] = useState('')
 
   useEffect(() => {
     getClaimRecords()
@@ -135,9 +129,17 @@ const ClaimsScreen = () => {
   return (
     <>
       <div className={`content-container-${theme}`}>
-        <ClaimTopBarComponent toggleViewedResults={toggleViewedResults} />
+        {
+          viewingTab === 'claims'
+            ? <ClaimTopBarComponent toggleViewedResults={toggleViewedResults} />
+            : <ClaimDetailsTopBar setViewingTab={setViewingTab} />
+        }
         <div className='table-container'>
-          <ClaimTableComponent results={results}/>
+          {
+            viewingTab === 'claims'
+              ? <ClaimTableComponent setSelectedClaim={setSelectedClaim} setViewingTab={setViewingTab} results={results}/>
+              : <ClaimDetailsTableComponent claimId={selectedClaim}/>
+          }
         </div>
       </div>
     </>

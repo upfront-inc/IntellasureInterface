@@ -1,30 +1,56 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
 import '../Css/usertable.css'
 import ClaimTableRecordComponent from './ClaimTableRecordComponent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesDown, faAnglesUp } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
+import ClaimDetailsRocordComponent from './ClaimDetailsRocordComponent'
 
-const ClaimTableComponent = (props) => {
-  const {results, setViewingTab, setSelectedClaim} = props
+const FollowupDetailsTableComponent = (props) => {
+  const {claimId} = props
 
   const { theme } = useTheme()
 
+  const [results, setResults] = useState([])
+
+  useEffect(() => {
+    grabClaimDetails()
+  }, [])
+  
+  const grabClaimDetails = () => {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `https://intellasurebackend-docker.onrender.com/claims/get_claimid_details/${claimId}`,
+      headers: { }
+    };
+    
+    axios.request(config)
+    .then((response) => {
+      console.log(response.data)
+      setResults(response.data)
+      // console.log(JSON.stringify(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
 
   return (
     <div className='user-table-parent'>
       <table className='user-section'>
         <thead className={`user-table-header-${theme}`}>
           <tr>
-            <th style={{minWidth: '150px'}} className='table-header-text'>
+            {/* <th style={{minWidth: '150px'}} className='table-header-text'>
               Check Box
-            </th>
+            </th> */}
             <th style={{minWidth: '150px'}} className='table-header-text'>
               Claim Id
             </th>
-            <th style={{minWidth: '200px'}} className='table-header-text'>
+            {/* <th style={{minWidth: '200px'}} className='table-header-text'>
               Name
-            </th>
+            </th> */}
             <th style={{minWidth: '150px'}} className='table-header-text'>
               Facility
             </th>
@@ -34,9 +60,9 @@ const ClaimTableComponent = (props) => {
             <th style={{minWidth: '350px'}} className='table-header-text'>
               Status
             </th>
-            <th style={{minWidth: '150px'}} className='table-header-text'>
+            {/* <th style={{minWidth: '150px'}} className='table-header-text'>
               Notes
-            </th>
+            </th> */}
             <th style={{minWidth: '150px'}} className='table-header-text'>
               Charged Total
             </th>
@@ -49,9 +75,9 @@ const ClaimTableComponent = (props) => {
             <th style={{minWidth: '150px'}} className='table-header-text'>
               Start Date
             </th>
-            <th style={{minWidth: '150px'}} className='table-header-text'>
+            {/* <th style={{minWidth: '150px'}} className='table-header-text'>
               End Date
-            </th>
+            </th> */}
           </tr>
         </thead>
         <tbody className={`user-table-body-${theme}`}>
@@ -61,7 +87,7 @@ const ClaimTableComponent = (props) => {
                   {
                     results.map((item) => {
                       return(
-                        <ClaimTableRecordComponent setSelectedClaim={setSelectedClaim} setViewingTab={setViewingTab} item={item}/>
+                        <ClaimDetailsRocordComponent item={item}/>
                       )
                     })
                   }
@@ -85,4 +111,4 @@ const ClaimTableComponent = (props) => {
   )
 }
 
-export default ClaimTableComponent
+export default FollowupDetailsTableComponent

@@ -3,11 +3,16 @@ import { useTheme } from '../Contexts/ThemeContext'
 import axios from 'axios'
 
 const FollowUpTableRecordComponent = (props) => {
-  const {item, getClaimRecords} = props
+  const {item, getClaimRecords, setViewingTab, setSelectedClaim} = props
 
   const { theme } = useTheme()
 
   const [checked, setChecked] = useState(item.favorites);
+
+  const updateExpandingRecrds = (claimId) => {
+    setViewingTab('details')
+    setSelectedClaim(claimId)
+  }
 
   function convertDateToMMDDYYYY(dateString) {
     const date = new Date(dateString);
@@ -73,7 +78,7 @@ const FollowUpTableRecordComponent = (props) => {
           onChange={handleCheckboxChange}
         />
       </td>
-      <td>{item.claim_id}</td>
+      <td className='hover-text'  onClick={() => {updateExpandingRecrds(item.claim_id)}} style={{color: '#0b8ec4'}}>{item.claim_id}</td>
       <td>{item.name}</td>
       <td>{item.facility === "BEACHSIDE RECOVERY CENTER, LLC" ? 'BEACHSIDE' : item.facility === 'AFFINITY GROUP' ? 'AFFINITY' : 'AXIS'}</td>
       <td>{item.network === 'out-of-network' ? 'Out Netowrk' : 'In Network'}</td>

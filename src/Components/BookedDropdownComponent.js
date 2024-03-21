@@ -3,17 +3,13 @@ import { useUser } from '../Contexts/UserContext';
 import axios from 'axios';
 
 const BookedDropdownComponent = ({ item, getIntakeRecords }) => {
-  const privilegeOptions = ['Yes', 'No'];
+  const privilegeOptions = ['Arrived', 'MIA', 'Pending'];
 
-  const [selectedPrivilege, setSelectedPrivilege] = useState(item.booked ? 'Yes' : 'No');
+  const [selectedPrivilege, setSelectedPrivilege] = useState(item.booked);
 
   const handlePrivilegeChange = (e) => {
-    e.target.value === 'Yes'
-      ? setSelectedPrivilege(true)
-      : setSelectedPrivilege(false)
-    e.target.value === 'Yes'
-      ? updateUserProfile(true)
-      : updateUserProfile(false)
+    setSelectedPrivilege(e.target.value)
+    updateUserProfile(e.target.value)
     // You can perform any additional actions when the privilege changes here
   };
 

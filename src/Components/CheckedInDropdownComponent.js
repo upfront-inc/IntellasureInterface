@@ -3,7 +3,7 @@ import { useUser } from '../Contexts/UserContext';
 import axios from 'axios';
 
 const CheckedInDropdownComponent = ({ item, getIntakeRecords }) => {
-  const privilegeOptions = ['Pending', 'No Show', 'Showed'];
+  const privilegeOptions = ['Pending', 'Approved', 'Denied', 'Booked'];
 
   const [selectedPrivilege, setSelectedPrivilege] = useState(item.checked_in);
 

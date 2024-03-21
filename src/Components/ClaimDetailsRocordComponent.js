@@ -2,17 +2,12 @@ import React, { useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
 import axios from 'axios'
 
-const ClaimTableRecordComponent = (props) => {
-  const {item, setViewingTab, setSelectedClaim} = props
+const ClaimDetailsRocordComponent = (props) => {
+  const {item} = props
 
   const { theme } = useTheme()
 
   const [checked, setChecked] = useState(item.favorites);
-
-  const updateExpandingRecrds = (claimId) => {
-    setViewingTab('details')
-    setSelectedClaim(claimId)
-  }
 
   function convertDateToMMDDYYYY(dateString) {
     const date = new Date(dateString);
@@ -71,26 +66,26 @@ const ClaimTableRecordComponent = (props) => {
 
   return (
     <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
-      <td>
+      {/* <td>
         <input
           type="checkbox"
           checked={checked}
           onChange={handleCheckboxChange}
         />
-      </td>
-      <td className='hover-text'  onClick={() => {updateExpandingRecrds(item.claim_id)}} style={{color: '#0b8ec4'}}>{item.claim_id}</td>
-      <td>{item.name}</td>
+      </td> */}
+      <td>{item.claim_id}</td>
+      {/* <td>{item.name}</td> */}
       <td>{item.facility === "BEACHSIDE RECOVERY CENTER, LLC" ? 'BEACHSIDE' : item.facility === 'AFFINITY GROUP' ? 'AFFINITY' : 'AXIS'}</td>
       <td>{item.network === 'out-of-network' ? 'Out Netowrk' : 'In Network'}</td>
       <td>{item.status}</td>
-      <td style={{minWidth: '200px'}}>{item.fu_note === "NaN" ? 'None' : item.fu_note}</td>
-      <td>{formatDollarAmount(item.charged_total)}</td>
-      <td>{formatDollarAmount(item.paid_total)}</td>
-      <td>{formatDollarAmount(item.balance_total)}</td>
-      <td>{convertDateToMMDDYYYY(item.start_date)}</td>
-      <td>{convertDateToMMDDYYYY(item.end_date)}</td>
+      {/* <td style={{minWidth: '200px'}}>{item.fu_note === "NaN" ? 'None' : item.fu_note}</td> */}
+      <td>{formatDollarAmount(item.charged)}</td>
+      <td>{formatDollarAmount(item.paid)}</td>
+      <td>{formatDollarAmount(item.balance)}</td>
+      <td>{convertDateToMMDDYYYY(item.date)}</td>
+      {/* <td>{convertDateToMMDDYYYY(item.end_date)}</td> */}
     </tr>
   )
 }
 
-export default ClaimTableRecordComponent
+export default ClaimDetailsRocordComponent

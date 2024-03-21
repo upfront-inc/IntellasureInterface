@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
 import axios from 'axios'
 
-const ClaimTableRecordComponent = (props) => {
+const FollowupDetailsRecordsComppnent = (props) => {
   const {item, setViewingTab, setSelectedClaim} = props
 
   const { theme } = useTheme()
@@ -93,4 +93,4 @@ const ClaimTableRecordComponent = (props) => {
   )
 }
 
-export default ClaimTableRecordComponent
+export default FollowupDetailsRecordsComppnent

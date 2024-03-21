@@ -3,7 +3,7 @@ import { useUser } from '../Contexts/UserContext';
 import axios from 'axios';
 
 const SummaryOutDropdownComponent = ({ item, getIntakeRecords }) => {
-  const privilegeOptions = ['Pending', 'Accepted', 'Rejected'];
+  const privilegeOptions = ['Pending', 'Good VOB', 'Bad VOB'];
 
   const [selectedPrivilege, setSelectedPrivilege] = useState(item.summary_out);
 

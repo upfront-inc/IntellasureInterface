@@ -8,11 +8,16 @@ import { useUser } from '../Contexts/UserContext';
 import { useSidebar } from '../Contexts/SidebarContext';
 import ClaimTableComponent from '../Components/ClaimTableComponent';
 import FollowUpTableComponent from '../Components/FollowUpTableComponent';
+import ClaimDetailsTopBar from '../Components/ClaimDetailsTopBar';
+import FollowupDetailsTableComponent from '../Components/FollowupDetailsTableComponent';
 
 const FollowupScreen = () => {
   const { theme } = useTheme(); 
 
   const [results, setResults] = useState([])
+
+  const [viewingTab, setViewingTab] = useState('claims')
+  const [selectedClaim, setSelectedClaim] = useState('')
 
   useEffect(() => {
     getClaimRecords()
@@ -39,8 +44,17 @@ const FollowupScreen = () => {
   return (
     <>
       <div className={`content-container-${theme}`}>
+        {
+          viewingTab === 'claims'
+            ? null
+            : <ClaimDetailsTopBar setViewingTab={setViewingTab} />
+        }
         <div className='table-container'>
-          <FollowUpTableComponent getClaimRecords={getClaimRecords} results={results}/>
+          {
+            viewingTab === 'claims'
+              ? <FollowUpTableComponent setSelectedClaim={setSelectedClaim} setViewingTab={setViewingTab} getClaimRecords={getClaimRecords} results={results}/>
+              : <FollowupDetailsTableComponent claimId={selectedClaim}/>
+          }
         </div>
       </div>
     </>

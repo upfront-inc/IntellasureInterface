@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesDown, faAnglesUp } from '@fortawesome/free-solid-svg-icons'
 
 const FollowUpTableComponent = (props) => {
-  const {results, getClaimRecords} = props
+  const {results, getClaimRecords, setSelectedClaim, setViewingTab} = props
 
   const { theme } = useTheme()
 
@@ -61,7 +61,7 @@ const FollowUpTableComponent = (props) => {
                   {
                     results.map((item) => {
                       return(
-                        <FollowUpTableRecordComponent getClaimRecords={getClaimRecords} item={item}/>
+                        <FollowUpTableRecordComponent setSelectedClaim={setSelectedClaim} setViewingTab={setViewingTab} getClaimRecords={getClaimRecords} item={item}/>
                       )
                     })
                   }
