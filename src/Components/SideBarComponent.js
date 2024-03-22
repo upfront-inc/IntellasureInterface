@@ -97,20 +97,20 @@ const SideBarComponent = () => {
                       }
                     </div>
                   </div>
+                  <div onClick={() => {toggleSelectedTab('followup')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('followup') ? `menu-bar-item-selected-${theme}` : ''}`}>
+                    <div className='icon-container'>
+                      <FontAwesomeIcon icon={faRefresh} className="icon-menu"/>
+                    </div>
+                    <div>
+                      {
+                        sidebarPosition === 'open'
+                          ? <p className={`label-${theme}`}>Reprocessing</p>
+                          : null
+                      }
+                    </div>
+                  </div>
               </>
           }
-          <div onClick={() => {toggleSelectedTab('followup')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('followup') ? `menu-bar-item-selected-${theme}` : ''}`}>
-            <div className='icon-container'>
-              <FontAwesomeIcon icon={faRefresh} className="icon-menu"/>
-            </div>
-            <div>
-              {
-                sidebarPosition === 'open'
-                  ? <p className={`label-${theme}`}>Reprocessing</p>
-                  : null
-              }
-            </div>
-          </div>
         </div>
         <div>
           {
