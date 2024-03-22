@@ -76,6 +76,13 @@ const IntakeTableComponent = (props) => {
             <th className='table-header-text column'>
               Summary Out 
             </th>
+            {
+              userProfile.privileges === 'staff'
+                ? null 
+                : <th style={{minWidth: '200px'}} className='table-header-text column'>
+                    (In) Admission %
+                  </th>
+            }
             <th className='table-header-text column'>
               (In) Admission
             </th>
@@ -85,6 +92,13 @@ const IntakeTableComponent = (props) => {
             <th className='table-header-text column'>
               In-Network OOP
             </th>
+            {
+              userProfile.privileges === 'staff'
+                ? null 
+                : <th style={{minWidth: '200px'}} className='table-header-text column'>
+                    (Out) Admission %
+                  </th>
+            }
             <th className='table-header-text column'>
               (Out) Admission
             </th>
