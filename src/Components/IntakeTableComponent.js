@@ -77,15 +77,21 @@ const IntakeTableComponent = (props) => {
               Summary Out 
             </th>
             <th className='table-header-text column'>
+              (In) Admission
+            </th>
+            <th className='table-header-text column'>
               In-Network Ded.
             </th>
             <th className='table-header-text column'>
               In-Network OOP
             </th>
             <th className='table-header-text column'>
+              (Out) Admission
+            </th>
+            <th style={{minWidth: '200px'}} className='table-header-text column'>
               Out-Network Ded.
             </th>
-            <th className='table-header-text column'>
+            <th style={{minWidth: '200px'}} className='table-header-text column'>
               Out-Network OOP
             </th>
             <th className='table-header-text column'>

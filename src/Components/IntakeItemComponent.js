@@ -18,10 +18,14 @@ const IntakeItemComponent = (props) => {
   const { userProfile } = useUser()
 
   const [coordinator, setCoordinator] = useState('')
+  const [admissionIn, setAdmissionIn] = useState(null)
+  const [admissionOut, setAdmissionOut] = useState(null)
 
   useEffect(() => {
     console.log('coordinator userid: ', item.coordinator)
     grabUserByUserid(item.coordinator)
+    grabAdmissionIn(item.prefix)
+    grabAdmissionOut(item.prefix)
   }, [])
 
   const updateRecord = (record) => {
@@ -67,6 +71,42 @@ const IntakeItemComponent = (props) => {
     setShowIntakeRecordsNotes(true)
   }
 
+  const grabAdmissionOut = (prefix) => {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `https://intellasurebackend-docker.onrender.com/average_admission/out-of-network/${prefix}`,
+      headers: { }
+    };
+    axios.request(config)
+    .then((response) => {
+      console.log(response.data);
+      setAdmissionOut(response.data)
+    })
+    .catch((error) => {
+      console.log(error);
+      return null
+    });
+  }
+
+  const grabAdmissionIn = (prefix) => {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `https://intellasurebackend-docker.onrender.com/average_admission/in-network/${prefix}`,
+      headers: { }
+    };
+    axios.request(config)
+    .then((response) => {
+      console.log(response.data);
+      setAdmissionIn(response.data)
+    })
+    .catch((error) => {
+      console.log(error);
+      return null
+    });
+  }
+
 
   return (
     <tr className={`table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px', minWidth: '350px'}}>
@@ -96,8 +136,20 @@ const IntakeItemComponent = (props) => {
           ? <td><SummaryOutDropdownComponent getIntakeRecords={getIntakeRecords} item={item}/></td>
           : <td>{item.summary_out}</td>
       }
+      {
+        userProfile.privileges === 'staff'
+          ? null
+          : <td>{admissionIn === null ? 'Not Found' : `${Math.round(admissionIn.average_admission_percentage)}%` }</td>
+      }
+      <td>{admissionIn === null ? 'Not Found' : admissionIn.likelihood}</td>
       <td>{item.inn_deductible === null ? 'Not Found' : floatToDollarAmount(item.inn_deductible)}</td>
       <td>{item.in_network_oop === null ? 'Not Found' : floatToDollarAmount(item.in_network_oop)}</td>
+      {
+        userProfile.privileges === 'staff'
+          ? null
+          : <td>{admissionOut === null ? 'Not Found' : `${Math.round(admissionOut.average_admission_percentage)}%` }</td>
+      }
+      <td>{admissionOut === null ? 'Not Found' : admissionOut.likelihood }</td>
       <td>{item.onn_deductible === null ? 'Not Found' : floatToDollarAmount(item.onn_deductible)}</td>
       <td>{item.out_network_oop === null ? 'Not Found' : floatToDollarAmount(item.out_network_oop)}</td>
       <td style={{minWidth: '0px'}}>{item.source}</td>
