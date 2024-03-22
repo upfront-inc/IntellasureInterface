@@ -58,7 +58,7 @@ const SideBarComponent = () => {
           </div>
         </div>
           {
-            userProfile.priviledges === 'member' || userProfile.priviledges === 'manager'
+            userProfile.priviledges === 'staff' || userProfile.priviledges === 'manager'
               ? null 
               : <>
                   <div onClick={() => {toggleSelectedTab('billingDetails')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('billingDetails') ? `menu-bar-item-selected-${theme}` : ''}`}>
@@ -114,7 +114,7 @@ const SideBarComponent = () => {
         </div>
         <div>
           {
-            userProfile.priviledges === 'member' || userProfile.priviledges === 'member'
+            userProfile.priviledges === 'staff' || userProfile.priviledges === 'member'
               ? null
               : <div onClick={() => {toggleSelectedTab('accounts')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('accounts') ? `menu-bar-item-selected-${theme}` : ''}`}>
                   <div className='icon-container'>
@@ -130,7 +130,7 @@ const SideBarComponent = () => {
                 </div>
           }
           {
-            userProfile.priviledges === 'member' || userProfile.priviledges === 'manager' || userProfile.priviledges === 'admin' || userProfile.priviledges === 'owner'
+            userProfile.priviledges === 'staff' || userProfile.priviledges === 'manager' || userProfile.priviledges === 'admin' || userProfile.priviledges === 'owner'
               ? null 
               : <div onClick={() => {toggleSelectedTab('helpTickets')}} className={`hover-text menu-bar-item-${sidebarPosition}-${theme} ${isSelected('helpTickets') ? `menu-bar-item-selected-${theme}` : ''}`}>
                   <div className='icon-container'>
