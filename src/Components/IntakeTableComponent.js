@@ -80,33 +80,33 @@ const IntakeTableComponent = (props) => {
               userProfile.privileges === 'staff'
                 ? null 
                 : <th style={{minWidth: '200px'}} className='table-header-text column'>
-                    (In) Admission %
+                    INN Admission %
                   </th>
             }
             <th className='table-header-text column'>
-              (In) Admission
+              INN Admission
             </th>
             <th className='table-header-text column'>
-              In-Network Ded.
+              INN Ded.
             </th>
             <th className='table-header-text column'>
-              In-Network OOP
+              INN OOP
             </th>
             {
               userProfile.privileges === 'staff'
                 ? null 
                 : <th style={{minWidth: '200px'}} className='table-header-text column'>
-                    (Out) Admission %
+                    OON Admission %
                   </th>
             }
             <th className='table-header-text column'>
-              (Out) Admission
+              OON Admission
             </th>
             <th style={{minWidth: '200px'}} className='table-header-text column'>
-              Out-Network Ded.
+              OON Ded.
             </th>
             <th style={{minWidth: '200px'}} className='table-header-text column'>
-              Out-Network OOP
+              OON OOP
             </th>
             <th className='table-header-text column'>
               Source 

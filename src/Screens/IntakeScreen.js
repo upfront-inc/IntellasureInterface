@@ -61,7 +61,7 @@ const IntakeScreen = () => {
     };
     axios.request(config)
     .then((response) => {
-      console.log(response.data.data[0])
+      console.log('all records: ', response.data.data)
       if(response.data.data.length > 0){
         if(userProfile.privileges === 'manager' || userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'){
           setResults(response.data.data)

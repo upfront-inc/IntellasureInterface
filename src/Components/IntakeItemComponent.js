@@ -139,17 +139,17 @@ const IntakeItemComponent = (props) => {
       {
         userProfile.privileges === 'staff'
           ? null
-          : <td>{admissionIn === null ? 'Not Found' : `${Math.round(admissionIn.average_admission_percentage)}%` }</td>
+          : <td>{admissionIn === null ? '' : `${Math.round(admissionIn.average_admission_percentage)}%` }</td>
       }
-      <td>{admissionIn === null ? 'Not Found' : admissionIn.likelihood}</td>
+      <td>{admissionIn === null ? '' : admissionIn.likelihood}</td>
       <td>{item.inn_deductible === null ? 'Not Found' : floatToDollarAmount(item.inn_deductible)}</td>
       <td>{item.in_network_oop === null ? 'Not Found' : floatToDollarAmount(item.in_network_oop)}</td>
       {
         userProfile.privileges === 'staff'
           ? null
-          : <td>{admissionOut === null ? 'Not Found' : `${Math.round(admissionOut.average_admission_percentage)}%` }</td>
+          : <td>{admissionOut === null ? '' : `${Math.round(admissionOut.average_admission_percentage)}%` }</td>
       }
-      <td>{admissionOut === null ? 'Not Found' : admissionOut.likelihood }</td>
+      <td>{admissionOut === null ? '' : admissionOut.likelihood }</td>
       <td>{item.onn_deductible === null ? 'Not Found' : floatToDollarAmount(item.onn_deductible)}</td>
       <td>{item.out_network_oop === null ? 'Not Found' : floatToDollarAmount(item.out_network_oop)}</td>
       <td style={{minWidth: '0px'}}>{item.source}</td>
