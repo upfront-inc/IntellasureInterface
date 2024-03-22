@@ -20,4 +20,7 @@
 .content-panel {
   width: 50%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

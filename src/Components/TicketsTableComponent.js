@@ -1,9 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTheme } from '../Contexts/ThemeContext'
+import axios from 'axios'
 
 const TicketsTableComponent = () => {
 
   const { theme } = useTheme()
+
+  const [records, setRecords] = useState([])
+
+  useEffect(() => {
+    grabAllTickets()
+  }, [])
+
+  const grabAllTickets = () => {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'https://intellasurebackend-docker.onrender.com/support/get_tickets',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+    };
+    
+    axios.request(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data.length));
+      setRecords(response.data)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
 
   return (
     <div className='table-parent'>
@@ -25,23 +52,35 @@ const TicketsTableComponent = () => {
             <th className='table-header-text'>
               Status
             </th>
-            <th className='table-header-text'>
+            {/* <th className='table-header-text'>
               Details
-            </th>
+            </th> */}
           </tr>
         </thead>
         <tbody className={`table-body-${theme}`}>
-        {Array.from({ length: 19 }).map((_, index) => (
-            <tr className={`table-content-row-${theme}`} key={index} style={{textAlign: 'center'}}>
-              <td>John Doe</td>
-              <td>john@doe.com</td>
-              <td>15235123</td>
-              <td>Issue Searching for number prefix</td>
-              <td>closed</td>
-              <td>Open</td>
-            </tr>
-          ))}
-          
+          {
+            records.length > 0 
+              ? records.map((record, index) => {
+                  return(
+                    <tr className={`table-content-row-${theme}`} key={index} style={{textAlign: 'center'}}>
+                      <td>{record.name}</td>
+                      <td>{record.email}</td>
+                      <td>{record.ticket_id}</td>
+                      <td>{record.subject}</td>
+                      <td style={{minWidth: '450px'}}>{record.message}</td>
+                      {/* <td>{record.status ? 'Open' : 'Close'}</td> */}
+                    </tr>
+                  )
+                })
+              : <tr className={`table-content-row-${theme}`} style={{textAlign: 'center'}}>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  {/* <td></td> */}
+                </tr>
+          }
         </tbody>
       </table>
     </div>

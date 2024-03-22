@@ -26,6 +26,8 @@ import LoginScreen from './Screens/Authentication/LoginScreen';
 import AuthenticationScreen from './Screens/Authentication/AuthenticationScreen';
 import AdduserComponent from './Components/AdduserComponent';
 import UpdateIntakeRecord from './Components/UpdateIntakeRecord';
+import ClaimsScreen from './Screens/ClaimsScreen';
+import FollowupScreen from './Screens/FollowupScreen';
 
 Amplify.configure(amplifyconfig)
 
@@ -119,7 +121,11 @@ function App() {
                                                       ? <HelpScreen/>
                                                       : selectedTab === 'AI'
                                                         ? <ChatWithAIComponent/>
-                                                        : null
+                                                        : selectedTab === 'claims'
+                                                          ? <ClaimsScreen/>
+                                                          : selectedTab === 'followup'
+                                                            ? <FollowupScreen/>
+                                                            : null
                   }
                   {
                     showProfile

@@ -141,6 +141,7 @@ const AddIntakeRecord = () => {
     
     axios.post(url, intakeData)
     .then((response) => {
+      console.log(response.data)
       toggleShowAddIntakeRecord()
       setLoading(false)
     })

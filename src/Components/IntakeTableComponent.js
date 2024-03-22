@@ -9,7 +9,7 @@ import IntakeItemComponent from './IntakeItemComponent'
 
 const IntakeTableComponent = (props) => {
 
-  const {results, setSelectedIntakeId, setShowIntakeRecordsNotes} = props
+  const {results, setSelectedIntakeId, setShowIntakeRecordsNotes, getIntakeRecords} = props
 
   const { theme } = useTheme()
   const { toggleUpdateIntakeRecord, setUpdatingRecord } = useApp()
@@ -35,12 +35,6 @@ const IntakeTableComponent = (props) => {
     const yyyy = date.getUTCFullYear(); // UTC full year
 
     return `${mm}/${dd}/${yyyy}`;
-  }
-
-  function floatToDollarAmount(number) {
-    const numberWithCommas = number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    
-    return "$" + numberWithCommas;
   }
 
   return (
@@ -82,17 +76,37 @@ const IntakeTableComponent = (props) => {
             <th className='table-header-text column'>
               Summary Out 
             </th>
+            {
+              userProfile.privileges === 'staff'
+                ? null 
+                : <th style={{minWidth: '200px'}} className='table-header-text column'>
+                    INN Admission %
+                  </th>
+            }
             <th className='table-header-text column'>
-              In-Network Ded.
+              INN Admission
             </th>
             <th className='table-header-text column'>
-              In-Network OOP
+              INN Ded.
             </th>
             <th className='table-header-text column'>
-              Out-Network Ded.
+              INN OOP
             </th>
+            {
+              userProfile.privileges === 'staff'
+                ? null 
+                : <th style={{minWidth: '200px'}} className='table-header-text column'>
+                    OON Admission %
+                  </th>
+            }
             <th className='table-header-text column'>
-              Out-Network OOP
+              OON Admission
+            </th>
+            <th style={{minWidth: '200px'}} className='table-header-text column'>
+              OON Ded.
+            </th>
+            <th style={{minWidth: '200px'}} className='table-header-text column'>
+              OON OOP
             </th>
             <th className='table-header-text column'>
               Source 
@@ -100,18 +114,16 @@ const IntakeTableComponent = (props) => {
             <th className='table-header-text column'>
               Notes
             </th>
-            <th style={{minWidth: '0px'}} className='table-header-text update-column'>
-              Update
-            </th>
           </tr>
         </thead>
         <tbody className={`table-body-${theme}`}>
           {
             results.length > 0
               ? results.map((item) => {
+                  // console.log('item: ', item)
                   return(
                     <>
-                    <IntakeItemComponent setShowIntakeRecordsNotes={setShowIntakeRecordsNotes} setSelectedIntakeId={setSelectedIntakeId} item={item}/>
+                    <IntakeItemComponent getIntakeRecords={getIntakeRecords} setShowIntakeRecordsNotes={setShowIntakeRecordsNotes} setSelectedIntakeId={setSelectedIntakeId} item={item}/>
                     </>
                   )
                 })
@@ -131,6 +143,8 @@ const IntakeTableComponent = (props) => {
                       ? null 
                       : <th></th>
                   }
+                  <td></td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
