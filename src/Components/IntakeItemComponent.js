@@ -85,7 +85,7 @@ const IntakeItemComponent = (props) => {
       <td style={{minWidth: '0px'}}>{item.prefix === 'na' ? '--' : item.prefix}</td>
       <td>{item.policy_id === 'na' ? '--' : item.policy_id}</td>
       <td>{item.insurance}</td>
-      <td>{item.active === "YES" ? 'Yes' : 'No'}</td>
+      <td>{item.active ? 'Yes' : 'No'}</td>
       {
         userProfile.privileges === 'staff'
         ? null
