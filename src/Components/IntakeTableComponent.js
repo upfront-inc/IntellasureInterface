@@ -46,7 +46,7 @@ const IntakeTableComponent = (props) => {
               Date 
             </th>
             <th className='table-header-text column'>
-              Checked In
+              Status
             </th>
             <th className='table-header-text column'>
               Booked
@@ -73,9 +73,6 @@ const IntakeTableComponent = (props) => {
                     Coordinator 
                   </th>
             }
-            <th className='table-header-text column'>
-              Summary Out 
-            </th>
             {
               userProfile.privileges === 'staff'
                 ? null 
@@ -123,7 +120,7 @@ const IntakeTableComponent = (props) => {
                   // console.log('item: ', item)
                   return(
                     <>
-                    <IntakeItemComponent getIntakeRecords={getIntakeRecords} setShowIntakeRecordsNotes={setShowIntakeRecordsNotes} setSelectedIntakeId={setSelectedIntakeId} item={item}/>
+                      <IntakeItemComponent getIntakeRecords={getIntakeRecords} setShowIntakeRecordsNotes={setShowIntakeRecordsNotes} setSelectedIntakeId={setSelectedIntakeId} item={item}/>
                     </>
                   )
                 })
@@ -138,7 +135,6 @@ const IntakeTableComponent = (props) => {
                   <td></td>
                   <td></td>
                   {/* <td>{item.checked_in ? 'Yes' : 'No'}</td> */}
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>

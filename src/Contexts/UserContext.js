@@ -17,6 +17,7 @@ export const UserProvider = ({ children }) => {
     setLoading(true)
     getCurrentUser()
       .then(response => {
+        console.log('current user: ', response)
         setCurrentUser(response.userId)
         grabCurrentUserProfile(response.userId)
       })
@@ -35,6 +36,7 @@ export const UserProvider = ({ children }) => {
     };
     axios.request(config)
       .then((response) => {
+        console.log('current user profile: ', response)
         setUserProfile(response.data.data)
         setLoading(false)
       })
