@@ -132,11 +132,6 @@ const IntakeItemComponent = (props) => {
         : <td><CoordinatorDropdownComponent getIntakeRecords={getIntakeRecords} item={item}/></td>
       }
       {
-        userProfile.privileges === 'manager' || userProfile.privileges === 'admin' || userProfile.privileges === 'dev' || userProfile.privileges === 'owner'
-          ? <td><SummaryOutDropdownComponent getIntakeRecords={getIntakeRecords} item={item}/></td>
-          : <td>{item.summary_out}</td>
-      }
-      {
         userProfile.privileges === 'staff'
           ? null
           : <td>{admissionIn === null ? '' : `${Math.round(admissionIn.average_admission_percentage)}%` }</td>
