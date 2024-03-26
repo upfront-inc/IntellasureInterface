@@ -69,6 +69,15 @@ const FollowUpTableRecordComponent = (props) => {
     });
   }
 
+  const handleSubmittingClaim = () => {
+    const confirmed = window.confirm("Are you sure you want to submit a new claim?");
+    if (confirmed) {
+      console.log("Submitting a new claim...");
+    } else {
+      console.log("Claim submission cancelled.");
+    }
+  }
+
   return (
     <tr className={`user-table-content-row-${theme}`} style={{textAlign: 'center', marginTop: '6px', marginBottom: '6px'}}>
       <td>
@@ -89,6 +98,7 @@ const FollowUpTableRecordComponent = (props) => {
       <td>{formatDollarAmount(item.balance_total)}</td>
       <td>{convertDateToMMDDYYYY(item.start_date)}</td>
       <td>{convertDateToMMDDYYYY(item.end_date)}</td>
+      <td onClick={handleSubmittingClaim} style={{fontWeight: 'bold', color: '#0b8ec4'}}>Submit</td>
     </tr>
   )
 }

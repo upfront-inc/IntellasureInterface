@@ -52,6 +52,9 @@ const FollowUpTableComponent = (props) => {
             <th style={{minWidth: '150px'}} className='table-header-text'>
               End Date
             </th>
+            <th style={{minWidth: '150px'}} className='table-header-text'>
+              Submit Claim
+            </th>
           </tr>
         </thead>
         <tbody className={`user-table-body-${theme}`}>

@@ -28,6 +28,14 @@ const ClaimsScreen = () => {
   const [viewingTab, setViewingTab] = useState('claims')
   const [selectedClaim, setSelectedClaim] = useState('')
 
+  const [selectedTab, setSelectedTab] = useState('all')
+
+  const [claimsTab, setClaimsTab] = useState('collab')
+  const [activeFilter, setActivateFilter] = useState(false)
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage] = useState(100); 
+
   useEffect(() => {
     getClaimRecords()
   }, [])
@@ -97,6 +105,7 @@ const ClaimsScreen = () => {
   }
 
   const toggleViewedResults = (filter) => {
+    setSelectedTab(filter)
     if(filter === 'all'){
       setResults(allClaims)
     }
@@ -126,18 +135,44 @@ const ClaimsScreen = () => {
     }
   }
 
+  const nextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const previousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentRecords = results.slice(indexOfFirstRecord, indexOfLastRecord);
+
   return (
     <>
       <div className={`content-container-${theme}`}>
         {
-          viewingTab === 'claims'
-            ? <ClaimTopBarComponent toggleViewedResults={toggleViewedResults} />
+           viewingTab === 'claims'
+            ? <ClaimTopBarComponent 
+                  toggleViewedResults={toggleViewedResults} 
+                  claimsTab={claimsTab} 
+                  setClaimsTab={setClaimsTab}
+                  activeFilter={activeFilter}
+                  setActivateFilter={setActivateFilter}
+                  selectedTab={selectedTab}
+                  nextPage={nextPage}
+                  previousPage={previousPage}
+                  currentRecords={currentRecords}
+                  currentPage={currentPage}
+                  recordsPerPage={recordsPerPage}
+                  />
             : <ClaimDetailsTopBar setViewingTab={setViewingTab} />
         }
         <div className='table-container'>
           {
             viewingTab === 'claims'
-              ? <ClaimTableComponent setSelectedClaim={setSelectedClaim} setViewingTab={setViewingTab} results={results}/>
+              ? <ClaimTableComponent setSelectedClaim={setSelectedClaim} setViewingTab={setViewingTab} results={currentRecords}/>
               : <ClaimDetailsTableComponent claimId={selectedClaim}/>
           }
         </div>

@@ -43,6 +43,30 @@
   align-items: center;
 }
 
+.top-bar-claims-dark, .top-bar-claims-light {
+  height: 50px;
+  border-radius: 8px;
+  margin: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.top-bar-claims-dark {
+  background-color: #1a1a1a;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-bar-claims-light {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .filter-bar-dark, .filter-bar-light {
   height: 46px;
   border-radius: 8px;
